@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from "react";
 import Player from '../player';
 
-function Grid(props) {
+class Grid extends Component {
 
-    
+    render() {
         console.log(this.props.cardlist);
         if(this.props.cardlist.length!==0) {
   
@@ -214,7 +214,7 @@ function Grid(props) {
             );
           }
             
-
+        }
 }
 
 export default Grid

@@ -1,8 +1,9 @@
 // import React from 'react';
 // import Tetris from './components/Tetris';
 
-
-import React, { Component } from 'react';
+import { useGameStatus } from './hooks/useGameStatus'
+import { correctAns, evaluate } from './hooks/useStage'
+import React, { Component, useState } from 'react';
 import Board from './components/board';
 // import logo from './logo.svg';
 // import Card from './components/card'
@@ -69,33 +70,51 @@ const cards = [
 // ];
 
 
-class Game extends Component {
-  state = {
-    score: 0
-  };
+// const [score, setScore, useGameStatus] = useGameStatus(
+//     correctAns
+// );
+function updatescore(gl) {
+  this.setState( { score: gl.length }, () => {
+    console.log(this.state.score);
+});
+}
 
-  updatescore = (gl) => {
-    this.setState( { score: gl.length }, () => {
-      console.log(this.state.score);
-  });
-  }
+// class Game extends Component {
+const Game = () => {
+//   state = {
+//     score: 0,
+//     gameOver: false,
+//   };
 
-  render() {
+// const [gameOver, setGameOver] = useState(false);
+// const [score, setScore] = useState(0);
+
+// //hooks
+// const [score] = useGameStatus(
+//     correctAns
+// );
+// const [correctAns, setCorrectAns, evaluate] = useStage() ;
+
+// const startGame = () => {
+    
+// }
+
+//   render() {
     return (
       <div className="App">
         <div className="App-header">
           <h2>Memory Game</h2>
         </div>
         <p className="App-intro">
-          this is  simple react game to test my skills. Click the numbers but do not or you'll have to start over!
+          Find the multiples of 2!!!!
         </p>
-        <h6>Your Score is::  {this.state.score}</h6>
+        {/* <h6>Your Score is::  {score}</h6> */}
         <div className="container">
           <div className="row">
             <div className="col-lg-3 text-center"></div>
             <div className="col-lg-6 text-center">
                 <div className="card-deck">
-                    <Board scoreupdate={this.updatescore} cards={cards}/>
+                    <Board scoreupdate={updatescore} cards={cards}/>
                 </div>
             </div>
             <div className="col-lg-3 text-center"></div>
@@ -104,7 +123,7 @@ class Game extends Component {
 
       </div>
     );
-  }
+//   }
 }
 
 export default Game;
