@@ -1,6 +1,6 @@
-//import store from '../config/store';
+import store from '../config/store';
 import { GRID_X, GRID_y, name_con } from '../../hooks/constants';
-import store from '../../hooks/store';
+//import store from '../../hooks/store';
 
 function handleMovement(player) {
     function boundaries(old, newpos) {
@@ -37,19 +37,19 @@ function handleMovement(player) {
         switch(e.keyCode) {
             case 37:
                     console.log("Left");
-                    return moveX(-52);
+                    return moveX(-125);
                     // break
             case 38:
                     console.log("Up");
-                 return moveY(-65)
+                 return moveY(-85)
                 //break
             case 39:
                     console.log("Right");
-                 return moveX(52)
+                 return moveX(125)
                 //break
             case 40:
                     console.log("Down");
-                 return moveY(65)
+                 return moveY(85)
                 //break
             case 32:
                     console.log("Munch");

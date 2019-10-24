@@ -22,3 +22,29 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  /* color: red; */
+  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 750px;
+  /* height: 325px; */
+  /* margin: 150px; */
+}
+.card-deck {
+  display: flex;
+  flex-wrap: wrap;
+  /* color: red; */
+  /* flex-direction: row; */
+  justify-content: space-between;
+  width: 750px;
+  height: 325px;
+  /* margin: 150px; */
+}
+
+.card {
+  width: 140px;
+  height: 70px;
+}

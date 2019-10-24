@@ -2,19 +2,219 @@ import React from 'react'
 import Player from '../player';
 
 function Grid(props) {
-    return (
-        <div 
-            style={{
-                backgroundColor: 'navy',
-                border: '9px solid green',
-                margin: '10px auto',
-                width: '100%',
-                height: '100%'
-            }}
-        >
-            <Player />
-        </div>
-    )
+
+    
+        console.log(this.props.cardlist);
+        if(this.props.cardlist.length!==0) {
+  
+          return (
+            <React.Fragment>
+                  <div className='card-group'>
+                    <div className="card text-white bg-dark mb-3">
+                      <div className="card-body" onClick={() => this.select(this.props.cardlist[0])}>
+                          <h5 className="card-title">{this.props.cardlist[0]}</h5>
+                          <p className="card-text"></p>
+                      </div>
+                    </div>
+                    <div className="card text-white bg-dark mb-3">
+                      <div className="card-body" onClick={() => this.select(this.props.cardlist[1])}>
+                          <h5 className="card-title">{this.props.cardlist[1]}</h5>
+                          <p className="card-text"></p>
+                      </div>
+                    </div>
+                    <div className="card text-white bg-dark mb-3">
+                      <div className="card-body" onClick={() => this.select(this.props.cardlist[2])}>
+                          <h5 className="card-title">{this.props.cardlist[2]}</h5>
+                          <p className="card-text"></p>
+                      </div>
+                    </div>
+                      <div className="card text-white bg-dark mb-3">
+                        <div className="card-body" onClick={() => this.select(this.props.cardlist[3])}>
+                            <h5 className="card-title">{this.props.cardlist[3]}</h5>
+                            <p className="card-text"></p>
+                        </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                        <div className="card-body" onClick={() => this.select(this.props.cardlist[4])}>
+                            <h5 className="card-title">{this.props.cardlist[4]}</h5>
+                            <p className="card-text"></p>
+                        </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                        <div className="card-body" onClick={() => this.select(this.props.cardlist[5])}>
+                            <h5 className="card-title">{this.props.cardlist[5]}</h5>
+                            <p className="card-text"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='card-group'>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[6])}>
+                              <h5 className="card-title">{this.props.cardlist[6]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[7])}>
+                              <h5 className="card-title">{this.props.cardlist[7]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[8])}>
+                              <h5 className="card-title">{this.props.cardlist[8]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[9])}>
+                              <h5 className="card-title">{this.props.cardlist[9]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[10])}>
+                              <h5 className="card-title">{this.props.cardlist[10]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[11])}>
+                              <h5 className="card-title">{this.props.cardlist[11]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='card-group'>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[12])}>
+                              <h5 className="card-title">{this.props.cardlist[12]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[13])}>
+                              <h5 className="card-title">{this.props.cardlist[13]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[14])}>
+                              <h5 className="card-title">{this.props.cardlist[14]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[15])}>
+                              <h5 className="card-title">{this.props.cardlist[15]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[16])}>
+                              <h5 className="card-title">{this.props.cardlist[16]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[19])}>
+                              <h5 className="card-title">{this.props.cardlist[17]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='card-group'>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[18])}>
+                              <h5 className="card-title">{this.props.cardlist[18]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[19])}>
+                              <h5 className="card-title">{this.props.cardlist[19]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[20])}>
+                              <h5 className="card-title">{this.props.cardlist[20]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[21])}>
+                              <h5 className="card-title">{this.props.cardlist[21]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[22])}>
+                              <h5 className="card-title">{this.props.cardlist[22]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[23])}>
+                              <h5 className="card-title">{this.props.cardlist[23]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                  </div>
+                  <div className='card-group'>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[24])}>
+                              <h5 className="card-title">{this.props.cardlist[24]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[25])}>
+                              <h5 className="card-title">{this.props.cardlist[25]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[26])}>
+                              <h5 className="card-title">{this.props.cardlist[26]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[27])}>
+                              <h5 className="card-title">{this.props.cardlist[27]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[28])}>
+                              <h5 className="card-title">{this.props.cardlist[28]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                      <div className="card text-white bg-dark mb-3">
+                          <div className="card-body" onClick={() => this.select(this.props.cardlist[29])}>
+                              <h5 className="card-title">{this.props.cardlist[29]}</h5>
+                              <p className="card-text"></p>
+                          </div>
+                      </div>
+                  </div>
+                  <Player />
+                  </React.Fragment>
+                  );
+        }
+        else {
+          return (
+                
+            <div className='card-group'>
+              <h2> LOADING.........
+              </h2>
+            </div>
+             
+            );
+          }
+            
+
 }
 
 export default Grid
