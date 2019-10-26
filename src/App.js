@@ -18,7 +18,16 @@ function Header() {
 }
 
 function Footer(){
-
+  return (
+    <footer className="fixed-bottom"> 
+    <Navbar bg="light" variant="light">
+    <Navbar.Brand href="/login">login</Navbar.Brand>
+    <Nav className="mr-auto">
+      <Nav.Link href="#home">Home</Nav.Link>
+      <Nav.Link href="#features">Features</Nav.Link>
+      <Nav.Link href="#pricing">Pricing</Nav.Link>
+    </Nav>
+    </Navbar>
     </footer>
 )
 }
