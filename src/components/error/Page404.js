@@ -10,7 +10,7 @@ export default function Page404() {
           <h3><span style={{ color: "#007bff", fontWeight: "bold" }}>404</span>Page</h3>
         </div>
         <div className="about-body text-center mb-0">
-          <span>Let's get you</span> <Link style={{ fontWeight: "bold" }} to="/landingPage">HOME</Link>
+          <span>Let's get you</span> <Link style={{ fontWeight: "bold" }} to="/landingPage">Home</Link>
         </div>
       </div>
     </div>

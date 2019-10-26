@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -25,7 +24,7 @@ function LandingPage(){
     </div>
   )
 }
-function SignUp(){
+function Register(){
   return(
     <div>SignUp</div>
   )
@@ -41,9 +40,9 @@ class App extends Component {
       <Router>
         <Header/>
       <Switch>
-        <Route exact path = "/" component ={Login} />
-        <Route exact path = "/ component ={LandingPage} />
-        <Route exact path = "/register" component ={SignUp} />
+        <Route exact path = "/" component ={LandingPage} />
+        <Route exact path = "/register" component ={Register} />
+        <Route exact path = "/login" component ={Login} />
         <Route exact path = "/game" component ={Game} />
         <Route path = "*" component = {Page404} />
       </Switch>
