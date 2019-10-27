@@ -1,11 +1,7 @@
 const initialState = {
-    position: [0, 0],
-    selection: [0, 0],
-    selected: 0,
-    array: [],
-    fxn: {}
+    cards: []
 }
-const playerReducer = (state=initialState, action) => {
+const boardReducer = (state=initialState, action) => {
     switch(action.type) {
         case 'Move_Player':
             return {
@@ -21,4 +17,4 @@ const playerReducer = (state=initialState, action) => {
 
 }
 
-export default playerReducer
+export default boardReducer;

@@ -13,6 +13,34 @@ class Board extends Component {
     cardlist: []
   };
 
+  selectEval = (x, tf, list) => {
+    if (tf) {
+        // scoreUpdate();
+    }
+    else {
+        // lifeLoss();
+    }
+    // console.log(x);
+    // console.log(tf);
+    // // console.log(state);
+    // console.log(list);
+    // this.clearSpace(x);
+    this.setState(
+      {cardlist: this.state.cardlist.map((item, index) =>
+        {if (index===x){
+          item = '';
+        }
+        return item;
+      })
+      }
+    );
+}
+
+clearSpace(y){
+  this.state.cardlist[y] = '';
+}
+
+
   select = num => {
     if (this.state.guesslist.includes(num)) {
 
@@ -46,10 +74,6 @@ class Board extends Component {
       }
 
     }
-    //console.log(ansArray);
-    //   this.setState({ cardlist: ansArray }, () => {
-    //     // console.log(this.state.cardlist);
-    // });
     console.log(ansArray);
 
     let t = this.scramblenumbers(ansArray);
@@ -60,28 +84,9 @@ class Board extends Component {
 
   scramblenumbers = (answers) => {
     console.log(answers)
-    //var temp = [];
+    
     console.log("I am ,here, in scrmble numbers");
-    // while (temp.length <= 30) {
-    //   var x = Math.floor(Math.random() * 30);
-    //   if (temp.includes(answers[x]) === false) {
-    //     temp.push(answers[x]);
-    //     console.log(x, answers[x]);
-    //   }
-    // }
-    //   if (temp.length < 31) {
-    //   for (var i = 0; i < 30; i++) {
-    //   var x = Math.floor(Math.random() * 30);
-    //   if (temp.includes(answers[x]) === false) {
-    //     temp.push(answers[x]);
-    //     console.log(answers[x]);
-    //   }
-
-    // }
-
-
-    // }
-    // }
+    
       for (var i = answers.length-1; i > 0; i--) {
       var x = Math.floor(Math.random() * i);
       const temp2 = answers[i];
@@ -110,7 +115,7 @@ class Board extends Component {
             height: '400px',
             margin: '20px auto'
           }}>
-          <Grid cardlist={this.state.cardlist} />
+          <Grid selectEval={this.selectEval} cardlist={this.state.cardlist} />
           {/* <Player /> */}
 
         </div>

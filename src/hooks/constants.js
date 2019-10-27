@@ -2,5 +2,5 @@ export const GRID_X = 728;
 //export const GRID_y = 325;
 export const GRID_y = 340;
 export const name_con = "Lee";
-export const MAX_col = 6;
-export const MAX_rows = 5;
+export const MAX_col = 5;
+export const MAX_rows = 4;

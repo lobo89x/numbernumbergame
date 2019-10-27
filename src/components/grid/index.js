@@ -3,8 +3,11 @@ import Player from '../player';
 
 class Grid extends Component {
 
+
+
     render() {
         console.log(this.props.cardlist);
+        console.log(this.props.selectEval);
         if(this.props.cardlist.length!==0) {
   
           return (
@@ -199,7 +202,7 @@ class Grid extends Component {
                           </div>
                       </div>
                   </div>
-                  <Player />
+                  <Player selectEval={this.props.selectEval} cardlist={this.props.cardlist}/>
                   </React.Fragment>
                   );
         }

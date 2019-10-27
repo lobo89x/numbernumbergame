@@ -1,10 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { connect } from 'react-redux'
 import walkSprite from './player_walk.png'
-import handleMovement from './movement'
+import {handleMovement, loadCardList} from './movement'
+
 
 
 function Player(props) {
+    // const [correctAns, setCorrectAns] = useState(0);
+    // class Player extends Component {
+    // componentDidMount() {
+    //     loadCardList();
+    //   };
+// render () {
+
+    
+
+    useEffect(() => {
+        loadCardList(props);
+        // console.log(props);
+    });
+
     return (
         <div
             style={{
@@ -17,6 +32,7 @@ function Player(props) {
             }}
         />
     )
+// }
 }
 
 function mapStateToProps(state) {
