@@ -5,30 +5,30 @@ import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 
-function Login(){
-  return(
-    <div>
-      Login
-    </div>
-  )
-}
-function LandingPage(){
-  return(
-    <div>
-      LandingPage
-    </div>
-  )
-}
-function Register(){
-  return(
-    <div>SignUp</div>
-  )
-}
-function Game(){
-  return(
-    <div>Game</div>
-  )
-}
+// function Login(){
+//   return(
+//     <div>
+//       Login
+//     </div>
+//   )
+// }
+// function LandingPage(){
+//   return(
+//     <div>
+//       LandingPage
+//     </div>
+//   )
+// }
+// function Register(){
+//   return(
+//     <div>SignUp</div>
+//   )
+// }
+// function Game(){
+//   return(
+//     <div>Game</div>
+//   )
+// }
 class App extends Component {
   render() {
     return (
