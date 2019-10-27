@@ -1,19 +1,44 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+function Login(){
+  return(
+    <div>
+      Login
+    </div>
+  )
+}
+function LandingPage(){
+  return(
+    <div>
+      LandingPage
+    </div>
+  )
+}
+function Register(){
+  return(
+    <div>SignUp</div>
+  )
+}
+function Game(){
+  return(
+    <div>Game</div>
+  )
+}
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <Header/>
+      <Switch>
+        <Route exact path = "/" component ={LandingPage} />
+        <Route exact path = "/register" component ={Register} />
+        <Route exact path = "/login" component ={Login} />
+        <Route exact path = "/game" component ={Game} />
+        <Route path = "*" component = {Page404} />
+      </Switch>
+      <Footer/>
+    </Router>
     );
   }
 }
