@@ -1,17 +1,52 @@
 import store from '../config/store';
 import { GRID_X, GRID_y, name_con, MAX_col, MAX_rows } from '../../hooks/constants';
 //import store from '../../hooks/store';
-import { useStage } from '../../hooks/useStage'
-const [evaluate] = useStage(b);
+//import { useState } from 'react';
 
 
+export function loadCardList(props) {
+    store.dispatch({
+        type: 'Load_cards',
+        payload: {
+            position: store.getState().player.position,
+            selection: store.getState().player.selection,
+            selected: store.getState().player.selected,
+            array: props.cardlist,
+            fxn: props.selectEval
+        }
+    })
+    console.log("this is the array  :"+store.getState().player.array);
+    console.log("this is your player state 100%  "+store.getState().player);
+}
 
-function handleMovement(player) {
-    function munch(b) {
-        if (evaluate(b)===true) {
+export function handleMovement(player, props) {
+    // const [evaluate] = useStage.evaluate();
+    function select([x, y]) {
+        var z = x +(y*6) ;
+        return z;
+    }
+    function evaluate(a) {
+        //const [correctAns, setCorrectAns] = useState(0);
+        if (a % 2===0) {
+            // setCorrectAns(correctAns => correctAns +1);
+            return true;
+        }
+        else {
+            return false;
+        }
+        // setCorrectAns( b => evaluate(b));
+    }
+    function munch() {
+        const currenttSel =  store.getState().player.selected;
+        const storedArray = store.getState().player.array;
+        console.log(storedArray[currenttSel]);
+        console.log(store.getState().player.fxn);
+        // const func = () = store.getState().player.fxn()
+        store.getState().player.fxn(currenttSel, evaluate(storedArray[currenttSel]), storedArray);
+        if (evaluate(storedArray[currenttSel])===true) {
             console.log("correct!!")
         }
-        if (evaluate(b)===false) {
+        if (evaluate(storedArray[currenttSel])===false) {
             console.log("false!!")
         }
     }
@@ -25,9 +60,10 @@ function handleMovement(player) {
     }
 
     function moveX(delta, deltasel) {
+        const storedArray = store.getState().player.array;
         const startPos = store.getState().player.position;
         const startSel =  store.getState().player.selection;
-
+        
         // store.getState().player.position
         console.log(name_con+'  startedd here  '+startPos);
         console.log("selcted   "+startSel);
@@ -35,12 +71,16 @@ function handleMovement(player) {
             type: 'Move_Player',
             payload: {
                 position: boundaries(startPos, [ (startPos[0] + delta), startPos[1] ]),
-                selection: selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])
+                selection: selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ]),
+                selected: select(selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])),
+                array: storedArray,
+                fxn: store.getState().player.fxn
             }
         })
         };
       
     function moveY(delta, deltasel) {
+        const storedArray = store.getState().player.array;
         const startPos = store.getState().player.position;
         const startSel =  store.getState().player.selection;
         console.log(name_con+'  startedd here  '+startPos);
@@ -49,7 +89,10 @@ function handleMovement(player) {
             type: 'Move_Player',
             payload: {
                 position: boundaries(startPos, [ startPos[0] ,  (startPos[1] + delta) ]),
-                selection: selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])
+                selection: selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ]),
+                selected: select(selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])),
+                array: storedArray,
+                fxn: store.getState().player.fxn
             }
         })
         };
@@ -77,6 +120,7 @@ function handleMovement(player) {
                 //break
             case 32:
                     console.log("Munch");
+                    munch();
                 // return moveY(-1)
                 break
             default:
@@ -91,4 +135,4 @@ function handleMovement(player) {
     return player
 }
 
-export default handleMovement
+// export default handleMovement
