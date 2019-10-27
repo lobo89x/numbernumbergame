@@ -5,13 +5,7 @@ import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 
-// function Login(){
-//   return(
-//     <div>
-//       Login
-//     </div>
-//   )
-// }
+
 // function LandingPage(){
 //   return(
 //     <div>
