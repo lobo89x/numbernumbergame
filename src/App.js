@@ -1,24 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import './App.css';
-import { Navbar, Nav} from 'react-bootstrap'
 
-
-
-function Footer(){
-  return (
-    <footer className="fixed-bottom"> 
-    <Navbar bg="light" variant="light">
-    <Navbar.Brand href="/login">login</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#features">Features</Nav.Link>
-      <Nav.Link href="#pricing">Game</Nav.Link>
-    </Nav>
-    </Navbar>
-    </footer>
-)
-}
 function Login(){
   return(
     <div>
