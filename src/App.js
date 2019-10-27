@@ -7,11 +7,6 @@ import Footer from "./components/footer/Footer";
 
 
 
-// function Register(){
-//   return(
-//     <div>SignUp</div>
-//   )
-// }
 // function Game(){
 //   return(
 //     <div>Game</div>
