@@ -6,13 +6,7 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 
 
-// function LandingPage(){
-//   return(
-//     <div>
-//       LandingPage
-//     </div>
-//   )
-// }
+
 // function Register(){
 //   return(
 //     <div>SignUp</div>
