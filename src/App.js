@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-
-
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from "./components/header/header";
+import Page404 from "./components/error/Page404";
+import Footer from "./components/footer/Footer";
 
 function Login(){
   return(
@@ -46,9 +48,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-30:8   error    'Router' is not defined              react/jsx-no-undef
-31:10  error    'Header' is not defined              react/jsx-no-undef
-32:8   error    'Switch' is not defined              react/jsx-no-undef
-33:10  error    'Route' is not defined   
