@@ -5,8 +5,9 @@ import Game from './Game';
 import './index.css';
 import {Provider} from 'react-redux';
 import store from './components/config/store';
+import App from './App';
 
 ReactDOM.render(<Provider store={store}>
-    <Game />
+    <App />
 </Provider>, document.getElementById('root'));
 
