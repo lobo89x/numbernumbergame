@@ -50,13 +50,14 @@
 }
 
 body {
-  background-image: url('https://media2.giphy.com/media/BHNfhgU63qrks/giphy.gif');
+  background-image: url('http://i.stack.imgur.com/kx8MT.gif');
     background-size: cover;
-    height: 100vh;
-    padding:0;
-    margin:0;
+    /* height: 100vh; */
+    /* padding:0;
+    margin:0; */
 }
-
-
+/* http://i.stack.imgur.com/kx8MT.gif */
+/* https://66.media.tumblr.com/010c46067b29b710ce9a508fb4171dfb/tumblr_mqvzu0DpkI1sdgezwo1_400.gif */
 /* https://media2.giphy.com/media/3ov9jWAWNhfyr3zkJi/giphy.gif */
 /* https://media2.giphy.com/media/BHNfhgU63qrks/giphy.gif */
+/* https://cdn.dribbble.com/users/1162077/screenshots/4382009/animated-pattern.gif */
