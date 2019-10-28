@@ -48,3 +48,15 @@
   width: 140px;
   height: 70px;
 }
+
+body {
+  background-image: url('https://media2.giphy.com/media/BHNfhgU63qrks/giphy.gif');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
+
+/* https://media2.giphy.com/media/3ov9jWAWNhfyr3zkJi/giphy.gif */
+/* https://media2.giphy.com/media/BHNfhgU63qrks/giphy.gif */
