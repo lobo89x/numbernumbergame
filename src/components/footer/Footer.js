@@ -6,7 +6,7 @@ import React from "react";
 function Footer(){
     return (
       <footer className="fixed-bottom"> 
-        Name of game here &copy; 2019
+       <p className="text-center">NumberNauts &copy; 2019</p>
       </footer>
   )
   }
