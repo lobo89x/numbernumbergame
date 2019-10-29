@@ -143,7 +143,17 @@ class Game extends Component {
       this.setState({
         level: this.state.level + 1
       })
-      console.log(this.state.level);
+      // console.log(this.state.level);
+    };
+
+    zeroLevel = () => {
+      // console.log("here i am");
+      this.setState({
+        level: 0,
+        lives: 3,
+        score: 0
+      })
+      // console.log(this.state.level);
     };
 
 // const [gameOver, setGameOver] = useState(false);
@@ -177,11 +187,13 @@ class Game extends Component {
             <div className="col-lg-6 text-center">
                 <div className="card-deck">
                     <Board 
+                    score={this.state.score}
                     wrong={this.wrong} 
                     lives={this.state.lives} 
                     addScore={this.addScore} 
                     cards={cards[this.state.level]} 
-                    nextLevel={this.nextLevel}/>
+                    nextLevel={this.nextLevel}
+                    zeroLevel={this.zeroLevel}/>
                 </div>
             </div>
             <div className="col-lg-3 text-center"></div>

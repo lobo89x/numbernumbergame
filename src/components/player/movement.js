@@ -25,17 +25,7 @@ export function handleMovement(player, props) {
         var z = x +(y*6) ;
         return z;
     }
-    function evaluate(a) {
-        //const [correctAns, setCorrectAns] = useState(0);
-        if (a % 2===0) {
-            // setCorrectAns(correctAns => correctAns +1);
-            return true;
-        }
-        else {
-            return false;
-        }
-        // setCorrectAns( b => evaluate(b));
-    }
+    
     function munch() {
         const currenttSel =  store.getState().player.selected;
         const storedArray = store.getState().player.array;

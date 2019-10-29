@@ -43,6 +43,16 @@ class Board extends Component {
     this.forceUpdate();
     this.answerList();
   }
+
+  gameOverModal = e => {
+    this.props.zeroLevel();
+    this.setState({
+      show: false,
+      correctAns: 0
+    });
+    this.forceUpdate();
+    this.answerList();
+  }
   // addScore = (correctAns) => {
   //   // console.log("here i am");
   //   this.state.score = this.state.score + (correctAns*25);
@@ -159,9 +169,20 @@ class Board extends Component {
             height: '400px',
             margin: '20px auto'
           }}>
-          <Grid criteria={this.props.cards.criteria} lives={this.props.lives} score={this.state.score} selectEval={this.selectEval} cardlist={this.state.cardlist} />
+          <Grid 
+          criteria={this.props.cards.criteria} 
+          lives={this.props.lives} 
+          score={this.props.score} 
+          selectEval={this.selectEval} 
+          cardlist={this.state.cardlist} />
           {/* <Player /> */}
-          <Modal show={this.state.show} lives={this.props.lives} score={this.state.score} correctAns={this.state.correctAns} closeModal={this.closeModal} />
+          <Modal 
+          show={this.state.show} 
+          lives={this.props.lives} 
+          score={this.props.score} 
+          correctAns={this.state.correctAns} 
+          closeModal={this.closeModal} 
+          gameOverModal={this.gameOverModal} />
 
         </div>
       )

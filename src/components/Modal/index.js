@@ -15,7 +15,7 @@ export default class Modal extends React.Component {
                             <div className="content">{this.props.score} pts</div>
                             <div className="actions">
                             <button className="toggle-button" onClick={() => this.props.closeModal()}>
-                                close
+                                NEXT LEVEL
                             </button>
                             </div>
                         </div>;
@@ -30,8 +30,8 @@ export default class Modal extends React.Component {
                             <h2>GAME OVER</h2>
                             <div className="content">{this.props.score} pts</div>
                             <div className="actions">
-                            <button className="toggle-button" onClick={() => this.props.closeModal()}>
-                                close
+                            <button className="toggle-button" onClick={() => this.props.gameOverModal()}>
+                                PLAY AGAIN?
                             </button>
                             </div>
                         </div>;
