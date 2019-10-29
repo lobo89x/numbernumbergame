@@ -30,23 +30,18 @@ function Game(){
     <div>Game</div>
   )
 }
-function Lobby({socket, user}){
-  return(
-    // needs user and socket passed to it
-    <Lobby user={user} socket={socket}/>
-  )
-}
 class App extends Component {
   constructor(){
     super();
     this.state = {
       // holds the socket connection
       socket: null,
+      // should be set when the user logs in ?
       user: null
     }
   }
   componentDidMount(){
-    // if user is logged in then do connection
+    // if user is logged in then do connection ?
     if(this.state.user){
       this.setState({socket: socketIOClient.connect(socketUrl)});
     }
@@ -59,7 +54,7 @@ class App extends Component {
         <Route exact path = "/" component ={LandingPage} />
         <Route exact path = "/register" component ={Register} />
         <Route exact path = "/login" component ={Login} />
-        <Route exact path = "/lobby" component ={()=> Lobby(this.state)} />
+        <Route exact path = "/lobby" render ={(props)=> <Lobby {...props} user={this.state.user} socket={this.state.socket}/>} />
         <Route exact path = "/game" component ={Game} />
         <Route path = "*" component = {Page404} />
       </Switch>
