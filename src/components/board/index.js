@@ -14,8 +14,6 @@ class Board extends Component {
     guesslist: [],
     cardlist: [],
     correctAns: 0,
-    lives: 3,
-    score: 0,
     show: false
   };
   
@@ -25,7 +23,7 @@ class Board extends Component {
         show: true
       })
     }
-    if (this.state.lives<1){
+    if (this.props.lives<1){
       this.setState({
         show: true
       });
@@ -37,27 +35,36 @@ class Board extends Component {
   };
 
   closeModal = e => {
+    this.props.nextLevel();
     this.setState({
-      show: false
+      show: false,
+      correctAns: 0
     });
+    this.forceUpdate();
+    this.answerList();
   }
-  addScore = (correctAns) => {
-    // console.log("here i am");
-    this.state.score = this.state.score + (correctAns*25);
-    console.log(this.state.score);
-  };
+  // addScore = (correctAns) => {
+  //   // console.log("here i am");
+  //   this.state.score = this.state.score + (correctAns*25);
+  //   console.log(this.state.score);
+  // };
   
   selectEval = (x, tf, list) => {
-    console.log("tf is this::  "+tf)
-    if (tf) {
+    console.log(this.props.cards.criteria)
+    console.log(x);
+    console.log(this.props.cards.criteria(tf))
+    if (this.props.cards.criteria(tf)) {
       this.state.correctAns++;
-      console.log('#of right  '+this.state.correctAns)
+      console.log("you got it right");
+      // console.log('#of right  '+this.state.correctAns)
       // scoreUpdate();
-      this.addScore(this.state.correctAns);
+      this.props.addScore(this.state.correctAns);
     }
     else {
-      this.state.lives--;
-      console.log('#of lives left  '+this.state.lives);
+      // this.props.lives--;
+      console.log("youre wrong");
+      this.props.wrong();
+      // console.log('#of lives left  '+this.props.lives);
       // lifeLoss();
     }
     this.setState(
@@ -97,21 +104,21 @@ class Board extends Component {
     var ansArray = [];
     for (var j = 0; ansArray.length < 30; j++) {
       if (ansArray.length < 16) {
-        var y = Math.floor(Math.random() * 300);
-        if ((y % 2) === 0) {
+        var y = Math.floor(Math.random() * 400);
+        // if ((y % 2) === 0) {
+        if (this.props.cards.criteria(y)===true) {
           ansArray.push(y);
         }
       }
       else if (ansArray.length > 15) {
         var z = Math.floor(Math.random() * 300);
-        if ((z % 2) === 1) {
+        if (this.props.cards.criteria(z)===false) {
           ansArray.push(z);
         }
       }
 
     }
     console.log(ansArray);
-
     let t = this.scramblenumbers(ansArray);
     this.setState({ cardlist: (t) }, () => {
       // console.log(this.state.cardlist);
@@ -138,6 +145,7 @@ class Board extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.cards);
     this.answerList();
   }
   render() {
@@ -151,9 +159,9 @@ class Board extends Component {
             height: '400px',
             margin: '20px auto'
           }}>
-          <Grid lives={this.state.lives} score={this.state.score} selectEval={this.selectEval} cardlist={this.state.cardlist} />
+          <Grid criteria={this.props.cards.criteria} lives={this.props.lives} score={this.state.score} selectEval={this.selectEval} cardlist={this.state.cardlist} />
           {/* <Player /> */}
-          <Modal show={this.state.show} lives={this.state.lives} score={this.state.score} correctAns={this.state.correctAns} closeModal={this.closeModal} />
+          <Modal show={this.state.show} lives={this.props.lives} score={this.state.score} correctAns={this.state.correctAns} closeModal={this.closeModal} />
 
         </div>
       )

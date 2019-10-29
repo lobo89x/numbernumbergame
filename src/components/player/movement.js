@@ -43,13 +43,13 @@ export function handleMovement(player, props) {
         // console.log(store.getState().player.fxn);
         // const func = () = store.getState().player.fxn()
         if (storedArray[currenttSel]!=="") {
-            store.getState().player.fxn(currenttSel, evaluate(storedArray[currenttSel]), storedArray);
-            if (evaluate(storedArray[currenttSel])===true) {
-                console.log("correct!!")
-            }
-            if (evaluate(storedArray[currenttSel])===false) {
-                console.log("false!!")
-            }
+            store.getState().player.fxn(currenttSel, (storedArray[currenttSel]), storedArray);
+            // if (evaluate(storedArray[currenttSel])===true) {
+            //     console.log("correct!!")
+            // }
+            // if (evaluate(storedArray[currenttSel])===false) {
+            //     console.log("false!!")
+            // }
         }
     }
     
