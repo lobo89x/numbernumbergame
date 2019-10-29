@@ -31,8 +31,8 @@ class Board extends Component {
       });
      
     }
-    console.log("I am here!");
-    console.log("dhow modal  "+this.state.show)
+    // console.log("I am here!");
+    // console.log("dhow modal  "+this.state.show)
 
   };
 
@@ -48,6 +48,7 @@ class Board extends Component {
   };
   
   selectEval = (x, tf, list) => {
+    console.log("tf is this::  "+tf)
     if (tf) {
       this.state.correctAns++;
       console.log('#of right  '+this.state.correctAns)
