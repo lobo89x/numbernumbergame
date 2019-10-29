@@ -14,8 +14,8 @@ const server = app.listen(PORT, function () {
 });
 
 // socketio related stuff
-//const socket = require("./socket/config");
-//socket(server); 
+const socket = require("./socket/config");
+socket(server); 
 
 
 
