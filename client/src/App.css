@@ -47,4 +47,15 @@
 .card {
   width: 140px;
   height: 70px;
+  /* background-image: url('./components/grid/Asteroid\ Brown.png'); */
+}
+
+.modal{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 340px;
+  width: 728px;
+  background-color: black;
+  color: aliceblue;
 }

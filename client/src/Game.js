@@ -1,9 +1,9 @@
 // import React from 'react';
 // import Tetris from './components/Tetris';
 
-import { useGameStatus } from './hooks/useGameStatus'
-import { correctAns, evaluate } from './hooks/useStage'
-import React, { Component, useState } from 'react';
+// import { useGameStatus } from './hooks/useGameStatus'
+// import { correctAns, evaluate } from './hooks/useStage'
+import React, { Component } from "react";
 import Board from './components/board';
 // import logo from './logo.svg';
 // import Card from './components/card'
@@ -14,77 +14,147 @@ import './App.css';
 
 const cards = [
   {
-    id: 1,
-    name: "1",
+    desc: "Mutiples of 2",
+    criteria: (x) =>{
+      if ((x % 2) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 2,
-    name: "2",
+    desc: "Mutiples of 3",
+    criteria: (x) =>{
+      if ((x % 3) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 3,
-    name: "3",
+    desc: "Multiples of 5",
+    criteria: (x) =>{
+      if ((x % 5) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 4,
-    name: "4",
+    desc: "Multiples of 7",
+    criteria: (x) =>{
+      if ((x % 7) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 5,
-    name: "5",
+    desc: "Multiples of 13",
+    criteria: (x) =>{
+      if ((x % 13) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 6,
-    name: "6",
+    desc: "Factors of 144",
+    criteria: (x) =>{
+      if ((144 % x) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 7,
-    name: "7",
+    desc: "Factors of 338",
+    criteria: (x) =>{
+      if ((338 % x) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 8,
-    name: "8",
+    desc: "Factors of 385",
+    criteria: (x) =>{
+      if ((385 % x) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   },
   {
-    id: 9,
-    name: "9",
+    desc: "Factors of 378",
+    criteria: (x) =>{
+      if ((378 % x) === 0){
+        return true;
+      }
+      else{
+        return false;
+      }
+    },
   }
 ];
 
-// const fxn = [
-//   {desc: "multiple of 2",
-//     fxn: pick%2,
-//   },
-//   {desc: "multiple of 3",
-//     fxn: pick%3,
-//   },
-//   {desc: "multiple of 13",
-//     fxn: pick%13
-//   },
-//   {desc: "multiple of 5",
-//     fxn: pick%5,
-//   },
-//   {desc: "multiple of 7",
-//     fxn: pick%7,
-//   }
-// ];
 
+class Game extends Component {
+  state = {
+    score: 0,
+    lives: 3,
+    gameOver: false,
+    level: 0
+  };
+  // const Game = () => {
+    addScore = (correctAns) => {
+      // console.log("here i am");
+      this.setState({
+        score: this.state.score + (correctAns*25)
+      })
+      console.log(this.state.score);
+    };
 
-// const [score, setScore, useGameStatus] = useGameStatus(
-//     correctAns
-// );
-function updatescore(gl) {
-  this.setState( { score: gl.length }, () => {
-    console.log(this.state.score);
-});
-}
+    wrong = () => {
+      this.setState({
+        lives: this.state.lives - 1 
+      })
+      console.log("im here");
+    }
 
-// class Game extends Component {
-const Game = () => {
-//   state = {
-//     score: 0,
-//     gameOver: false,
-//   };
+    nextLevel = () => {
+      // console.log("here i am");
+      this.setState({
+        level: this.state.level + 1
+      })
+      // console.log(this.state.level);
+    };
+
+    zeroLevel = () => {
+      // console.log("here i am");
+      this.setState({
+        level: 0,
+        lives: 3,
+        score: 0
+      })
+      // console.log(this.state.level);
+    };
 
 // const [gameOver, setGameOver] = useState(false);
 // const [score, setScore] = useState(0);
@@ -99,22 +169,31 @@ const Game = () => {
     
 // }
 
-//   render() {
+  render() {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Memory Game</h2>
+          <h2>NUMBERNAUTS</h2>
         </div>
         <p className="App-intro">
-          Find the multiples of 2!!!!
+        {cards[this.state.level].desc}
         </p>
-        {/* <h6>Your Score is::  {score}</h6> */}
+        <h6>Your Score is::  {this.state.score}</h6>
         <div className="container">
           <div className="row">
-            <div className="col-lg-3 text-center"></div>
+            <div className="col-lg-3 text-center">
+              Number of lives:: {this.state.lives}
+            </div>
             <div className="col-lg-6 text-center">
                 <div className="card-deck">
-                    <Board scoreupdate={updatescore} cards={cards}/>
+                    <Board 
+                    score={this.state.score}
+                    wrong={this.wrong} 
+                    lives={this.state.lives} 
+                    addScore={this.addScore} 
+                    cards={cards[this.state.level]} 
+                    nextLevel={this.nextLevel}
+                    zeroLevel={this.zeroLevel}/>
                 </div>
             </div>
             <div className="col-lg-3 text-center"></div>
@@ -123,7 +202,7 @@ const Game = () => {
 
       </div>
     );
-//   }
+  }
 }
 
 export default Game;
