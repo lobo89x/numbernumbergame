@@ -6,8 +6,8 @@ class Grid extends Component {
 
 
     render() {
-        console.log(this.props.cardlist);
-        console.log(this.props.selectEval);
+        // console.log(this.props.cardlist);
+        // console.log(this.props.selectEval);
         if(this.props.cardlist.length!==0) {
   
           return (

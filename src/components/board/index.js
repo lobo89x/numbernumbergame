@@ -3,28 +3,62 @@ import Grid from '../grid';
 //import Player from '../player';
 
 import React, { Component } from "react";
+import Modal from "../Modal"
+
 
 
 
 class Board extends Component {
-
+  
   state = {
     guesslist: [],
-    cardlist: []
+    cardlist: [],
+    correctAns: 0,
+    lives: 3,
+    score: 0,
+    show: false
+  };
+  
+  showModal = () => {
+    if (this.state.correctAns===15){
+      this.setState({
+        show: true
+      })
+    }
+    if (this.state.lives<1){
+      this.setState({
+        show: true
+      });
+     
+    }
+    console.log("I am here!");
+    console.log("dhow modal  "+this.state.show)
+
   };
 
+  closeModal = e => {
+    this.setState({
+      show: false
+    });
+  }
+  addScore = (correctAns) => {
+    // console.log("here i am");
+    this.state.score = this.state.score + (correctAns*25);
+    console.log(this.state.score);
+  };
+  
   selectEval = (x, tf, list) => {
     if (tf) {
-        // scoreUpdate();
+      this.state.correctAns++;
+      console.log('#of right  '+this.state.correctAns)
+      // scoreUpdate();
+      this.addScore(this.state.correctAns);
     }
     else {
-        // lifeLoss();
+      this.state.lives--;
+      console.log('#of lives left  '+this.state.lives);
+      // lifeLoss();
     }
-    // console.log(x);
-    // console.log(tf);
-    // // console.log(state);
-    // console.log(list);
-    // this.clearSpace(x);
     this.setState(
       {cardlist: this.state.cardlist.map((item, index) =>
         {if (index===x){
@@ -32,13 +66,14 @@ class Board extends Component {
         }
         return item;
       })
-      }
+    }
     );
-}
+    this.showModal();
+  }
 
-clearSpace(y){
-  this.state.cardlist[y] = '';
-}
+// clearSpace(y){
+//   this.state.cardlist[y] = '';
+// }
 
 
   select = num => {
@@ -105,7 +140,7 @@ clearSpace(y){
     this.answerList();
   }
   render() {
-    console.log(this.state.cardlist);
+    // console.log(this.state.cardlist);
     if (this.state.cardlist.length !== 0) {
       return (
         <div
@@ -115,8 +150,9 @@ clearSpace(y){
             height: '400px',
             margin: '20px auto'
           }}>
-          <Grid selectEval={this.selectEval} cardlist={this.state.cardlist} />
+          <Grid lives={this.state.lives} score={this.state.score} selectEval={this.selectEval} cardlist={this.state.cardlist} />
           {/* <Player /> */}
+          <Modal show={this.state.show} lives={this.state.lives} score={this.state.score} correctAns={this.state.correctAns} closeModal={this.closeModal} />
 
         </div>
       )
@@ -131,222 +167,7 @@ clearSpace(y){
 
       );
     }
-
-
   }
-
-  // function Card(props) {
-  // render() {
-  //   console.log(this.state.cardlist);
-  //   if(this.state.cardlist.length!==0) {
-
-  //     return (
-  //       <React.Fragment>
-  //             <div className='card-group'>
-  //               <div className="card text-white bg-dark mb-3">
-  //                 <div className="card-body" onClick={() => this.select(this.state.cardlist[0])}>
-  //                     <h5 className="card-title">{this.state.cardlist[0]}</h5>
-  //                     <p className="card-text"></p>
-  //                 </div>
-  //               </div>
-  //               <div className="card text-white bg-dark mb-3">
-  //                 <div className="card-body" onClick={() => this.select(this.state.cardlist[1])}>
-  //                     <h5 className="card-title">{this.state.cardlist[1]}</h5>
-  //                     <p className="card-text"></p>
-  //                 </div>
-  //               </div>
-  //               <div className="card text-white bg-dark mb-3">
-  //                 <div className="card-body" onClick={() => this.select(this.state.cardlist[2])}>
-  //                     <h5 className="card-title">{this.state.cardlist[2]}</h5>
-  //                     <p className="card-text"></p>
-  //                 </div>
-  //               </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                   <div className="card-body" onClick={() => this.select(this.state.cardlist[3])}>
-  //                       <h5 className="card-title">{this.state.cardlist[3]}</h5>
-  //                       <p className="card-text"></p>
-  //                   </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                   <div className="card-body" onClick={() => this.select(this.state.cardlist[4])}>
-  //                       <h5 className="card-title">{this.state.cardlist[4]}</h5>
-  //                       <p className="card-text"></p>
-  //                   </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                   <div className="card-body" onClick={() => this.select(this.state.cardlist[5])}>
-  //                       <h5 className="card-title">{this.state.cardlist[5]}</h5>
-  //                       <p className="card-text"></p>
-  //                   </div>
-  //                 </div>
-  //               </div>
-  //               <div className='card-group'>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[6])}>
-  //                         <h5 className="card-title">{this.state.cardlist[6]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[7])}>
-  //                         <h5 className="card-title">{this.state.cardlist[7]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[8])}>
-  //                         <h5 className="card-title">{this.state.cardlist[8]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[9])}>
-  //                         <h5 className="card-title">{this.state.cardlist[9]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[10])}>
-  //                         <h5 className="card-title">{this.state.cardlist[10]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[11])}>
-  //                         <h5 className="card-title">{this.state.cardlist[11]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //             <div className='card-group'>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[12])}>
-  //                         <h5 className="card-title">{this.state.cardlist[12]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[13])}>
-  //                         <h5 className="card-title">{this.state.cardlist[13]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[14])}>
-  //                         <h5 className="card-title">{this.state.cardlist[14]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[15])}>
-  //                         <h5 className="card-title">{this.state.cardlist[15]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[16])}>
-  //                         <h5 className="card-title">{this.state.cardlist[16]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[19])}>
-  //                         <h5 className="card-title">{this.state.cardlist[17]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //             <div className='card-group'>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[18])}>
-  //                         <h5 className="card-title">{this.state.cardlist[18]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[19])}>
-  //                         <h5 className="card-title">{this.state.cardlist[19]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[20])}>
-  //                         <h5 className="card-title">{this.state.cardlist[20]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[21])}>
-  //                         <h5 className="card-title">{this.state.cardlist[21]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[22])}>
-  //                         <h5 className="card-title">{this.state.cardlist[22]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[23])}>
-  //                         <h5 className="card-title">{this.state.cardlist[23]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //             <div className='card-group'>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[24])}>
-  //                         <h5 className="card-title">{this.state.cardlist[24]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[25])}>
-  //                         <h5 className="card-title">{this.state.cardlist[25]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[26])}>
-  //                         <h5 className="card-title">{this.state.cardlist[26]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[27])}>
-  //                         <h5 className="card-title">{this.state.cardlist[27]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[28])}>
-  //                         <h5 className="card-title">{this.state.cardlist[28]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //                 <div className="card text-white bg-dark mb-3">
-  //                     <div className="card-body" onClick={() => this.select(this.state.cardlist[29])}>
-  //                         <h5 className="card-title">{this.state.cardlist[29]}</h5>
-  //                         <p className="card-text"></p>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //             <Player />
-  //             </React.Fragment>
-  //             );
-  //   }
-  //   else {
-  //     return (
-
-  //       <div className='card-group'>
-  //         <h2> LOADING.........
-  //         </h2>
-  //       </div>
-
-  //       );
-  //   }
-  //       }
 }
 
 export default Board

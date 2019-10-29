@@ -1,9 +1,9 @@
 // import React from 'react';
 // import Tetris from './components/Tetris';
 
-import { useGameStatus } from './hooks/useGameStatus'
-import { correctAns, evaluate } from './hooks/useStage'
-import React, { Component, useState } from 'react';
+// import { useGameStatus } from './hooks/useGameStatus'
+// import { correctAns, evaluate } from './hooks/useStage'
+import React from 'react';
 import Board from './components/board';
 // import logo from './logo.svg';
 // import Card from './components/card'
