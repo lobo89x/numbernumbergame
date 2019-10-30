@@ -47,7 +47,22 @@
 .card {
   width: 140px;
   height: 70px;
-  /* background-image: url('./components/grid/Asteroid\ Brown.png'); */
+}
+
+body {
+ position:fixed;
+ background:url(https://i.stack.imgur.com/cGIFX.jpg);
+ animation:100s scroll infinite linear;
+ background-size: 100%;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+}
+@keyframes scroll{
+ 100%{
+   background-position: 3000px 0px;
+ }
 }
 
 .modal{
