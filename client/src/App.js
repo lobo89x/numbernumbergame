@@ -1,7 +1,6 @@
 import "./index.css";
 import React, { Component } from 'react';
 import './App.css';
-<<<<<<< HEAD:src/App.js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
@@ -12,13 +11,11 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 
 
-=======
 import Lobby from './lobby';
 import Socket from 'socket.io-client';
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 const socketUrl = (process.env.NODE_ENV === "development") ? "http://localhost:3001" : "/" 
->>>>>>> 0131bcf51e73c34097866a417618e2e1e8a136b9:client/src/App.js
 
 class App extends Component {
   constructor(){
