@@ -17,7 +17,7 @@
 }
 
 .gameroom-button-leave{
-  background-color: rgb(44, 44, 44);
+  background-color: var(--orange);
   color: white;
   border: none;
   border-radius: 5px;

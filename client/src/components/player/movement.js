@@ -120,9 +120,9 @@ export function handleMovement(player, props) {
                 break
         }
     }
-    window.addEventListener('keydown', (e) => {
-        handleKeyDown(e)
-    })
+    // window.addEventListener('keydown', (e) => {
+    //     handleKeyDown(e)
+    // })
 
     return player
 }
