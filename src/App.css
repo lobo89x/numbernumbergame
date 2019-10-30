@@ -50,11 +50,9 @@
 }
 
 body {
-  position:fixed;
-  background:url(https://i.stack.imgur.com/cGIFX.jpg);
+ position:fixed;
+ background:url(https://i.stack.imgur.com/cGIFX.jpg);
  animation:100s scroll infinite linear;
- /* background: no-repeat; */
-
  background-size: 100%;
  top:0;
  left:0;
@@ -66,11 +64,3 @@ body {
    background-position: 3000px 0px;
  }
 }
-
-
-
-/* http://i.stack.imgur.com/kx8MT.gif */
-/* https://66.media.tumblr.com/010c46067b29b710ce9a508fb4171dfb/tumblr_mqvzu0DpkI1sdgezwo1_400.gif */
-/* https://media2.giphy.com/media/3ov9jWAWNhfyr3zkJi/giphy.gif */
-/* https://media2.giphy.com/media/BHNfhgU63qrks/giphy.gif */
-/* https://cdn.dribbble.com/users/1162077/screenshots/4382009/animated-pattern.gif */
