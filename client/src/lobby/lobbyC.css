@@ -30,9 +30,9 @@
 
 /* Track */
 .custom-scroll-bar::-webkit-scrollbar-track {
-  border: 1px solid rgba(255, 60, 0, 0.418);
+  border: 1px solid rgba(255, 60, 0, 0.609);
   border-radius: 10px;
-  background: #f8a46cbd;
+  background: transparent;
 }
 
 /* Handle */
@@ -43,7 +43,7 @@
 
 /* Handle on hover */
 .custom-scroll-bar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 123, 0, 0.411);
+  background: rgba(255, 102, 0, 0.794);
 }
 
 

@@ -124,7 +124,7 @@ export function handleMovement(player, props) {
     //     handleKeyDown(e)
     // })
 
-    return player
+    return handleKeyDown
 }
 
 // export default handleMovement

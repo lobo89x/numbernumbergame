@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./roomComponent.css";
 import WaitingRoomComponent from "./roomComponents/waitingRoomComponent";
 import GameRoomComponent from "./roomComponents/gameRoomComponent";
+import {Redirect} from "react-router-dom";
 
 class RoomComponent extends Component {
   constructor() {
@@ -15,6 +16,8 @@ class RoomComponent extends Component {
       modalError: "",
       // element from list of available rooms the user has clicked on
       clickedGameElement: null,
+
+      redirectTo: null
     };
   }
 
@@ -94,12 +97,13 @@ class RoomComponent extends Component {
 
   start1PlayerGame = () => {
     // use function to change page to 1 player game
-
+    this.setState({redirectTo: "/game"});
   }
 
   render() {
     return (
       <div className="room-wrapper">
+        {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : ""}
         {this.props.screen === "lobby" ? (
           <WaitingRoomComponent
             users={this.props.users}
