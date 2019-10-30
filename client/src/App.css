@@ -64,3 +64,13 @@ body {
    background-position: 3000px 0px;
  }
 }
+
+.modal{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 340px;
+  width: 728px;
+  background-color: black;
+  color: aliceblue;
+}
