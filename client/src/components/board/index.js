@@ -89,30 +89,11 @@ class Board extends Component {
     this.showModal();
   }
 
-// clearSpace(y){
-//   this.state.cardlist[y] = '';
-// }
-
-
-  select = num => {
-    if (this.state.guesslist.includes(num)) {
-
-      this.setState({ guesslist: [] }, () => {
-        console.log(this.state.guesslist);
-        this.props.scoreupdate(this.state.guesslist)
-      });
-    }
-    else {
-      this.state.guesslist.push(num);
-      console.log(this.state.guesslist);
-      this.props.scoreupdate(this.state.guesslist)
-    }
-    this.scramblenumbers();
-  };
 
   answerList = () => {
     var ansArray = [];
-    for (var j = 0; ansArray.length < 30; j++) {
+    // for (var j = 0; ansArray.length < 30; j++) {
+    while(ansArray.length < 30) {
       if (ansArray.length < 16) {
         var y = Math.floor(Math.random() * 400);
         // if ((y % 2) === 0) {
@@ -121,7 +102,7 @@ class Board extends Component {
         }
       }
       else if (ansArray.length > 15) {
-        var z = Math.floor(Math.random() * 300);
+        var z = Math.floor(Math.random() * 400);
         if (this.props.cards.criteria(z)===false) {
           ansArray.push(z);
         }
