@@ -47,6 +47,7 @@
 .card {
   width: 140px;
   height: 70px;
+<<<<<<< HEAD:src/App.css
 }
 
 body {
@@ -63,4 +64,17 @@ body {
  100%{
    background-position: 3000px 0px;
  }
+=======
+  /* background-image: url('./components/grid/Asteroid\ Brown.png'); */
+}
+
+.modal{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  height: 340px;
+  width: 728px;
+  background-color: black;
+  color: aliceblue;
+>>>>>>> 0131bcf51e73c34097866a417618e2e1e8a136b9:client/src/App.css
 }

@@ -1,8 +1,19 @@
 {
   "name": "numbernumbergame",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build"
+  },
   "dependencies": {
+<<<<<<< HEAD
     "async": "^3.1.0",
     "babel": "^6.23.0",
     "bootstrap": "^4.3.1",
@@ -16,12 +27,21 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "0.9.5",
     "redux": "^4.0.4"
+=======
+    "concurrently": "^5.0.0",
+    "express": "^4.17.1",
+    "if-env": "^1.0.4",
+    "socket.io": "^2.3.0"
+>>>>>>> 0131bcf51e73c34097866a417618e2e1e8a136b9
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lobo89x/numbernumbergame.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lobo89x/numbernumbergame/issues"
+  },
+  "homepage": "https://github.com/lobo89x/numbernumbergame#readme"
 }
