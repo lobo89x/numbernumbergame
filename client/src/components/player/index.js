@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
-import walkSprite from './numbernaught_test1.png'
-import {handleMovement, loadCardList} from './movement'
+import walkSprite from './player_walk.png'
+import {loadCardList} from './movement'
 
 
 
@@ -16,6 +16,7 @@ function Player(props) {
     
 
     useEffect(() => {
+        console.log(props)
         loadCardList(props);
         // console.log(props);
     });
@@ -42,4 +43,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(handleMovement(Player))
+export default connect(mapStateToProps)(Player)

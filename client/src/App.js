@@ -29,7 +29,8 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.getUser();
+    this.updateUserLogin("Anon"+ Math.floor(Math.random()*100000));
+    //this.getUser();
   }
 
   getUser = () => {
