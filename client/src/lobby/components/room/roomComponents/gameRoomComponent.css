@@ -4,6 +4,7 @@
 
 .gameroom-info{
   text-align: center;
+  margin-top: 2em;
 }
 
 .gameroom-button-wrapper{
@@ -17,7 +18,7 @@
 }
 
 .gameroom-button-leave{
-  background-color: rgb(44, 44, 44);
+  background-color: var(--orange);
   color: white;
   border: none;
   border-radius: 5px;
@@ -34,18 +35,23 @@
 .gameroom-go-button{
   text-align: center;
   border: none;
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.808);
+  
   color: white;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   cursor: pointer;
 }
 
 .gameroom-go-button:active{
   border: 5px solid rgb(2, 90, 2);
-  background-color: rgb(0, 107, 0);
+  background-color: rgba(0, 107, 0, 0.568);
   border-radius: 50%;
+}
+
+.gameroom-go-button:hover{
+  box-shadow: 0px 0px 15px rgb(45, 255, 45);
 }
 
 .gameroom-go-button:focus {outline:0;}

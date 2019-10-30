@@ -2,10 +2,13 @@
 .room-wrapper{
   flex-basis: 70%;
   height: 100%;
-  border: 1px solid black;
+  border: 2px solid var(--blue);
   margin: 0 1em;
+  padding: 0;
   border-radius: 10px;
   overflow: hidden;
+  display: flex;
+  flex-flow: column;
 }
 
 .room-banner{
@@ -15,11 +18,17 @@
 .room-banner-left {
   flex-basis: 75%;
   padding: 1em;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .room-banner-right {
   flex-basis: 25%;
   padding: 1em;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .room-info-wrapper{
@@ -30,8 +39,8 @@
 
 .room-info{
   flex-basis: 75%;
-  border-right: 1px solid black;
-  height: 95%;
+  border-right: 3px solid var(--blue);
+  height: 100%;
   padding: 0 .7em;
   position: relative;
 }
@@ -63,7 +72,7 @@
   left: 0;
   width: 95%;
   height: 3px;
-  background-color: rgb(66, 66, 66); 
+  background-color: var(--blue); 
 }
 
 .room-info-list {
@@ -76,10 +85,11 @@
   flex-direction: row;
   justify-content: space-around;
   cursor: pointer;
+  margin-right: 2px;
 }
 
 .list-selected-item{
-  background-color: rgb(53, 53, 53);
+  background-color: var(--blue);
   color: white;
   border-radius: 10px;
   display: flex;
@@ -88,6 +98,7 @@
   position: relative;
   padding: 0;
   cursor: pointer;
+  margin-right: 2px;
 }
 
 .room-info-item-select{
@@ -98,9 +109,14 @@
   cursor: pointer;
 }
 
+.room-info-item-select> p {
+  color: white
+}
+
+
 .list-join-button{
   color: white;
-  background-color: rgb(85, 85, 85);
+  background-color: var(--orange);
   border-radius: 10px;
   height: 100%;
   position: absolute;
@@ -112,6 +128,7 @@
 }
 
 .list-item-fix {
+  color: var(--blue);
   margin: .8em;
   flex: 1;
   text-align: left;
@@ -122,14 +139,14 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  width: 50%;
+  width: 70%;
   display: flex;
   justify-content: space-around;
   margin: 1em;
 }
 
 .room-info-button{
-  background-color: rgb(44, 44, 44);
+  background-color: var(--orange);
   color: white;
   border: none;
   border-radius: 5px;
@@ -137,9 +154,7 @@
   flex-basis: 40%;
 }
 
-.room-info-button:hover{
-  box-shadow: 0px 2px teal;
-}
+
 
 .room-info-modal{
   position: absolute;
@@ -147,8 +162,8 @@
   left: 50%;
   width: 30%;
   height: 40%;
-  border: 1px solid black;
-  background-color: white;
+  border: 1px solid var(--blue);
+  background-color: rgba(37, 37, 37, 0.788);
   z-index: 10;
   border-radius: 10px;
   transform: translate(-50%, -50%);
@@ -160,7 +175,7 @@
 .room-info-modal-title{
   height: 15%;
   color: white;
-  background-color: rgb(68, 68, 68);
+  background-color: var(--blue);
   display: flex;
   align-items: center;
 }
@@ -173,6 +188,7 @@
 }
 
 .room-info-modal-form {
+  padding-top: 1em;
   width: 80%;
   height: 80%;
   align-self: center;
@@ -180,9 +196,13 @@
   position: relative;
 }
 
+.room-info-modal-form label{
+  color: var(--blue);
+}
+
 .room-info-modal-form button {
   width: 100%;
-  background-color: rgb(44, 44, 44);
+  background-color: var(--orange);
   color: white;
   border: none;
   padding: 1em .7em;
@@ -195,17 +215,20 @@
 .room-info-modal-form input {
   width: 100%;
   font-size: 2em;
-  border: 2px solid rgb(44, 44, 44);
+  border: 2px solid var(--blue);
   text-align: center;
+  background-color: rgba(66, 66, 66, 0.534);
+  color: white;
 }
 
 .room-info-modal-error-message{
-  color: red;
+  color: rgb(255, 102, 0);
 }
 
 .room-info-close-modal {
-  margin-right: 1em;
+  margin: 1em;
   cursor: pointer;
+  vertical-align: center;
 }
 
 .room-info-close-modal:hover{
@@ -216,4 +239,16 @@
   .room-info-buttons{
     width: 100%;
   }
+}
+
+.user-list-item {
+  color: var(--blue);
+}
+
+.gameroom-info {
+  color: var(--blue);
+}
+
+.gameroom-button-leave{
+  background-color: var(--orange);
 }
