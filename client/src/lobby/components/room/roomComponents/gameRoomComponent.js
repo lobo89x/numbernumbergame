@@ -29,7 +29,7 @@ function GameRoomComponent({ gameData, leaveGame, screen, start}) {
           {screen === "UserCreatedGame" && gameData.users.length === 2 ? <button className="gameroom-go-button" onClick={start}>Start Game!</button>: ""}
           </div>
           <div className="gameroom-button-wrapper">
-            <button className="gameroom-button-leave" onClick={() => leaveGame(gameData.name)}>Leave</button>
+            <button className="gameroom-button-leave orange-blur" onClick={() => leaveGame(gameData.name)}>Leave</button>
           </div>
         </div>
         <div className="room-users">

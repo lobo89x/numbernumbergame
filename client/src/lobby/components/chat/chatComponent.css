@@ -3,7 +3,7 @@
 }
 
 .chat-wrapper {
-  border: 1px solid black;
+  border: 2px solid var(--blue);
   flex-basis: 30%;
   min-height: 100%;
   position: relative;
@@ -40,6 +40,10 @@
   padding-left: .2em;
   height: 100%;
   font-size: 1rem;
+  background-color: rgba(93, 158, 255, 0.568);
+  border: none;
+  color: rgba(255, 255, 255, 0.808);
+  border: 1px solid rgb(93, 158, 255)
 }
 
 .message-inputs button{
@@ -48,8 +52,9 @@
   padding: 0;
   height: 100%;
   color: white;
-  background-color: rgb(31, 31, 31);
+  background-color: var(--blue);
   border: 0px;
+  border: 1px solid rgb(93, 158, 255)
 }
 
 .message-output{
@@ -61,6 +66,7 @@
 
 .message-items{
   width: 100%;
-  word-break: break-all
+  word-break: break-all;
+  color: white;
 }
 

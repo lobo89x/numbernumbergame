@@ -81,12 +81,20 @@ class RoomComponent extends Component {
     this.props.socket.emit("leaveGame", { room, user: this.props.user });
   };
 
+  checkForEnter = (e) => {
+    // handle when user hits enter in the input box for messages
+    if(e.keyCode === 13){
+      this.submitNewGame();
+    }
+  }
+
   start2PlayerGame = () => {
     //use a function to start the 2player game probably just route to the right page
   }
 
   start1PlayerGame = () => {
     // use function to change page to 1 player game
+
   }
 
   render() {
@@ -130,11 +138,12 @@ class RoomComponent extends Component {
                 name="game-name"
                 value={this.state.gameName}
                 onChange={this.changeGameNameText}
+                onKeyDown={this.checkForEnter}
               ></input>
               <p className="room-info-modal-error-message">
                 {this.state.modalError}
               </p>
-              <button onClick={this.submitNewGame}>CREATE GAME</button>
+              <button className="orange-blur" onClick={this.submitNewGame}>CREATE GAME</button>
             </div>
           </div>
         ) : (
