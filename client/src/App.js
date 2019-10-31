@@ -8,7 +8,7 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Register from "./components/Register/Register";
+import Register from "./signup";
 import Login from "./login";
 
 import Lobby from "./lobby";
