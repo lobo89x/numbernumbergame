@@ -13,6 +13,14 @@ module.exports = {
     .findOneAndUpdate({_id : userID}, {highscore : scoreID}, {new : true}).populate("Highscore")
   },
 
+  returnUserLogin: function(req, res) {
+    db.User
+      .findOne({username: req.body.username})
+      .populate("Highscore")
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+
   findByUserName: function(req, res) {
     db.User
       .findOne({username: req.params.username})
