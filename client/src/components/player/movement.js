@@ -100,7 +100,7 @@ export function handleMovement(player, props) {
                     // break
             case 38:
                     console.log("Up");
-                 return moveY(-85, -1)
+                 return moveY(-95, -1)
                 //break
             case 39:
                     console.log("Right");
@@ -108,7 +108,7 @@ export function handleMovement(player, props) {
                 //break
             case 40:
                     console.log("Down");
-                 return moveY(85, 1)
+                 return moveY(95, 1)
                 //break
             case 32:
                     console.log("Munch");

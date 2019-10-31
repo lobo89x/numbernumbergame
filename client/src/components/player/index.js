@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
-import walkSprite from './player_walk.png'
+import walkSprite from './player_1.png'
 import {loadCardList} from './movement'
 
 
@@ -16,13 +16,13 @@ function Player(props) {
     
 
     useEffect(() => {
-        console.log(props)
+        // console.log(props)
         loadCardList(props);
         // console.log(props);
     });
 
     return (
-        <div
+        <div className='player'
             style={{
                 position: 'absolute',
                 top: props.position[1],

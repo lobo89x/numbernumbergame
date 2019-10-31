@@ -15,7 +15,7 @@ class Grid extends Component {
     }
 
     handleUserInput = (e) => {
-        console.log(e);
+        // console.log(e);
         handleMovement()(e);
     }
 
