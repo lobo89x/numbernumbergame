@@ -19,7 +19,7 @@ function Login(props) {
   const submitLogin = e => {
     e.preventDefault();
     axios
-      .post("/user", {
+      .post("/login", {
         username: userName,
         password: passWord
       })

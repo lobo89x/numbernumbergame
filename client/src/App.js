@@ -29,15 +29,14 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.updateUserLogin("Anon"+ Math.floor(Math.random()*100000));
-    //this.getUser();
+    this.getUser();
   }
 
   getUser = () => {
-    axios.get("/user").then(response => {
-      if (response.data.user) {
+    axios.get("/loggedin").then(response => {
+      if (response.data.username) {
         this.setState({
-          user: response.data.user,
+          user: response.data.username,
           socket: socketIOClient.connect(socketUrl)
         });
       } else {
@@ -52,8 +51,9 @@ class App extends Component {
     });
   };
 
+  // call to log user out of backend
   logOut = () => {
-    axios.post("/user/logout").then(response => {
+    axios.post("/logout").then(response => {
       //console.log(response);
       this.setState({
         user: null,
@@ -62,8 +62,9 @@ class App extends Component {
     });
   };
 
+  // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    this.setState({ user: user, socket: socketIOClient.connect(socketUrl) });
+    this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 
   render() {

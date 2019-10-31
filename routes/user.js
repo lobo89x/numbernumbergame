@@ -11,7 +11,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
       console.log(`logged in: ${req.user}`);
-      User.findUserById(req, res);
+      User.findByUserName(req, res);
       console.log(req.user);
 })
 
@@ -24,6 +24,16 @@ router.post('/logout', (req, res) => {
   }
 })
 
+router.get('/loggedin', (req, res) => {
+    console.log('===== user!!======')
+    console.log(req.user)
+    if (req.user) {
+        User.findByUserName(req, res);
+    } else {
+        res.json({ user: null })
+    }
+})
+
 router.get('/user/:id', (req, res) => {
     console.log(req.params);
     let id = req.params.id;
@@ -33,7 +43,9 @@ router.get('/user/:id', (req, res) => {
     else {
         res.render("Could not find a user with that ID.").send();
     }
-  })
+})
+
+
 
 router.get('/findUser/:username', (req, res) => {
     if (req.user && {username : username}) {

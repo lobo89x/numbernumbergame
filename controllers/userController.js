@@ -9,9 +9,9 @@ module.exports = {
   },
   findByUserName: function(req, res) {
     db.User
-      .find({username: req.user.username})
-      .then(dbModel => res.json(dbModel))
+      .findOne({username: req.user.username})
       .populate("highscore")
+      .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findUserById: function(req, res) {
