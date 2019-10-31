@@ -1,6 +1,6 @@
 module.exports = {
     User: require("./user"),
-    Scoreboard: require("./scorerboard")
+    Highscore: require("./highscore")
 };
 
 
