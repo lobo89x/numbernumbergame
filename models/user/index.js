@@ -17,7 +17,7 @@ const UserSchema = new Schema ({
     
     highscore : {
         type : Schema.Types.ObjectId, 
-        ref: "Scoreboard" 
+        ref: "Highscore" 
     }
 });
 

@@ -1,20 +1,20 @@
 const mongoose = require("mongoose"); 
 const Schema = mongoose.Schema;
 
-const ScoreboardSchema = new Schema ({
+const HighscoreSchema = new Schema ({
 
     highscore : {
         type : Number, 
         required : true,
         default : 0,
     },
-        username: {
+        userID: {
             type: mongoose.Schema.Types.ObjectId, 
             ref: "User"
     }
 });
 
-const Scoreboard = mongoose.model("Scoreboard", ScoreboardSchema);
+const Highscore = mongoose.model("Highscore", HighscoreSchema);
 
 // Export the scoreboard model
-module.exports = Scoreboard;
+module.exports = Highscore;
