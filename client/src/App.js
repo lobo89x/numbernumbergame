@@ -1,4 +1,3 @@
-import "./index.css";
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -29,6 +28,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
+    // checks to see if the user is logged in on the back end
     this.getUser();
   }
 
@@ -40,7 +40,7 @@ class App extends Component {
           socket: socketIOClient.connect(socketUrl)
         });
       } else {
-        //console.log("Get user: no user");
+        // backend did not find a user
         if (this.state.loggedIn) {
           this.setState({
             user: null,
