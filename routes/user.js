@@ -13,7 +13,7 @@ router.post('/signup', (req, res) => {
 
 router.post('/login', passport.authenticate('local'), (req, res) => {
       console.log(`logged in: ${req.user}`);
-      User.findByUserName(req, res)
+      User.returnUserLogin(req, res)
       console.log(req.user);
 })
 
