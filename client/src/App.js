@@ -8,7 +8,7 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Register from "./components/Register/Register";
+import Register from "./signup";
 import Login from "./login";
 
 import Lobby from "./lobby";
@@ -72,7 +72,18 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/register" component={Register} />
+          {/* <Route exact path="/register" component={Register} /> */}
+          <Route
+            exact
+            path="/login"
+            render={props => (
+              <Register
+                {...props}
+                user={this.state.user}
+                handle={this.updateUserLogin}
+              />
+            )}
+          />
           <Route
             exact
             path="/login"
