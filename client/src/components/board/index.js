@@ -18,12 +18,14 @@ class Board extends Component {
   };
   
   showModal = () => {
+    console.log("running show modal");
     if (this.state.correctAns===15){
       this.setState({
         show: true
       })
     }
     if (this.props.lives<1){
+      console.log("im on line 28")
       this.setState({
         show: true
       });
@@ -60,9 +62,9 @@ class Board extends Component {
   // };
   
   selectEval = (x, tf, list) => {
-    console.log(this.props.cards.criteria)
-    console.log(x);
-    console.log(this.props.cards.criteria(tf))
+    // console.log(this.props.cards.criteria)
+    // console.log(x);
+    // console.log(this.props.cards.criteria(tf))
     if (this.props.cards.criteria(tf)) {
       this.state.correctAns++;
       console.log("you got it right");
@@ -77,6 +79,12 @@ class Board extends Component {
       // console.log('#of lives left  '+this.props.lives);
       // lifeLoss();
     }
+    if (this.state.correctAns===15){
+      this.showModal();
+    }
+    if (this.props.lives<1){
+      this.showModal();
+    }
     this.setState(
       {cardlist: this.state.cardlist.map((item, index) =>
         {if (index===x){
@@ -86,7 +94,6 @@ class Board extends Component {
       })
     }
     );
-    this.showModal();
   }
 
 // clearSpace(y){
@@ -128,7 +135,7 @@ class Board extends Component {
       }
 
     }
-    console.log(ansArray);
+    // console.log(ansArray);
     let t = this.scramblenumbers(ansArray);
     this.setState({ cardlist: (t) }, () => {
       // console.log(this.state.cardlist);

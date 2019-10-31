@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import Board from '../board';
 // import logo from './logo.svg';
 // import Card from './components/card'
-import '../../App.css';
+import './App.css';
 
 
 
@@ -135,7 +135,7 @@ class Game extends Component {
       this.setState({
         lives: this.state.lives - 1 
       })
-      console.log("im here");
+      // console.log("im here");
     }
 
     nextLevel = () => {
