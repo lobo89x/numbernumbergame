@@ -34,6 +34,7 @@ class App extends Component {
 
   getUser = () => {
     axios.get("/loggedin").then(response => {
+      console.log(response)
       if (response.data.username) {
         this.setState({
           user: response.data.username,

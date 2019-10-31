@@ -23,7 +23,7 @@ module.exports = {
 
   findByUserName: function(req, res) {
     db.User
-      .findOne({username: req.body.username})
+      .findOne({username: req.body.username || req.user.username})
       .populate("Highscore")
       .then(dbModel => 
         {
