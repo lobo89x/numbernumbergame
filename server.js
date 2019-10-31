@@ -4,7 +4,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 
-const PORT = process.env.PORT || 5000; 
+const PORT = process.env.PORT || 3001; 
 
 const routes = require("./routes/user");
 
@@ -20,9 +20,13 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use(express.static('public'))
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
 app.use(routes);
-
-
 
 //Connect to mongoDB
 const url = "mongodb://localhost:27017/numbernumbergame";
@@ -33,6 +37,14 @@ mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedT
 });
 
 // Start the server
-app.listen(PORT, function() {
+const server = app.listen(PORT, function() {
   console.log(`Server running on port ${PORT}.`);
 });
+
+// socketio related stuff
+const socket = require("./socket/config");
+socket(server);
+ 
+
+
+

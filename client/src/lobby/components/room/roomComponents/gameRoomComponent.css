@@ -1,0 +1,57 @@
+.gameroom-button-wrapper{
+
+}
+
+.gameroom-info{
+  text-align: center;
+  margin-top: 2em;
+}
+
+.gameroom-button-wrapper{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1em;
+}
+
+.gameroom-button-leave{
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 3em;
+  flex-basis: 40%;
+}
+
+.gameRoom-gobtn-wrapper{
+  display: flex;
+  justify-content: center;
+  height: 50%;
+}
+
+.gameroom-go-button{
+  text-align: center;
+  border: none;
+  background-color: rgba(0, 128, 0, 0.808);
+  
+  color: white;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.gameroom-go-button:active{
+  border: 5px solid rgb(2, 90, 2);
+  background-color: rgba(0, 107, 0, 0.568);
+  border-radius: 50%;
+}
+
+.gameroom-go-button:hover{
+  box-shadow: 0px 0px 15px rgb(45, 255, 45);
+}
+
+.gameroom-go-button:focus {outline:0;}
