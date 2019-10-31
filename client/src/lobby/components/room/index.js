@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./roomComponent.css";
 import WaitingRoomComponent from "./roomComponents/waitingRoomComponent";
 import GameRoomComponent from "./roomComponents/gameRoomComponent";
+import {Redirect} from "react-router-dom";
 
 class RoomComponent extends Component {
   constructor() {
@@ -15,6 +16,8 @@ class RoomComponent extends Component {
       modalError: "",
       // element from list of available rooms the user has clicked on
       clickedGameElement: null,
+
+      redirectTo: null
     };
   }
 
@@ -81,17 +84,26 @@ class RoomComponent extends Component {
     this.props.socket.emit("leaveGame", { room, user: this.props.user });
   };
 
+  checkForEnter = (e) => {
+    // handle when user hits enter in the input box for messages
+    if(e.keyCode === 13){
+      this.submitNewGame();
+    }
+  }
+
   start2PlayerGame = () => {
     //use a function to start the 2player game probably just route to the right page
   }
 
   start1PlayerGame = () => {
     // use function to change page to 1 player game
+    this.setState({redirectTo: "/game"});
   }
 
   render() {
     return (
       <div className="room-wrapper">
+        {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : ""}
         {this.props.screen === "lobby" ? (
           <WaitingRoomComponent
             users={this.props.users}
@@ -130,11 +142,12 @@ class RoomComponent extends Component {
                 name="game-name"
                 value={this.state.gameName}
                 onChange={this.changeGameNameText}
+                onKeyDown={this.checkForEnter}
               ></input>
               <p className="room-info-modal-error-message">
                 {this.state.modalError}
               </p>
-              <button onClick={this.submitNewGame}>CREATE GAME</button>
+              <button className="orange-blur" onClick={this.submitNewGame}>CREATE GAME</button>
             </div>
           </div>
         ) : (

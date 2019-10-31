@@ -1,18 +1,31 @@
 import React, { Component } from "react";
 import Player from '../player';
+import {handleMovement} from '../player/movement';
+
 
 class Grid extends Component {
+    constructor(){
+        super();
+        this.grid = React.createRef();
+    }
+    
+    componentDidMount(){
+        
+        this.grid.current.focus();
+    }
 
+    handleUserInput = (e) => {
+        console.log(e);
+        handleMovement()(e);
+    }
 
 
     render() {
-        // console.log(this.props.cardlist);
-        // console.log(this.props.selectEval);
         if(this.props.cardlist.length!==0) {
   
           return (
-            <React.Fragment>
-                  <div className='card-group'>
+            <div onKeyDown={(e)=>this.handleUserInput(e)} tabIndex="0" ref={this.grid} >
+                  <div className='card-group' >
                     <div className="card text-white bg-dark mb-3">
                       <div className="card-body" >
                           <h5 className="card-title">{this.props.cardlist[0]}</h5>
@@ -203,7 +216,7 @@ class Grid extends Component {
                       </div>
                   </div>
                   <Player selectEval={this.props.selectEval} cardlist={this.props.cardlist}/>
-                  </React.Fragment>
+                  </div>
                   );
         }
         else {

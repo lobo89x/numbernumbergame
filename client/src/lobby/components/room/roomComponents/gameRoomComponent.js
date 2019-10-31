@@ -1,9 +1,10 @@
 import React from "react";
 import "./gameRoomComponent.css"
 
-
 // visual component for game room where 2 players are ready to start a game
 function GameRoomComponent({ gameData, leaveGame, screen, start}) {
+
+
   return (
     <React.Fragment>
       <div className="lobby-banner room-banner">
@@ -26,10 +27,10 @@ function GameRoomComponent({ gameData, leaveGame, screen, start}) {
            }
           </div>
           <div className="gameRoom-gobtn-wrapper">
-          {screen === "UserCreatedGame" && gameData.users.length === 2 ? <button className="gameroom-go-button" onClick={start}>Start Game!</button>: ""}
+          {screen === "UserCreatedGame" && gameData.users.length === 2 ? <button className="gameroom-go-button" onClick={start}>GO!</button>: ""}
           </div>
           <div className="gameroom-button-wrapper">
-            <button className="gameroom-button-leave" onClick={() => leaveGame(gameData.name)}>Leave</button>
+            <button className="gameroom-button-leave orange-blur" onClick={() => leaveGame(gameData.name)}>Leave</button>
           </div>
         </div>
         <div className="room-users">

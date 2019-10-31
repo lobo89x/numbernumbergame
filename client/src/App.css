@@ -1,3 +1,7 @@
+#root{
+  height: 100%;
+}
+
 .App {
   text-align: center;
 }
@@ -45,8 +49,8 @@
 }
 
 .card {
-  width: 140px;
-  height: 70px;
+  /* width: 140px; */
+  /* height: 70px; */
 }
 
 body {
