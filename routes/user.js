@@ -21,7 +21,7 @@ router.get('/loggedin', (req, res) => {
     console.log('===== user!!======')
     console.log(`logged in: ${req.user}`);
     if (req.user) {
-        dbUser.findByUserName(req, res);
+        User.findByUserName(req, res);
     } else {
         res.json({ user: null })
     }
@@ -42,6 +42,7 @@ router.get('/loggedin', (req, res) => {
     if (req.user) {
         User.findByUserName(req, res);
     } else {
+        
         res.json({ user: null })
     }
 })

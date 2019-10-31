@@ -64,6 +64,7 @@ class App extends Component {
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
+    console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 
