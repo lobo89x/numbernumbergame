@@ -1,0 +1,22 @@
+.signUp-body{
+  height: 100%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signUp-form{
+  margin-top: -10em;
+}
+
+.signUp-body{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signUp-error{
+  color: red;
+}
