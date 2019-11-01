@@ -10,7 +10,6 @@ import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Register from "./components/Register/Register";
 import Login from "./login";
-
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 

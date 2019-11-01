@@ -9,9 +9,6 @@ import Board from '../board';
 // import Card from './components/card'
 import './App.css';
 
-
-
-
 const cards = [
   {
     desc: "Mutiples of 2",
@@ -172,6 +169,7 @@ class Game extends Component {
   render() {
     return (
       <div className="App">
+
         <div className="App-header">
           <h2>NUMBERNAUTS</h2>
         </div>
@@ -204,6 +202,8 @@ class Game extends Component {
     );
   }
 }
+
+
 
 export default Game;
 
