@@ -1,4 +1,3 @@
-import "./index.css";
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -29,19 +28,20 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.updateUserLogin("Anon"+ Math.floor(Math.random()*100000));
-    //this.getUser();
+    // checks to see if the user is logged in on the back end
+    this.getUser();
   }
 
   getUser = () => {
-    axios.get("/user").then(response => {
-      if (response.data.user) {
+    axios.get("/loggedin").then(response => {
+      console.log(response)
+      if (response.data.username) {
         this.setState({
-          user: response.data.user,
+          user: response.data.username,
           socket: socketIOClient.connect(socketUrl)
         });
       } else {
-        //console.log("Get user: no user");
+        // backend did not find a user
         if (this.state.loggedIn) {
           this.setState({
             user: null,
@@ -52,8 +52,9 @@ class App extends Component {
     });
   };
 
+  // call to log user out of backend
   logOut = () => {
-    axios.post("/user/logout").then(response => {
+    axios.post("/logout").then(response => {
       //console.log(response);
       this.setState({
         user: null,
@@ -62,8 +63,10 @@ class App extends Component {
     });
   };
 
+  // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    this.setState({ user: user, socket: socketIOClient.connect(socketUrl) });
+    console.log(user)
+    this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 
   render() {

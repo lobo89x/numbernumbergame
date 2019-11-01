@@ -13,19 +13,22 @@
     "build": "cd client && npm run build"
   },
   "dependencies": {
-    "concurrently": "^5.0.0",
-    "express": "^4.17.1",
-    "if-env": "^1.0.4",
-    "react-router-dom": "^5.1.2",
-    "socket.io": "^2.3.0",
     "bcrypt": "^3.0.6",
+    "concurrently": "^5.0.0",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "if-env": "^1.0.4",
+    "mon": "0.0.8",
     "mongoose": "^5.7.6",
+    "node": "^12.13.0",
+    "nodemon": "^1.19.4",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-router-dom": "^5.1.2",
+    "socket.io": "^2.3.0"
   },
   "repository": {
     "type": "git",
