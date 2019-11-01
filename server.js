@@ -6,7 +6,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3001; 
 
-const routes = require("./routes/user");
+const userRoutes = require("./routes/user");
+const scoreRoutes = require("./routes/scoreboard");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,7 +27,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(routes);
+app.use(userRoutes);
+app.use(scoreRoutes);
 
 //Connect to mongoDB
 const url = "mongodb://localhost:27017/numbernumbergame";

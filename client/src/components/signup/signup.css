@@ -1,4 +1,4 @@
-.login-body{
+.signUp-body{
   height: 100%;
   width: 90%;
   display: flex;
@@ -6,17 +6,17 @@
   align-items: center;
 }
 
-.login-form{
+.signUp-form{
   margin-top: -10em;
 }
 
-.login-body{
+.signUp-body{
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-error{
+.signUp-error{
   color: red;
 }

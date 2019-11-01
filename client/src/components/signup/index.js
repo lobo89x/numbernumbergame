@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
-import "./login.css";
+import "./signup.css";
 
-function Login(props) {
+function SignUp(props) {
   const [userName, setUserName] = useState("");
   const [passWord, setPassWord] = useState("");
   const [error, setError] = useState("");
@@ -16,10 +16,10 @@ function Login(props) {
     setPassWord(e.target.value);
   };
 
-  const submitLogin = e => {
+  const submitSignUp = e => {
     e.preventDefault();
     axios
-      .post("/login", {
+      .post("/signup", {
         username: userName,
         password: passWord
       })
@@ -37,14 +37,14 @@ function Login(props) {
 
   return (
     
-    <div className="login-body">
+    <div className="signUp-body">
       { props.user !== null ? 
       <Redirect to="/lobby" />: ""
       }
-      <div className="card login-form">
-        <div className="card-body login-body">
-          <h3>Login:</h3>
-          <label htmlFor="userName">User name:</label>
+      <div className="card signUp-form">
+        <div className="card-body signUp-body">
+          <h3>Register:</h3>
+          <label htmlFor="userName">Username:</label>
           <input
             id="userName"
             value={userName}
@@ -57,9 +57,9 @@ function Login(props) {
             value={passWord}
             onChange={updatePassWord}
           ></input>
-          {error ? <p className="login-error">{error}</p> : ""}
-          <button className="btn btn-primary mt-1 flat btn-block" onClick={submitLogin}>
-            Login
+          {error ? <p className="signUp-error">{error}</p> : ""}
+          <button className="btn btn-primary mt-1 flat btn-block" onClick={submitSignUp}>
+            Submit
           </button>
         </div>
       </div>
@@ -67,4 +67,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default SignUp;
