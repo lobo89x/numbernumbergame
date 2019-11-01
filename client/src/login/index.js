@@ -32,7 +32,10 @@ function Login(props) {
         } else {
           setError("Username or Password Incorrect");
         }
-      });
+      })
+      .catch(error => {
+        setError("Username or Password Incorrect");
+    });
   };
 
   return (
