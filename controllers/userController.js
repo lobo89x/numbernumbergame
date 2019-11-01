@@ -1,4 +1,5 @@
 const db = require("../models/index");
+
 module.exports = {
   findAllUsers: function(req, res) {
     db.User
@@ -10,21 +11,21 @@ module.exports = {
 
   setScoreID: function (userID, scoreID) {
     return db.User
-    .findOneAndUpdate({_id : userID}, {highscore : scoreID}, {new : true}).populate("Highscore")
+    .findOneAndUpdate({_id : userID}, {highscore : scoreID}, {new : true}).populate("highscore")
   },
 
   returnUserLogin: function(req, res) {
     db.User
       .findOne({username: req.body.username})
-      .populate("Highscore")
+      .populate("highscore")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
 
   findByUserName: function(req, res) {
     db.User
-      .findOne({username: req.params.username})
-      .populate("Highscore")
+      .findOne({username: req.params.username || req.user.username})
+      .populate("highscore")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -33,7 +34,7 @@ module.exports = {
     db.User
     //use req.user.id value provided by passport
       .findOne({_id: req.params.id})
-      .populate("Highscore")
+      .populate("highscore")
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

@@ -1,4 +1,3 @@
-import "./index.css";
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -8,10 +7,10 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Register from "./components/Register/Register";
 import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
+import SignUp from "./components/signup";
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 const socketUrl =
@@ -28,19 +27,20 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.updateUserLogin("Anon"+ Math.floor(Math.random()*100000));
-    //this.getUser();
+    // checks to see if the user is logged in on the back end
+    this.getUser();
   }
 
   getUser = () => {
-    axios.get("/user").then(response => {
-      if (response.data.user) {
+    axios.get("/loggedin").then(response => {
+      console.log(response)
+      if (response.data.username) {
         this.setState({
-          user: response.data.user,
+          user: response.data.username,
           socket: socketIOClient.connect(socketUrl)
         });
       } else {
-        //console.log("Get user: no user");
+        // backend did not find a user
         if (this.state.loggedIn) {
           this.setState({
             user: null,
@@ -51,8 +51,9 @@ class App extends Component {
     });
   };
 
+  // call to log user out of backend
   logOut = () => {
-    axios.post("/user/logout").then(response => {
+    axios.post("/logout").then(response => {
       //console.log(response);
       this.setState({
         user: null,
@@ -61,17 +62,29 @@ class App extends Component {
     });
   };
 
+  // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    this.setState({ user: user, socket: socketIOClient.connect(socketUrl) });
+    console.log(user)
+    this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 
   render() {
     return (
       <Router>
-        <Header />
+        <Header user={this.state.user} logout={this.logOut}/>
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/register" component={Register} />
+          <Route 
+            exact 
+            path="/signup" 
+            render={props => 
+              (<SignUp 
+                {...props}  
+                user={this.state.user}
+                handle={this.updateUserLogin}
+                />
+                )}
+                />
           <Route
             exact
             path="/login"

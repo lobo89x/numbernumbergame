@@ -26,7 +26,7 @@ function LandingPage(){
       </br>
     </Card.Text>
     <Button className="ml-4" href="/Login" variant="success">Login Here</Button>
-    <Button className="float-right mr-4" href="/Register" variant="success">Create Account</Button>
+    <Button className="float-right mr-4" href="/signup" variant="success">Create Account</Button>
     
   </Card.Body>
 </Card>
