@@ -16,7 +16,7 @@ const cards = [
   {
     desc: "Mutiples of 2",
     criteria: (x) =>{
-      if ((x % 2) === 0){
+      if ((x % 2) == 0){
         return true;
       }
       else{
@@ -27,7 +27,7 @@ const cards = [
   {
     desc: "Mutiples of 3",
     criteria: (x) =>{
-      if ((x % 3) === 0){
+      if ((x % 3) == 0){
         return true;
       }
       else{
@@ -119,10 +119,32 @@ class Game extends Component {
   state = {
     score: 0,
     lives: 3,
+    correctAns: 0,
     gameOver: false,
-    level: 0
+    level: 0,
+    show: false
   };
   // const Game = () => {
+
+    showModal = () => {
+      console.log("running show modal");
+      if (this.state.correctAns===15){
+        this.setState({
+          show: true
+        })
+      }
+      if (this.state.lives<1){
+        console.log("im on line 28")
+        this.setState({
+          show: true
+        });
+       
+      }
+      // console.log("I am here!");
+      // console.log("dhow modal  "+this.state.show)
+    };
+  
+
     addScore = (correctAns) => {
       // console.log("here i am");
       this.setState({
@@ -140,18 +162,121 @@ class Game extends Component {
 
     nextLevel = () => {
       // console.log("here i am");
+      // this.setState({
+      //   show: false,
+      //   correctAns: 0,
+      //   cardlist: []
+      // });
       this.setState({
+        show: false,
+        correctAns: 0,
+        cardlist: [],
         level: this.state.level + 1
+      }, () => {
+        console.log("this is the level::  "+this.state.level);
+        this.answerList();
       })
-      // console.log(this.state.level);
+      
+      // return ""
     };
+
+    componentDidMount() {
+      console.log("i are");
+      this.answerList();
+    }
+    
+  answerList = () => {
+    console.log("again this is this level::  "+this.state.level)
+    var ansArray = [];
+    console.log(cards[this.state.level].criteria);
+    for (var j = 0; ansArray.length < 30; j++) {
+      if (ansArray.length < 16) {
+        var y = Math.floor(Math.random() * 400);
+        // if ((y % 2) === 0) {
+        if (cards[this.state.level].criteria(y)===true) {
+          ansArray.push(y);
+        }
+      }
+      else if (ansArray.length > 14) {
+        var z = Math.floor(Math.random() * 400);
+        if (cards[this.state.level].criteria(z)===false) {
+          ansArray.push(z);
+        }
+      }
+
+    }
+    console.log(ansArray);
+    let t = this.scramblenumbers(ansArray);
+    this.setState({ cardlist: (t) }, () => {
+      // console.log(this.state.cardlist);
+    });
+  }
+
+  
+  selectEval = (x, tf, list) => {
+    // console.log(this.props.cards.criteria)
+    // console.log(x);
+    // console.log(this.props.cards.criteria(tf))
+    if (cards[this.state.level].criteria(tf)) {
+      this.state.correctAns++;
+      console.log("you got it right");
+      // console.log('#of right  '+this.state.correctAns)
+      // scoreUpdate();
+      this.addScore(this.state.correctAns);
+    }
+    else {
+      // this.props.lives--;
+      console.log("youre wrong");
+      this.wrong();
+      // console.log('#of lives left  '+this.props.lives);
+      // lifeLoss();
+    }
+    if (this.state.correctAns===15){
+      this.showModal();
+    }
+    if (this.state.lives<1){
+      this.showModal();
+    }
+    this.setState(
+      {cardlist: this.state.cardlist.map((item, index) =>
+        {if (index===x){
+          item = '';
+        }
+        return item;
+      })
+    }
+    );
+  }
+
+  scramblenumbers = (answers) => {
+    console.log(answers);
+    
+    console.log("I am ,here, in scrmble numbers");
+    answers.sort(() => Math.random() - 0.5);
+      // for (var i = answers.length-1; i > 0; i--) {
+      // var x = Math.floor(Math.random() * i);
+      // const temp2 = answers[i];
+      // answers[i] =answers[x];
+      // answers[x] = temp2
+      // }
+      console.log(answers)
+
+    return answers;
+    // else {
+    // this.setState({ cardlist: temp }, () => {
+    //     // console.log(this.state.cardlist);
+    // });
+    // }
+  }
+
 
     zeroLevel = () => {
       // console.log("here i am");
       this.setState({
         level: 0,
         lives: 3,
-        score: 0
+        score: 0,
+        cardlist: []
       })
       // console.log(this.state.level);
     };
@@ -186,7 +311,13 @@ class Game extends Component {
             </div>
             <div className="col-lg-6 text-center">
                 <div className="card-deck">
+                  {this.state.cardlist?
                     <Board 
+                    show={this.state.show} 
+                    correctAns={this.state.correctAns}
+                    selectEval={this.selectEval} 
+                    answerList={this.answerList}
+                    cardlist= {this.state.cardlist}
                     score={this.state.score}
                     wrong={this.wrong} 
                     lives={this.state.lives} 
@@ -194,6 +325,7 @@ class Game extends Component {
                     cards={cards[this.state.level]} 
                     nextLevel={this.nextLevel}
                     zeroLevel={this.zeroLevel}/>
+                : ""}
                 </div>
             </div>
             <div className="col-lg-3 text-center"></div>
