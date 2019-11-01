@@ -1,6 +1,13 @@
 const db = require("../models/index");
 
 module.exports = {
+    createHighscore: function(id) {
+        console.log(db, "dbscore")
+       return db.Highscore
+          .create({userID : id })
+          .catch(err => res.status(422).json(err));
+    },
+
     updateHighscore: function(req, res) {
         console.log(db, "dbscore")
       return db.Highscore

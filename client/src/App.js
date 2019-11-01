@@ -7,11 +7,10 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
-import Register from "./components/Register/Register";
 import Login from "./login";
-
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
+import SignUp from "./components/signup";
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 const socketUrl =
@@ -75,7 +74,17 @@ class App extends Component {
         <Header />
         <Switch>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/register" component={Register} />
+          <Route 
+            exact 
+            path="/signup" 
+            render={props => 
+              (<SignUp 
+                {...props}  
+                user={this.state.user}
+                handle={this.updateUserLogin}
+                />
+                )}
+                />
           <Route
             exact
             path="/login"
