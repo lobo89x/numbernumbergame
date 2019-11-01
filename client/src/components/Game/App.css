@@ -1,32 +1,21 @@
-#root{
-  height: 100%;
-}
 
-.App {
+
+.Game {
   text-align: center;
   color: aqua;
   font-size: 20pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
+.Game-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
 }
 
 .card-group {
@@ -44,7 +33,8 @@
   flex-wrap: wrap;
   /* color: red; */
   /* flex-direction: row; */
-  justify-content: space-between;
+  justify-content: center;
+  justify-self: center;
   width: 750px;
   height: 325px;
   /* margin: 150px; */
@@ -54,9 +44,51 @@
   /* width: 140px; */
   /* height: 70px; */
 }
+
+.game-row-center{
+  display: flex;
+  justify-content: center;
+
+}
+
+.active-fix:focus {outline:0;}
+
 .player {
   animation:3s float infinite linear;
+  transition: 2s;
+  
 }
+
+.player:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px blue;
+  border-radius: 50%;
+  animation: 5s bubble infinite alternate linear;
+}
+
+@keyframes bubble{
+  0%{
+    top: 0%;
+  }
+  25%{
+    top: -10%;
+  }
+  50%{
+    top: 0%;
+  }
+  75%{
+    top: 10%;
+  }
+  100%{
+    top: 0%;
+  }
+}
+
 @keyframes float{
   20%{
     background-position: 0px 0px;
@@ -98,4 +130,23 @@ body {
   width: 728px;
   background-color: black;
   color: aliceblue;
+}
+
+.card-asteroid {
+  background: url("Asteroid.png");
+  background-size: 100% 100%;
+  background-color: transparent !important;
+  animation: 1s asteroidMove alternate infinite;
+}
+
+@keyframes asteroidMove{
+  0% {
+    
+  }
+  50% {
+
+  }
+  100% {
+
+  }
 }
