@@ -72,7 +72,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Header />
+        <Header user={this.state.user} logout={this.logOut}/>
         <Switch>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={Register} />
