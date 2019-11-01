@@ -8,9 +8,8 @@ const HighscoreSchema = new Schema ({
         required : true,
         default : 0,
     },
-        userID: {
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: "User"
+    userID: {
+        type: mongoose.Schema.Types.ObjectId,ref: "User"
     }
 });
 
