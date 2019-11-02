@@ -10,7 +10,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
-import SignUp from "./components/signup";
+import SignUp from "./signup";
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 const socketUrl =

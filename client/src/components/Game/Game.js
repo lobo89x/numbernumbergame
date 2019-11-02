@@ -7,7 +7,7 @@ import React, { Component } from "react";
 import Board from '../board';
 // import logo from './logo.svg';
 // import Card from './components/card'
-import './App.css';
+import './Game.css';
 
 
 
