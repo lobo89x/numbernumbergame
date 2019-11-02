@@ -5,7 +5,7 @@ import {Card, Button, Spinner} from "react-bootstrap";
 function LandingPage(){
   return(
 
-    <Card style={{width:"40rem"}} className="mx-auto mt-3 border border-success border-10">
+    <Card style={{width:"40rem"}} className="mx-auto mt-3 border border-success">
   <Card.Header className="text-center bg-success"><h1> <Spinner animation="grow" variant="dark" /> Welcome to NumberNauts <Spinner animation="grow" variant="dark" />  </h1></Card.Header>
   <Card.Body className="bg-dark">
     {/* <Card.Title className="text-white"><h2>Sign Up Below</h2></Card.Title> */}
