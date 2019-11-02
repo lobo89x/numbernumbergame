@@ -83,7 +83,7 @@ function Login(props) {
           <label className="mr-2 ml-4" htmlFor="password">Password: </label>
           <input id="password" type="password" value={passWord} onChange={updatePassWord} ></input>
              {error ? <p className="login-error">{error}</p> : ""}
-          <button className="btn btn-success mt-4 flat btn-block" onClick={submitLogin}> Login </button>
+          <Button className="btn btn-success mt-4 flat btn-block" onClick={submitLogin}> Login </Button>
   </Card.Text>
 </Card.Body>
 </Card>
