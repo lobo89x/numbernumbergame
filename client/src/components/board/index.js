@@ -17,28 +17,7 @@ class Board extends Component {
   };
   
   
-  closeModal = e => {
-    this.forceUpdate();
-    this.props.nextLevel();
-    // this.props.answerList();
-    this.setState({ cardlist: this.props.cardlist }, () => {
-      // console.log(this.props.cardlist);
-    });
-  }
 
-  gameOverModal = e => {
-    this.props.zeroLevel();
-    this.setState({
-      show: false,
-      correctAns: 0,
-      
-    });
-    this.forceUpdate();
-    // this.props.answerList();
-    this.setState({ cardlist: this.props.cardlist }, () => {
-      // console.log(this.props.cardlist);
-    });
-  }
   // addScore = (correctAns) => {
   //   // console.log("here i am");
   //   this.state.score = this.state.score + (correctAns*25);
@@ -85,8 +64,8 @@ class Board extends Component {
           lives={this.props.lives} 
           score={this.props.score} 
           correctAns={this.props.correctAns} 
-          closeModal={this.closeModal} 
-          gameOverModal={this.gameOverModal} />
+          closeModal={this.props.closeModal} 
+          gameOverModal={this.props.gameOverModal} />
 
         </div>
       )

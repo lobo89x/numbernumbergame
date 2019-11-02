@@ -180,6 +180,29 @@ class Game extends Component {
       // return ""
     };
 
+    closeModal = e => {
+      this.forceUpdate();
+      this.nextLevel();
+      // this.answerList();
+      // this.setState({ cardlist: this.props.cardlist }, () => {
+      //   // console.log(this.props.cardlist);
+      // });
+    }
+  
+    gameOverModal = e => {
+      this.zeroLevel();
+      this.setState({
+        show: false,
+        correctAns: 0,
+        
+      });
+      this.forceUpdate();
+      this.answerList();
+      // this.setState({ cardlist: this.props.cardlist }, () => {
+      //   // console.log(this.props.cardlist);
+      // });
+    }
+
     componentDidMount() {
       console.log("i are");
       this.answerList();
@@ -324,7 +347,9 @@ class Game extends Component {
                     addScore={this.addScore} 
                     cards={cards[this.state.level]} 
                     nextLevel={this.nextLevel}
-                    zeroLevel={this.zeroLevel}/>
+                    zeroLevel={this.zeroLevel}
+                    closeModal={this.closeModal} 
+                    gameOverModal={this.gameOverModal}/>
                 : ""}
                 </div>
             </div>
