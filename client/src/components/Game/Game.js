@@ -297,10 +297,13 @@ class Game extends Component {
       <div className="Game">
 
         <div className="Game-intro">
-          <h3>{cards[this.state.level].desc}</h3>
+        <div className="game-container bg-dark text-success border border-success bg-transparent">
 
-          <h6>Your Score is::  {this.state.score}</h6>
-          <h5>Number of lives:: {this.state.lives}</h5>
+          <h3> Question: Find {cards[this.state.level].desc}</h3>
+          <h4>Your Score is:  {this.state.score}</h4>
+          <h4>Number of lives: {this.state.lives}</h4>
+
+        </div>
         </div>
         <div className="container">
           <div className="row">
