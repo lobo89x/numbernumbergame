@@ -9,9 +9,6 @@ import Board from '../board';
 // import Card from './components/card'
 import './Game.css';
 
-
-
-
 const cards = [
   {
     desc: "Mutiples of 2",
@@ -335,6 +332,8 @@ class Game extends Component {
     );
   }
 }
+
+
 
 export default Game;
 
