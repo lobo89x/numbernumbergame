@@ -144,6 +144,53 @@ class Game extends Component {
     // console.log("dhow modal  "+this.state.show)
   };
 
+  closeModal = e => {
+    this.forceUpdate();
+    if (this.state.level===8){
+      this.zeroLevel();
+    }
+    else{
+      this.nextLevel();
+    }
+    this.answerList();
+    // this.setState({ cardlist: this.cardlist }, () => {
+    //   // console.log(this.props.cardlist);
+    // });
+  }
+
+  gameOverModal = e => {
+    this.zeroLevel();
+    this.setState({
+      show: false,
+      correctAns: 0,
+      
+    });
+    this.forceUpdate();
+    this.answerList();
+    // this.setState({ cardlist: this.cardlist }, () => {
+    //   // console.log(this.props.cardlist);
+    // });
+  }
+  // addScore = (correctAns) => {
+  //   // console.log("here i am");
+  //   this.state.score = this.state.score + (correctAns*25);
+  //   console.log(this.state.score);
+  // };
+  
+
+// clearSpace(y){
+//   this.props.cardlist[y] = '';
+// }
+
+
+  // componentDidMount() {
+  //   console.log("hey im here in board line 123");
+  //   console.log(this.props.cards);
+  //   // this.answerList();
+  //   this.setState({ cardlist: this.props.cardlist }, () => {
+  //         // console.log(this.props.cardlist);
+  //     });
+  // }
 
   addScore = (correctAns) => {
     // console.log("here i am");
@@ -323,7 +370,9 @@ class Game extends Component {
                     addScore={this.addScore}
                     cards={cards[this.state.level]}
                     nextLevel={this.nextLevel}
-                    zeroLevel={this.zeroLevel} />
+                    zeroLevel={this.zeroLevel}
+                    closeModal={this.closeModal} 
+                    gameOverModal={this.gameOverModal} />
                   : ""}
               </div>
             </div>
