@@ -2,7 +2,7 @@
 
 .Game {
   text-align: center;
-  color: aqua;
+  color: rgb(0, 255, 88);
   font-size: 20pt;
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
 .card-group {
   display: flex;
   flex-wrap: wrap;
-  /* color: red; */
+  /* color: rgb(0, 255, 88); */
   /* flex-direction: row; */
   justify-content: space-between;
   width: 750px;
@@ -45,6 +45,11 @@
   /* height: 70px; */
 }
 
+.card-title {
+  color: rgb(164, 255, 246);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
 .game-row-center{
   display: flex;
   justify-content: center;
@@ -55,7 +60,7 @@
 
 .player {
   animation:3s float infinite linear;
-  transition: 1s;
+  transition: .5s;
 }
 
 .player:after {
