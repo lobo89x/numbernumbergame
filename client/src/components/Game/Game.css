@@ -171,3 +171,13 @@ body {
         background-size: 100% 100%;}
 }
 
+.game-container{
+  background: crimson;
+  text-align: center;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 460px;
+  margin-top: 30px;
+}
