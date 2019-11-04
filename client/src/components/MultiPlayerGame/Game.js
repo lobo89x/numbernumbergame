@@ -288,7 +288,7 @@ class Game extends Component {
       {
         cardlist: this.state.cardlist.map((item, index) => {
           if (index === x) {
-            item = '!';
+            item = '';
           }
           return item;
         })
