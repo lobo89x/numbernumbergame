@@ -74,7 +74,7 @@ function Login(props) {
 
 <Card style={{width:"40rem"}} className="mx-auto mt-4 border border-success">
 { props.user !== null ?  <Redirect to="/lobby" />: "" }
-<Card.Header className="text-center bg-success"><h1> <Spinner animation="grow" variant="dark" /> Login Here <Spinner animation="grow" variant="dark" />  </h1></Card.Header>
+<Card.Header className="text-center bg-success"><h1>Login Here</h1></Card.Header>
 <Card.Body className="bg-dark">
   <Card.Text className="text-white">
 
