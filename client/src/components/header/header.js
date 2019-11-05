@@ -6,8 +6,8 @@ import Nav from "react-bootstrap/Nav";
 function Header() {
     return (
       <Navbar bg="dark" variant="dark">
-        <h4 style={{color:"#00ff58"}} className="">NumberNauts</h4>
-        <img src= "/astro2.jpg" style={{height:"55px", width:"55px", margin:"0px,0px,0px,0px"}}></img>
+        <h4 style={{color:"#00ff58"}} className="mr-3">NumberNauts</h4>
+        <img src= "/astro2.png" style={{height:"55px", width:"55px", background:"hidden"}}></img>
           <Navbar.Brand href="#landingPage"></Navbar.Brand>
           <Nav className="ml-auto font-weight-bold">
 
