@@ -307,7 +307,7 @@ class Game extends Component {
     // answers[i] =answers[x];
     // answers[x] = temp2
     // }
-    console.log(answers)
+    console.log(answers) 
 
     return answers;
     // else {
