@@ -52,13 +52,6 @@
   text-shadow: 2px 2px #2b9e20;
 }
 
-.card-title-munch {
-  color: transparent;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-size: 32px;
-  /* text-shadow: 2px 2px #2b9e20; */
-}
-
 .game-row-center{
   display: flex;
   justify-content: center;
@@ -151,33 +144,3 @@ body {
   background-color: transparent !important;
 }
 
-.card-asteroid-munched {
-  /* background: url("/216-2168011_asteroids-pixel-art.png"); */
-  background-size: 100% 100%;
-  background-color: transparent !important;
-  animation-name: explosion;
-  animation-duration: 1s;
-}
-@keyframes explosion {
-  0%   {background: url("/Asteroid0.png");
-        background-size: 100% 100%;}
-  15%  {background: url("/Ast0ex1.png");
-        background-size: 100% 100%;}
-  20%  {background: url("/Ast1ex2.png");
-        background-size: 100% 100%;}
-  55%  {background: url("/Ast1ex3.png");
-        background-size: 100% 100%;}
-  100% {background: url("/Asteroid2.png");
-        background-size: 100% 100%;}
-}
-
-.game-container{
-  background: crimson;
-  text-align: center;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 460px;
-  margin-top: 30px;
-}

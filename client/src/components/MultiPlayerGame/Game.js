@@ -9,6 +9,9 @@ import Board from '../board';
 // import Card from './components/card'
 import './Game.css';
 
+
+
+
 const cards = [
   {
     desc: "Mutiples of 2",
@@ -259,7 +262,7 @@ class Game extends Component {
 
   selectEval = (x, tf, list) => {
     // console.log(this.props.cards.criteria)
-    console.log(x);
+    // console.log(x);
     // console.log(this.props.cards.criteria(tf))
     if (cards[this.state.level].criteria(tf)) {
       this.state.correctAns++;
@@ -285,7 +288,7 @@ class Game extends Component {
       {
         cardlist: this.state.cardlist.map((item, index) => {
           if (index === x) {
-            item = '!';
+            item = '';
           }
           return item;
         })
@@ -344,13 +347,10 @@ class Game extends Component {
       <div className="Game">
 
         <div className="Game-intro">
-        <div className="game-container bg-dark text-success border border-success bg-transparent">
+          <h3>{cards[this.state.level].desc}</h3>
 
-          <h3> Question: Find {cards[this.state.level].desc}</h3>
-          <h4>Your Score is:  {this.state.score}</h4>
-          <h4>Number of lives: {this.state.lives}</h4>
-
-        </div>
+          <h6>Your Score is::  {this.state.score}</h6>
+          <h5>Number of lives:: {this.state.lives}</h5>
         </div>
         <div className="container">
           <div className="row">
@@ -384,8 +384,6 @@ class Game extends Component {
     );
   }
 }
-
-
 
 export default Game;
 
