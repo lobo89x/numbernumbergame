@@ -144,9 +144,11 @@ class Game extends Component {
   closeModal = e => {
     this.forceUpdate();
     if (this.state.level===8){
+      console.log("imrunning zero out")
       this.zeroLevel();
     }
     else{
+      console.log("im running next levl")
       this.nextLevel();
     }
     this.answerList();

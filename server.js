@@ -31,7 +31,10 @@ app.use(userRoutes);
 app.use(scoreRoutes);
 
 //Connect to mongoDB
-const url = "mongodb://localhost:27017/numbernumbergame";
+// const url = "mongodb://localhost:27017/numbernumbergame";
+const url = process.env.MONGODB_URI || "mongodb://root:root1988@ds241258.mlab.com:41258/heroku_1plr63j1";
+
+
 
 mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
   if (err) throw err;
