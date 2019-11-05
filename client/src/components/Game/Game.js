@@ -296,10 +296,11 @@ class Game extends Component {
   }
 
   scramblenumbers = (answers) => {
-    console.log(answers);
-
+    
     console.log("I am ,here, in scrmble numbers");
     answers.sort(() => Math.random() - 0.5);
+    
+    console.log(answers);
     // for (var i = answers.length-1; i > 0; i--) {
     // var x = Math.floor(Math.random() * i);
     // const temp2 = answers[i];
