@@ -74,6 +74,7 @@ class Board extends Component {
             margin: '20px auto'
           }}>
           <Grid 
+          show={this.props.show} 
           criteria={this.props.cards.criteria} 
           lives={this.props.lives} 
           score={this.props.score} 

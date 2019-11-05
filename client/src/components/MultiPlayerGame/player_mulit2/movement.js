@@ -1,5 +1,5 @@
 import store from '../config/store';
-import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../hooks/constants';
+import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
 //import store from '../../hooks/store';
 //import { useState } from 'react';
 
@@ -32,7 +32,7 @@ export function handleMovement(player, props) {
         // console.log(storedArray[currenttSel]);
         // console.log(store.getState().player.fxn);
         // const func = () = store.getState().player.fxn()
-        if (storedArray[currenttSel]!=="!") {
+        if (storedArray[currenttSel]!=="") {
             store.getState().player.fxn(currenttSel, (storedArray[currenttSel]), storedArray);
             // if (evaluate(storedArray[currenttSel])===true) {
             //     console.log("correct!!")
@@ -100,7 +100,7 @@ export function handleMovement(player, props) {
                     // break
             case 38:
                     console.log("Up");
-                 return moveY(-110, -1)
+                 return moveY(-95, -1)
                 //break
             case 39:
                     console.log("Right");
@@ -108,7 +108,7 @@ export function handleMovement(player, props) {
                 //break
             case 40:
                     console.log("Down");
-                 return moveY(110, 1)
+                 return moveY(95, 1)
                 //break
             case 32:
                     console.log("Munch");
