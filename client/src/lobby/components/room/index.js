@@ -127,7 +127,7 @@ class RoomComponent extends Component {
         {this.state.modalOpen ? (
           <div className="room-info-modal">
             <div className="room-info-modal-title">
-              <p className="room-info-modal-title-text">
+              <p className="room-info-modal-title-text ml-1">
                 CREATE A MULTIPLAYER GAME
               </p>
               <p className="room-info-close-modal" onClick={this.closeModal}>
@@ -147,7 +147,7 @@ class RoomComponent extends Component {
               <p className="room-info-modal-error-message">
                 {this.state.modalError}
               </p>
-              <button className="orange-blur" onClick={this.submitNewGame}>CREATE GAME</button>
+              <button className="bg-success" onClick={this.submitNewGame}>CREATE GAME</button>
             </div>
           </div>
         ) : (

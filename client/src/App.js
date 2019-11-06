@@ -12,6 +12,7 @@ import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
 
+
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 const socketUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : "/";
