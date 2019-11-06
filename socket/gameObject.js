@@ -120,6 +120,7 @@ const gameTracker = {
         currentRoom = game;
       }
     })
+    console.log(currentRoom)
     return currentRoom;
   },
 
