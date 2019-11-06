@@ -3,7 +3,7 @@ import Grid from '../grid';
 //import Player from '../player';
 
 import React, { Component } from "react";
-import Modal from "../Modal"
+import Modal from "../../Modal"
 
 
 

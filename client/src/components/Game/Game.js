@@ -4,7 +4,7 @@
 // import { useGameStatus } from './hooks/useGameStatus'
 // import { correctAns, evaluate } from './hooks/useStage'
 import React, { Component } from "react";
-import Board from '../board';
+import Board from './board';
 // import logo from './logo.svg';
 // import Card from './components/card'
 import './Game.css';
@@ -144,9 +144,16 @@ class Game extends Component {
   closeModal = e => {
     this.forceUpdate();
     if (this.state.level===8){
+      console.log("imrunning zero out")
+      this.setState({
+        show: false,
+        correctAns: 0,
+        cardlist: []
+      });
       this.zeroLevel();
     }
     else{
+      console.log("im running next levl")
       this.nextLevel();
     }
     this.answerList();
@@ -160,7 +167,7 @@ class Game extends Component {
     this.setState({
       show: false,
       correctAns: 0,
-      
+      cardlist: []
     });
     this.forceUpdate();
     this.answerList();
@@ -260,27 +267,28 @@ class Game extends Component {
   selectEval = (x, tf, list) => {
     // console.log(this.props.cards.criteria)
     console.log(x);
+    console.log("you selected ::"+ tf)
+    let correct = true;
     // console.log(this.props.cards.criteria(tf))
     if (cards[this.state.level].criteria(tf)) {
       this.state.correctAns++;
       console.log("you got it right");
-      // console.log('#of right  '+this.state.correctAns)
+      console.log('#of right  '+this.state.correctAns)
       // scoreUpdate();
       this.addScore(this.state.correctAns);
     }
     else {
       // this.props.lives--;
       console.log("youre wrong");
-      this.wrong();
+      correct = false;
+      // this.wrong();
       // console.log('#of lives left  '+this.props.lives);
       // lifeLoss();
     }
     if (this.state.correctAns === 15) {
       this.showModal();
     }
-    if (this.state.lives < 1) {
-      this.showModal();
-    }
+    
     this.setState(
       {
         cardlist: this.state.cardlist.map((item, index) => {
@@ -288,7 +296,12 @@ class Game extends Component {
             item = '!';
           }
           return item;
-        })
+        }),
+          lives: (correct)?this.state.lives:this.state.lives-1
+      }, () =>{
+        if (this.state.lives < 1) {
+          this.showModal();
+        } 
       }
     );
   }
@@ -298,6 +311,7 @@ class Game extends Component {
 
     console.log("I am ,here, in scrmble numbers");
     answers.sort(() => Math.random() - 0.5);
+    
     // for (var i = answers.length-1; i > 0; i--) {
     // var x = Math.floor(Math.random() * i);
     // const temp2 = answers[i];
