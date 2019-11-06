@@ -2,6 +2,7 @@
 const passport = require ("./passport");
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const app = express();
 
 const PORT = process.env.PORT || 3001; 
@@ -26,16 +27,19 @@ app.use(passport.session());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-app.use(userRoutes);
-app.use(scoreRoutes);
-
 //Connect to mongoDB
-const url = "mongodb://localhost:27017/numbernumbergame";
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumbergame";
 
 mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
   if (err) throw err;
   console.log("Database created!");
+});
+
+app.use(userRoutes);
+app.use(scoreRoutes);
+
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Start the server
