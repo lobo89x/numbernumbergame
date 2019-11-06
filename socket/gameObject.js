@@ -26,7 +26,7 @@ const gameTracker = {
     // loop through games to find correct game
     let currentRoom = this.getRoom(room);
     if (currentRoom) {
-      game.messages.push(message);
+      currentRoom.messages.push(message);
     }
   },
   addUsers: function (username) {
@@ -120,7 +120,7 @@ const gameTracker = {
         currentRoom = game;
       }
     })
-    console.log(currentRoom)
+    console.log(currentRoom);
     return currentRoom;
   },
 
