@@ -4,7 +4,7 @@
 // import { useGameStatus } from './hooks/useGameStatus'
 // import { correctAns, evaluate } from './hooks/useStage'
 import React, { Component } from "react";
-import Board from '../board';
+import Board from './board';
 // import logo from './logo.svg';
 // import Card from './components/card'
 import './Game.css';
