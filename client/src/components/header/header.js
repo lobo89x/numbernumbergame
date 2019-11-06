@@ -1,9 +1,37 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import axios from "axios";
 // import Button from "react-bootstrap/Button";
 
-function Header() {
+
+
+
+class Header extends React.Component {
+ state={
+   username: ""
+ }
+ componentDidMount(){
+   axios.get("/loggedin")
+   .then(res=> 
+    this.setState({
+      username: res.data.username
+    }))
+ }
+
+   // call to log user out of backend
+  // logOut =
+  //   axios.post("/logout").then(response => {
+  //     console.log(response);
+  //     this.setState({
+  //       user: null,
+  //       socket: null
+  //     });
+  //   });
+  // };
+
+
+  render(){
     return (
       <Navbar bg="dark" variant="dark">
         <img src= "/astro2.png" style={{height:"45px", width:"45px", background:"hidden"}}></img>
@@ -16,11 +44,15 @@ function Header() {
           </audio> */}
       
             <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
-            <Nav.Link style={{color:"#00ff58"}} href="Login">Login</Nav.Link>
+            <Nav.Link style={{color:"#00ff58"}} href="Login">{this.state.username === ""? "Login": "Logged in as "}{this.state.username}</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
+            {/* <Nav.Link onClick={submitLogout} style={{color:"#00ff58"}} href="Login">{(this.state.username === "")? "" : "Logout"}</Nav.Link> */}
+
           </Nav>
           </Navbar>
           )
+  }
+    
   }
   
 export default Header;

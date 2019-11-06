@@ -11,6 +11,7 @@ import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
+import logout from "./logout";
 
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
@@ -53,22 +54,12 @@ class App extends Component {
     });
   };
 
-  // call to log user out of backend
-  logOut = () => {
-    axios.post("/logout").then(response => {
-      //console.log(response);
-      this.setState({
-        user: null,
-        socket: null
-      });
-    });
-  };
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
     console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
-  };
+  }
 
   render() {
     return (
