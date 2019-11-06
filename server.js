@@ -2,6 +2,7 @@
 const passport = require ("./passport");
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const app = express();
 const path = require("path");
 
@@ -12,9 +13,6 @@ const scoreRoutes = require("./routes/scoreboard");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.use(require('serve-static')(__dirname + '/../../public'));
-app.use(require('cookie-parser')());
  
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
@@ -46,6 +44,13 @@ const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumberga
 mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
   if (err) throw err;
   console.log("Database created!");
+});
+
+app.use(userRoutes);
+app.use(scoreRoutes);
+
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 // Start the server
