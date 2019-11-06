@@ -30,9 +30,15 @@ if (process.env.NODE_ENV === "production") {
 app.use(userRoutes);
 app.use(scoreRoutes);
 
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+})
+
 //Connect to mongoDB
 // const url = "mongodb://localhost:27017/numbernumbergame";
-const url = process.env.MONGODB_URI || "mongodb://root:root1988@ds241258.mlab.com:41258/heroku_1plr63j1";
+
+
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumbergame";
 
 
 
