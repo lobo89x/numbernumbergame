@@ -145,6 +145,11 @@ class Game extends Component {
     this.forceUpdate();
     if (this.state.level===8){
       console.log("imrunning zero out")
+      this.setState({
+        show: false,
+        correctAns: 0,
+        cardlist: []
+      });
       this.zeroLevel();
     }
     else{
