@@ -1,5 +1,5 @@
-import store from '../config/store';
-import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../hooks/constants';
+import store from '../../config/store';
+import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
 //import store from '../../hooks/store';
 //import { useState } from 'react';
 
