@@ -10,7 +10,8 @@
     "client": "cd client && npm run start",
     "seed": "node scripts/seedDB.js",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build"
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
@@ -30,7 +31,6 @@
     "nodemon": "^1.19.4",
     "concurrently": "^5.0.0"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lobo89x/numbernumbergame.git"
