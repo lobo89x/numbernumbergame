@@ -259,7 +259,7 @@ class Game extends Component {
 
   selectEval = (x, tf, list) => {
     // console.log(this.props.cards.criteria)
-    // console.log(x);
+    console.log(x);
     // console.log(this.props.cards.criteria(tf))
     if (cards[this.state.level].criteria(tf)) {
       this.state.correctAns++;
