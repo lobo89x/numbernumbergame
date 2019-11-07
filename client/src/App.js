@@ -9,6 +9,7 @@ import Game from "./components/Game/Game";
 import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
+// import Leaderboard from "./leaderboard";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
 
@@ -108,6 +109,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/game" component={Game} />
+          {/* <Route exact path="/leaderboard" component={Leaderboard} /> */}
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />

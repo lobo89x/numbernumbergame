@@ -11,6 +11,7 @@ function Header() {
             <Nav.Link style={{color:"#00ff58"}} href="signup">Register</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Login">Login</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
+            <Nav.Link style={{color:"#00ff58"}} href="Leaderboard">Leaderboard</Nav.Link>
           </Nav>
           </Navbar>
           )
