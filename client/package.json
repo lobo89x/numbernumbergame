@@ -2,12 +2,7 @@
   "name": "numbernumbergame",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/": {
-      "target": "https://localhost:3001",
-      "secure": false
-    }
-  },
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "async": "^3.1.0",
     "axios": "^0.19.0",
