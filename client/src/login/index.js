@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
-import {Card, Button, Spinner} from "react-bootstrap";
+import {Card, Button} from "react-bootstrap";
 import "./login.css";
 
 function Login(props) {

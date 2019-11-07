@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import {Redirect} from "react-router-dom";
 import "./signup.css";
-import {Card, Button, Spinner} from "react-bootstrap";
+import {Card, Button} from "react-bootstrap";
 
 function SignUp(props) {
   const [userName, setUserName] = useState("");

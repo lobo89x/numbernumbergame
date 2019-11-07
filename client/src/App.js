@@ -11,7 +11,7 @@ import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
-import logout from "./logout";
+// import logout from "./logout";
 
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /

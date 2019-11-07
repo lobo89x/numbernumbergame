@@ -46,7 +46,7 @@ class Header extends React.Component {
             <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Login">{this.state.username === ""? "Login": "Logged in as "}{this.state.username}</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
-            {/* <Nav.Link onClick={submitLogout} style={{color:"#00ff58"}} href="Login">{(this.state.username === "")? "" : "Logout"}</Nav.Link> */}
+            {/* <Nav.Link onClick={submitLogout} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> */}
 
           </Nav>
           </Navbar>
