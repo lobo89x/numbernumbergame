@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
+import MultiPlayerGame from './components/MultiPlayerGame/Game'
 import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
@@ -109,6 +110,7 @@ class App extends Component {
             )}
           />
           <Route exact path="/game" component={Game} />
+          <Route exact path="/2pgame" component={MultiPlayerGame} />
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />

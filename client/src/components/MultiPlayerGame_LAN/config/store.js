@@ -1,12 +1,10 @@
 import { createStore, combineReducers } from 'redux'
-import playReducer from '../Game/player/reducer'
-import playReducer1 from '../MultiPlayerGame/player_multi1/reducer'
-import playReducer2 from '../MultiPlayerGame/player_mulit2/reducer'
+import playReducer1 from '../player_multi1'
+import playReducer2 from '../player_mulit2'
 
 const rootReducer = combineReducers({
-                    player: playReducer,
                     player1: playReducer1,
-                    player2: playReducer2
+                    player2: playReducer2,
                 })
 
 const store = createStore(
