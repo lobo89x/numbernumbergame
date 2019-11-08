@@ -9,6 +9,10 @@ const GameReducer = (state=initialState, action) => {
           return {
               ...action.payload
           }
+          case 'LOAD_GAME':
+            return {
+                ...action.payload
+            }
       default:
           return state
   }
