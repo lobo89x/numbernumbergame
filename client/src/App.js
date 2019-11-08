@@ -29,7 +29,20 @@ class App extends Component {
   }
   componentDidMount() {
     // checks to see if the user is logged in on the back end
+
+    
     this.getUser();
+  
+    //this.mockUser();
+  }
+
+  mockUser = () => {
+    if(this.state.user === null){
+      this.setState({
+        user: "Anon" + Math.floor(Math.random()*99999),
+        socket: socketIOClient.connect(socketUrl)
+      })
+    }
   }
 
   getUser = () => {
@@ -65,7 +78,6 @@ class App extends Component {
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 

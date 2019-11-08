@@ -29,7 +29,6 @@ class RoomComponent extends Component {
 
   componentDidMount() {
     this.props.socket.on("gameCreated", data => {
-      console.log(data)
       this.props.dispatch({
         type: "UPDATE_GAME",
         payload: data
