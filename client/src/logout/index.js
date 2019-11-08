@@ -11,14 +11,11 @@ function logout() {
         .post("/logout",{
         })
         .then(
-          <Redirect to="/LandingPage"/>
+         
         )
           .catch(err => console.log(err));
       };
-      return(
-        
-        <button onClick={submitLogout} style={{color:"#00ff58"}} href="logout">Logout</button>
-        )
+
       }
 
     export default logout;

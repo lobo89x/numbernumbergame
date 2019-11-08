@@ -9,6 +9,7 @@
   position: relative;
   border-radius: 10px;
   overflow: hidden;
+  margin-right: 15px;
 }
 
 .chat-banner{

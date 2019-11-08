@@ -13,7 +13,6 @@ import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
 // import logout from "./logout";
 
-
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 console.log(process.env.NODE_ENV);
 const socketUrl =
@@ -46,7 +45,6 @@ class App extends Component {
         // backend did not find a user
         if (this.state.loggedIn) {
           this.setState({
-            user: null,
             socket: null
           });
         }

@@ -2,15 +2,20 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import axios from "axios";
+import "./header.css";
 // import Button from "react-bootstrap/Button";
 
 
 
 
 class Header extends React.Component {
- state={
-   username: ""
- }
+  constructor(props){
+    super(props)
+    this.state={
+      username: ""
+    }
+  }
+
  componentDidMount(){
    axios.get("/loggedin")
    .then(res=> 
@@ -30,6 +35,9 @@ class Header extends React.Component {
   //   });
   // };
 
+  logOut = () => {
+    axios.post('/logout')
+  }
 
   render(){
     return (
@@ -44,9 +52,11 @@ class Header extends React.Component {
           </audio> */}
       
             <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
-            <Nav.Link style={{color:"#00ff58"}} href="Login">{this.state.username === ""? "Login": "Logged in as "}{this.state.username}</Nav.Link>
+            <Nav.Link style={{color:"#00ff58"}} href="Login">{this.props.user === null ? "Login": "Logged in as "}{this.props.user}</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
-            {/* <Nav.Link onClick={submitLogout} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> */}
+            {this.props.user !== null? 
+            <Nav.Link onClick={this.logOut} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> : ''            
+          }
 
           </Nav>
           </Navbar>
