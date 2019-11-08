@@ -27,7 +27,7 @@ function config(server) {
     chatEvents(socket, io);
 
     // handle events related to game functionality
-    // gameEvents(socket, io);
+    gameEvents(socket, io);
 
     // handle when a window is refreshed or when a browser is closed
     socket.on('disconnect', ()=> {

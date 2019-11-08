@@ -34,9 +34,9 @@ function chatEvents(socket, io) {
     }
   })
 
-  socket.on('createGame', function (data) {
+  socket.on('createRoom', function (data) {
     // use game object to create a new game
-    if (gameTracker.addGame(data.room, data.user)) {
+    if (gameTracker.addRoom(data.room, data.user)) {
       // move user out of waiting room socket
       socket.leave("waitingRoom");
       // move user into new room socket
@@ -54,9 +54,9 @@ function chatEvents(socket, io) {
     }
   });
   // handle joining a room
-  socket.on('joinGame', function (data) {
+  socket.on('joinRoom', function (data) {
     // check if a user can join a game
-    if (gameTracker.joinGame(data.room, data.user)) {
+    if (gameTracker.joinRoom(data.room, data.user)) {
       // get the current rooms data
       let roomData = getRoomData(data.room);
       // move user into new room
@@ -75,7 +75,7 @@ function chatEvents(socket, io) {
     }
   });
 
-  socket.on('leaveGame', function (data) {
+  socket.on('leaveRoom', function (data) {
     // get the current rooms data
     let roomData = getRoomData(data.room);
     // get the type of user that left room
