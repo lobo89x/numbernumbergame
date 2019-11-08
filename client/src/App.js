@@ -16,7 +16,6 @@ import SignUp from "./signup";
 console.log(process.env.NODE_ENV);
 const socketUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : "/";
-
 class App extends Component {
   constructor() {
     super();
