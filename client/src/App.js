@@ -29,7 +29,20 @@ class App extends Component {
   }
   componentDidMount() {
     // checks to see if the user is logged in on the back end
+
+    
     this.getUser();
+  
+    //this.mockUser();
+  }
+
+  mockUser = () => {
+    if(this.state.user === null){
+      this.setState({
+        user: "Anon" + Math.floor(Math.random()*99999),
+        socket: socketIOClient.connect(socketUrl)
+      })
+    }
   }
 
   getUser = () => {
@@ -65,7 +78,6 @@ class App extends Component {
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   };
 
@@ -109,7 +121,17 @@ class App extends Component {
             )}
           />
           <Route exact path="/game" component={Game} />
-          <Route exact path="/2pgame" component={MultiPlayerGame} />
+          <Route
+            exact
+            path="/2pgame"
+            render={props => (
+              <MultiPlayerGame
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />

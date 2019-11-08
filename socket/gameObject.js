@@ -185,7 +185,7 @@ const gameTracker = {
 
   readyPlayer: function(playerName){
     let currentRoom = this.getRoomByUserName(playerName);
-    currentRoom.players.forEach(player => {
+    currentRoom.game.players.forEach(player => {
       if(player.name === playerName){
         player.ready = true;
       }

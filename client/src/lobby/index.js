@@ -71,6 +71,7 @@ class LobbyComponent extends Component {
 
       this.props.socket.on("usersUpdated", data => {
         // signal sent from server tell client to update number of users
+        console.log(data)
         this.setState({ users: data });
       });
 

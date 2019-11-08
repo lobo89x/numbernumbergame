@@ -17,9 +17,7 @@ function gameEvents(socket, io){
   });
 
   socket.on("createGame", function({user}){
-    console.log(user)
     let {name, game} = gameTracker.createGame(user);
-    console.log(name, game)
     // send the event to tell the front end a game has been created
     io.in(name).emit("gameCreated", game);
   })
@@ -28,7 +26,7 @@ function gameEvents(socket, io){
     // how to know if both players have joined the room
     let {name, game} = gameTracker.readyPlayer(playerName);
     if(game.players.filter(player => player.ready).length === 2){
-      io.in(name).emit("bothPlayersReady");
+      io.in(name).emit("bothPlayersReady", game);
     }
   })
 
