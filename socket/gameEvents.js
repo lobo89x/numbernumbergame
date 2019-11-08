@@ -34,7 +34,7 @@ function gameEvents(socket, io){
 
   socket.on("gameFinish", function(room){
     // game is finished for both players
-
+    
   })
 } 
 
