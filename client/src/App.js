@@ -109,7 +109,17 @@ class App extends Component {
             )}
           />
           <Route exact path="/game" component={Game} />
-          <Route exact path="/2pgame" component={MultiPlayerGame} />
+          <Route
+            exact
+            path="/2pgame"
+            render={props => (
+              <MultiPlayerGame
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />

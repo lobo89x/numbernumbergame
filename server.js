@@ -37,9 +37,13 @@ mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedT
 app.use(userRoutes);
 app.use(scoreRoutes);
 
-app.use(function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+
+if(process.env.NODE_ENV === "production"){
+  app.use(function(req, res) {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
+}
+
 
 // Start the server
 const server = app.listen(PORT, function() {
