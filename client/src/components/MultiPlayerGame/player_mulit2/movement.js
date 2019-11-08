@@ -7,13 +7,11 @@ import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
 export function loadCardList(props) {
     console.log(store.getState())
     store.dispatch({
-        type: 'Load_cards2',
+        type: 'LOAD_GAME',
         payload: {
-            position2: store.getState().player2.position2,
-            selection2: store.getState().player2.selection2,
-            selected2: store.getState().player2.selected2,
+            pos2: store.getState().GameState.players[1].pos,
             array2: props.cardlist,
-            fxn: props.selectEval
+            fxn2: props.selectEval
         }
     })
     // console.log("this is the array2  :"+store.getState().player2.array2);

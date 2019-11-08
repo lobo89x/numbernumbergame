@@ -13,7 +13,8 @@ function Player2(props) {
     //   };
 // render () {
 
-    
+    let x = (props.pos[0])*125; 
+    let y = (props.pos[0])*110;
 
     useEffect(() => {
         // console.log(props)
@@ -25,8 +26,8 @@ function Player2(props) {
         <div className='player2'
             style={{
                 position: 'absolute',
-                top: props.position2[1],
-                left: props.position2[0],
+                top: y,
+                left: props.pos[0],
                 backgroundImage: `url('${walkSprite}')`,
                 width: '52px',
                 height: '65px'
@@ -38,7 +39,7 @@ function Player2(props) {
 
 function mapStateToProps(state) {
     return {
-        ...state.player2
+        ...state.GameState.players[1]
     }
 }
 
