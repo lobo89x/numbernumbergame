@@ -62,7 +62,7 @@ class ChatComponent extends Component {
         </div>
         <div className="message-inputs">
           <input className="messageBox" value={this.state.messageBoxValue} onChange={this.updateMessageBox} onKeyDown={this.checkForEnter}></input>
-          <button onClick={this.sendMessage}>SEND</button>
+          <button style={{background: (70, 140, 245)}} onClick={this.sendMessage}>SEND</button>
         </div>
       </div> 
     )

@@ -14,7 +14,7 @@ function WaitingRoomComponent({
     <React.Fragment>
       <div className="lobby-banner room-banner">
         <p className="room-banner-left">ACTIVE GAMES ({getGames().length})</p>
-        <p className="room-banner-right">PLAYERS({users.length})</p>
+        <p className="room-banner-right ">PLAYERS({users.length})</p>
       </div>
       <div className="room-info-wrapper">
         <div className="room-info">
@@ -53,10 +53,10 @@ function WaitingRoomComponent({
             )}
           </div>
           <div className="room-info-buttons">
-            <button className="room-info-button orange-blur" onClick={start}>
+            <button className="room-info-button bg-transparent bg-success border border-success float-left" onClick={start}>
               PLAY SINGLE PLAYER
             </button>
-            <button className="room-info-button orange-blur" onClick={createNewGameClicked}>
+            <button className="room-info-button bg-transparent bg-success border border-success" onClick={createNewGameClicked}>
               CREATE A GAME
             </button>
           </div>
