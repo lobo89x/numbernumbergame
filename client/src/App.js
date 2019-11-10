@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
+import MultiPlayerGame from './components/MultiPlayerGame/Game'
 import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
@@ -17,7 +18,6 @@ import SignUp from "./signup";
 console.log(process.env.NODE_ENV);
 const socketUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : "/";
-
 class App extends Component {
   constructor() {
     super();
@@ -30,7 +30,20 @@ class App extends Component {
   }
   componentDidMount() {
     // checks to see if the user is logged in on the back end
+
+    
     this.getUser();
+  
+    //this.mockUser();
+  }
+
+  mockUser = () => {
+    if(this.state.user === null){
+      this.setState({
+        user: "Anon" + Math.floor(Math.random()*99999),
+        socket: socketIOClient.connect(socketUrl)
+      })
+    }
   }
 
   getUser = () => {
@@ -55,7 +68,6 @@ class App extends Component {
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
   }
 
@@ -99,6 +111,17 @@ class App extends Component {
             )}
           />
           <Route exact path="/game" component={Game} />
+          <Route
+            exact
+            path="/2pgame"
+            render={props => (
+              <MultiPlayerGame
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />

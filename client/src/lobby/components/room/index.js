@@ -3,6 +3,7 @@ import "./roomComponent.css";
 import WaitingRoomComponent from "./roomComponents/waitingRoomComponent";
 import GameRoomComponent from "./roomComponents/gameRoomComponent";
 import {Redirect} from "react-router-dom";
+import { connect } from 'react-redux'
 
 class RoomComponent extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class RoomComponent extends Component {
       modalError: "",
       // element from list of available rooms the user has clicked on
       clickedGameElement: null,
-
+      // place to redirect to
       redirectTo: null
     };
   }
@@ -26,7 +27,15 @@ class RoomComponent extends Component {
     return this.props.games.filter(game => game.name !== "waitingRoom").reverse();
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.socket.on("gameCreated", data => {
+      this.props.dispatch({
+        type: "UPDATE_GAME",
+        payload: data
+      })
+      this.setState({redirectTo: "/2pgame"});
+    })
+  }
 
   selectGame = gameID => {
     // sets the clicked game room when a player clicks on an element shows the join room
@@ -62,7 +71,7 @@ class RoomComponent extends Component {
       // closes the modal and removes all set items
       this.setState({ modalOpen: false, modalError: "", gameName: ""});
       // handle sending new game to be made on the backend
-      this.props.socket.emit("createGame", {
+      this.props.socket.emit("createRoom", {
         user: this.props.user,
         room: this.state.gameName,
       });
@@ -76,12 +85,12 @@ class RoomComponent extends Component {
 
   joinGame = room => {
     // send join room event to back end, this is handled in the lobby component
-    this.props.socket.emit("joinGame", { room, user: this.props.user });
+    this.props.socket.emit("joinRoom", { room, user: this.props.user });
   };
 
   leaveGame = room => {
     // send leave room event to back end, this is handled in the lobby component
-    this.props.socket.emit("leaveGame", { room, user: this.props.user });
+    this.props.socket.emit("leaveRoom", { room, user: this.props.user });
   };
 
   checkForEnter = (e) => {
@@ -91,8 +100,10 @@ class RoomComponent extends Component {
     }
   }
 
-  start2PlayerGame = () => {
-    //use a function to start the 2player game probably just route to the right page
+  start2PlayerGame = room => {
+    // send an event to start the game this will create the game
+      console.log(room);
+      this.props.socket.emit("createGame", {room, user: this.props.user});
   }
 
   start1PlayerGame = () => {
@@ -158,4 +169,10 @@ class RoomComponent extends Component {
   }
 }
 
-export default RoomComponent;
+function mapStateToProps(state) {
+  return {
+      ...state.GameData
+  }
+}
+
+export default connect(mapStateToProps)(RoomComponent);

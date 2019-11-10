@@ -1,7 +1,15 @@
+// import React from 'react';
+// import Tetris from './components/Tetris';
+
+// import { useGameStatus } from './hooks/useGameStatus'
+// import { correctAns, evaluate } from './hooks/useStage'
 import React, { Component } from "react";
 import Board from './board';
-import { Redirect } from "react-router-dom";
+// import logo from './logo.svg';
+// import Card from './components/card'
 import './Game.css';
+
+
 
 
 const cards = [
@@ -174,6 +182,16 @@ class MultiPlayerGame extends Component {
 //   this.props.cardlist[y] = '';
 // }
 
+
+  // componentDidMount() {
+  //   console.log("hey im here in board line 123");
+  //   console.log(this.props.cards);
+  //   // this.answerList();
+  //   this.setState({ cardlist: this.props.cardlist }, () => {
+  //         // console.log(this.props.cardlist);
+  //     });
+  // }
+
   addScore = (correctAns) => {
     // console.log("here i am");
     this.setState({
@@ -210,39 +228,8 @@ class MultiPlayerGame extends Component {
   };
 
   componentDidMount() {
+    console.log("i are");
     this.answerList();
-
-    if(this.props.socket){
-      let socket = this.props.socket;
-      console.log(this.props.user)
-      socket.emit("gameReady", this.props.user);
-  
-      // emittable events 
-      //playerMove  - emit this after the player moves
-      //boardUpdate - emit this after the player munches
-  
-      this.props.socket.on("bothPlayersReady", ()=> {
-        // triggered when both players have loaded this component
-        // should trigger the countdown to begin the game?
-      });
-  
-      this.props.socket.on("playerUpdated", data => {
-        //data will be the new game data {board: [], crit: {}, players: []}
-        // triggered when the other player moves should update store with new info
-      });
-  
-      this.props.socket.on("boardUpdated", data => {
-        //data will be the new game data {board: [], crit: {}, players: []}
-        // triggers after another player updates the board should update store with new info
-      });
-  
-      this.props.socket.on("gameDone", data => {
-        //data will be the new game data {board: [], crit: {}, players: []}
-        // triggers if the board has no numbers left that match the criteria 
-      });
-    }
-    
-    
   }
 
   answerList = () => {
@@ -358,10 +345,7 @@ class MultiPlayerGame extends Component {
   render() {
     return (
       <div className="Game">
-      {this.props.socket === null ? (
-          <Redirect to="/login" />
-        ) : (
-          <React.Fragment>
+
         <div className="Game-intro">
           <h3>{cards[this.state.level].desc}</h3>
 
@@ -395,8 +379,7 @@ class MultiPlayerGame extends Component {
             <div className="col-lg-3 text-center"></div>
           </div>
         </div>
-        </React.Fragment>
-        )}
+
       </div>
     );
   }

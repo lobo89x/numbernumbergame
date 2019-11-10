@@ -13,6 +13,8 @@ const gameTracker = {
     let success = false;
     let currentRoom = this.getRoom("waitingRoom");
     if (currentRoom) {
+      // removeUser from any previous rooms
+      this.removeUser(user);
       // add the user by push
       currentRoom.users.push(user);
       // update messages so that other users are aware
@@ -57,7 +59,7 @@ const gameTracker = {
   },
 
   // add a game to the gameslist
-  addGame: function (gameName, creator) {
+  addRoom: function (gameName, creator) {
     // if game name does not exist or game with the same name exists or the user has created another game this fails
     if (!gameName || this.games.some(x => x.name === gameName || x.creator === creator)) {
       return false;
@@ -76,13 +78,15 @@ const gameTracker = {
     }
   },
 
-  joinGame: function (gameName, user) {
+  joinRoom: function (gameName, user) {
     let success = false;
     this.games.forEach(game => {
       // find the correct game and check if valid
       if (game.name === gameName && game.users.length < 2 && user !== game.creator) {
+        // removeUser from any previous rooms
+        this.removeUser(user);
         // add the user if true with a message
-        game.messages.push(`${user} joied room ${gameName}`)
+        game.messages.push(`${user} joied room ${gameName}`);
         game.users.push(user);
         success = true;
       }
@@ -90,7 +94,7 @@ const gameTracker = {
     return success;
   },
 
-  // handle when users leave a game
+  // handle when users leave a game 
   leaveGame: function (gameName, user) {
     // holder for if user or creator left
     let personLeft = null;
@@ -113,6 +117,17 @@ const gameTracker = {
     // return the type of user leaving
     return personLeft;
   },
+  // get the room name a user is in
+  getRoomByUserName: function (userName) {
+    let room = null;
+    this.games.forEach(game => {
+      if (game.users.includes(userName)) {
+        room = game;
+      }
+    })
+    return room;
+  },
+
   getRoom: function (roomName) {
     let currentRoom = null;
     this.games.forEach(game => {
@@ -120,53 +135,73 @@ const gameTracker = {
         currentRoom = game;
       }
     })
-    console.log(currentRoom);
     return currentRoom;
   },
 
   // create the room board and criteria
-  createGame: function (roomName) {
-    let currentRoom = this.getRoom(roomName);
+  createGame: function (playerName) {
+    let currentRoom = this.getRoomByUserName(playerName);
     if (currentRoom) {
+      currentRoom.game = {};
+      currentRoom.game.players = [];
       currentRoom.game.criteria = getCriteria();
-      currentRoom.game.board = generateBoard(currentRoom.game.criteria.criteria);
-      currentRoom.users.forEach(player => {
-        currentRoom.game.players.push({ name: player, pos: [], score: 0 });
+      currentRoom.game.board = generateBoard(currentRoom.game.criteria);
+      currentRoom.users.forEach((player, index) => {
+        if(index === 0){
+          currentRoom.game.players.push({ name: player, pos: [0, 0], score: 0, ready: false });
+        }else{
+          currentRoom.game.players.push({ name: player, pos: [5, 4], score: 0, ready: false });
+        }
+        
       });
     }
     return currentRoom;
   },
   // take in new board info
-  updateRoomBoard: function (roomName, newBoardInfo) {
-    let currentRoom = this.getRoom(roomName);
+  updateRoomBoard: function (playerName, newBoardInfo, score) {
+    let currentRoom = this.getRoomByUserName(playerName);
     if (currentRoom) {
+      currentRoom.game.board = newBoardInfo;
+      currentRoom.game.players.forEach(player => {
+        if (player.name === playerName) {
+          player.score = score;
+        }
+      })
+      return currentRoom;
+    }
+  },
+
+  updatePlayer: function (playerName, location) {
+    let currentRoom = this.getRoomByUserName(playerName);
+    if (currentRoom) {
+      let [player] = currentRoom.game.players.filter(player => player.name === playerName);
+      if (player) {
+        player.pos = location;
+      }
       currentRoom.game.board = newBoardInfo;
       return currentRoom;
     }
   },
 
-  updatePlayer: function(name, location, score){
-    let currentRoom = this.getRoom(roomName);
-    if (currentRoom) {
-      let [player] = currentRoom.game.players.filter(player => player.name === name);
-      if(player){
-        player.pos = location;
-        player.score = score;
+  readyPlayer: function(playerName){
+    let currentRoom = this.getRoomByUserName(playerName);
+    currentRoom.game.players.forEach(player => {
+      if(player.name === playerName){
+        player.ready = true;
       }
-      currentRoom.game.board = newBoardInfo;
-      return currentRoom;
-    } 
+    })
+    return currentRoom;
   },
 
   checkBoardForFinish: function (roomName) {
     let currentRoom = this.getRoom(roomName);
     if (currentRoom) {
-      if (currentRoom.game.board.filter(item => item === "").length >= 15) {
+      if (currentRoom.game.board.filter(item => item === "!").length >= 15) {
         return true;
       } else {
         return false;
       }
-    }else{
+    } else {
       throw new Error("Room is undefined");
     }
   }
