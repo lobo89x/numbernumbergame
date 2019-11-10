@@ -3,49 +3,161 @@ import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
 //import store from '../../hooks/store';
 //import { useState } from 'react';
 
-
-export function loadCardList(props) {
-    store.dispatch({
-        type: 'LOAD_GAME',
-        payload: {
-            players: [
-                {pos: store.getState().GameState.players[0].pos},
-                {pos: store.getState().GameState.players[1].pos}
-            ]
+const criteria = [
+    {
+      desc: "Mutiples of 2",
+      criteria: (x) => {
+        if ((x % 2) == 0) {
+          return true;
         }
-    })
-    // console.log("this is the array1  :"+store.getState().player1.array1);
-    // console.log("this is your player1 state 100%  "+store.getState().player1);
-}
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Mutiples of 3",
+      criteria: (x) => {
+        if ((x % 3) == 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Multiples of 5",
+      criteria: (x) => {
+        if ((x % 5) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Multiples of 7",
+      criteria: (x) => {
+        if ((x % 7) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Multiples of 13",
+      criteria: (x) => {
+        if ((x % 13) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Factors of 144",
+      criteria: (x) => {
+        if ((144 % x) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Factors of 338",
+      criteria: (x) => {
+        if ((338 % x) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Factors of 385",
+      criteria: (x) => {
+        if ((385 % x) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    },
+    {
+      desc: "Factors of 378",
+      criteria: (x) => {
+        if ((378 % x) === 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+      },
+    }
+];
 
-export function handleMovement(player1, props) {
+export function handleMovement(socket, currentplayer) {
     // const [evaluate] = useStage.evaluate();
+    let playerIndex = 0;
+    if (currentplayer === store.getState().GameState.players[1].name){
+        playerIndex = 1;
+    }
     function select([x, y]) {
         var z = x +(y*6) ;
         return z;
     }
     
     function munch() {
-        
+        const [currentCriteria] = criteria.filter(c => {
+            return c.desc = store.getState().GameState.criteria.desc;
+        });
+        // currentCriteria.criteria()
+
         // //use props?
         // array2: props.cardlist,
         // fxn2: props.selectEval
-        const currenttSel =  select(store.getState().GameState.players[0].pos);
-        const storedArray = this.props.cardlist;
+        const currenttSel =  select(store.getState().GameState.players[playerIndex].pos);
+        const storedArray = store.getState().GameState.board;
         // console.log(storedArray[currenttSel]);
         // console.log(store.getState().player1.fxn1);
         // const func = () = store.getState().player1.fxn1()
-        if (storedArray[currenttSel]!=="") {
-            this.props.selectEval(currenttSel, (storedArray[currenttSel]), storedArray);
-            // if (evaluate(storedArray[currenttSel])===true) {
-            //     console.log("correct!!")
-            // }
-            // if (evaluate(storedArray[currenttSel])===false) {
-            //     console.log("false!!")
-            // }
+        if (storedArray[currenttSel]!=="!") {
+            let addedscore = 0;
+            const correctAns = storedArray.filter(d => {
+                return d === "!";
+            });
+            // this.props.selectEval(currenttSel, (storedArray[currenttSel]), storedArray);
+            // let correct = true;
+            // console.log(this.props.cards.criteria(tf))
+            if (currentCriteria.criteria(storedArray[currenttSel])) {
+              addedscore = (((correctAns.length)+1) * 25);
+              console.log("you got it right");
+            }
+              
+              store.dispatch({
+                  type: 'UPDATE_GAME_AND_PLAYER'+playerIndex,
+                  payload: {
+                      score: store.getState().GameState.players[playerIndex].score + addedscore,
+                      board:  storedArray.map((item, index) => {
+                        if (index === currenttSel) {
+                          item = '!';
+                        }
+                        return item;
+                  })
+              }
+            })
+            socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score})
         }
-    }
-    
+    }    
 
     // function boundaries(old, newpos) {
     //     return (newpos[0] >= 0 && newpos[0] <= GRID_X) && (newpos[1] >= 0 && newpos[1] <= GRID_y) ? newpos : old
@@ -58,38 +170,37 @@ export function handleMovement(player1, props) {
         // let delta = deltasel * 125;
         // const storedArray = store.getState().player1.array1;
         // const startPos = store.getState().player1.position1;
-        const startSel = store.getState().GameState.players[0].pos;
-        
+        const startSel = store.getState().GameState.players[playerIndex].pos;
+        console.log(startSel);
+
         // store.getState().player1.position1
         // console.log(name_con+'  startedd here  '+startPos);
         // console.log("selcted   "+startSel);
         store.dispatch({
-            type: 'Move_Player1',
-            payload: {
-                players: [
-                    {pos: selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])},
-                    {pos: store.getState().GameState.players[1].pos}
-                ]
-            }
+            type: 'UPDATE_PLAYER'+playerIndex,
+            payload: 
+                    selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])
         })
+        socket.emit("playerMove", {playerName: currentplayer, location: store.getState().GameState.players[playerIndex].pos})
         };
       
     function moveY(deltasel) {
-        let delta = deltasel * 110;
-        const storedArray = store.getState().player1.array1;
-        const startPos = store.getState().player1.position1;
-        const startSel =  store.getState().player1.selection1;
-        // console.log(name_con+'  startedd here  '+startPos);
-        // console.log("selcted   "+startSel);
+        // let delta = deltasel * 110;
+        // const storedArray = store.getState().player1.array1;
+        // const startPos = store.getState().player1.position1;
+        // const startSel =  store.getState().player1.selection1;
+        // // console.log(name_con+'  startedd here  '+startPos);
+        // // console.log("selcted   "+startSel);
+        const startSel = store.getState().GameState.players[playerIndex].pos;
+        console.log(startSel);
+        
+
         store.dispatch({
-            type: 'Move_Player1',
-            payload: {
-                players: [
-                    {pos: selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])},
-                    {pos: store.getState().GameState.players[1].pos}
-                ]
-            }
+            type: 'UPDATE_PLAYER'+playerIndex,
+            payload: 
+                selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])
         })
+        socket.emit("playerMove", {playerName: currentplayer, location: store.getState().GameState.players[playerIndex].pos})
         };
     
         

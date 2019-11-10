@@ -178,10 +178,9 @@ const gameTracker = {
       if (player) {
         player.pos = location;
       }
-      currentRoom.game.board = newBoardInfo;
       return currentRoom;
     }
-  },
+  }, 
 
   readyPlayer: function(playerName){
     let currentRoom = this.getRoomByUserName(playerName);
