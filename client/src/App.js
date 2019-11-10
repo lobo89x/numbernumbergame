@@ -33,7 +33,7 @@ class App extends Component {
     
     this.getUser();
   
-    //this.mockUser();
+    // this.mockUser();
   }
 
   mockUser = () => {

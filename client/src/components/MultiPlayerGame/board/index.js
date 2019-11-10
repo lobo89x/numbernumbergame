@@ -52,12 +52,12 @@ class Board extends Component {
 
 
   componentDidMount() {
-    console.log("hey im here in board line 123");
-    console.log(this.props.cards);
-    // this.answerList();
-    this.setState({ cardlist: this.props.cardlist }, () => {
-          // console.log(this.props.cardlist);
-      });
+    // console.log("hey im here in board line 123");
+    // console.log(this.props.cards);
+    // // this.answerList();
+    // this.setState({ cardlist: this.props.cardlist }, () => {
+    //       // console.log(this.props.cardlist);
+    //   });
   }
 
 
@@ -74,6 +74,8 @@ class Board extends Component {
             margin: '20px auto'
           }}>
           <Grid 
+          currentplayer={this.props.currentplayer}
+          socket={this.props.socket}
           show={this.props.show} 
           criteria={this.props.cards.criteria} 
           lives={this.props.lives} 
