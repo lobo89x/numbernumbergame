@@ -201,7 +201,8 @@ const gameTracker = {
   checkBoardForFinish: function (roomName) {
     let currentRoom = this.getRoom(roomName);
     if (currentRoom) {
-      if (currentRoom.game.board.filter(item => item === "!").length >= 15) {
+      // check to see if there are no items that match the criteria left
+      if (!currentRoom.game.board.some(item => currentRoom.game.criteria.criteria(item))) {
         return true;
       } else {
         return false;
