@@ -10,9 +10,12 @@ import MultiPlayerGame from './components/MultiPlayerGame/Game'
 import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
+// import Leaderboard from "./leaderboard";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
+import Leaderboard from "../src/scores/leaderboard"
 // import logout from "./logout";
+
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 console.log(process.env.NODE_ENV);
@@ -110,7 +113,19 @@ class App extends Component {
               />
             )}
           />
+            <Route
+            exact
+            path="/leaderboard"
+            render={props => (
+              <Leaderboard
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
           <Route exact path="/game" component={Game} />
+          {/* <Route exact path="/leaderboard" component={Leaderboard} /> */}
           <Route
             exact
             path="/2pgame"
