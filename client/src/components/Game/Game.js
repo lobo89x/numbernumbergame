@@ -158,7 +158,6 @@ class Game extends Component {
         correctAns: this.state.correctAns + 1
       },
       () => {
-        console.log(this.props.userData)
         if(this.state.score > this.props.userData.highscore.highscore){
           axios.put(`/score/${this.props.userData._id}`, {highscore: this.state.score}).then(res => console.log(res.data))
         }
