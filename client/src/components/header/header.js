@@ -47,9 +47,7 @@ class Header extends React.Component {
           <Navbar.Brand href="#landingPage"></Navbar.Brand>
           <Nav className="ml-auto font-weight-bold">
         
-          {/* <audio className="ml-4" src="numberGameSong.mp3" controls className="mr-4">
-          <p>If you are reading this, it is because your browser does not support the audio element.</p>
-          </audio> */}
+         
       
             <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Login">{this.props.user === null ? "Login": "Logged in as "}{this.props.user}</Nav.Link>

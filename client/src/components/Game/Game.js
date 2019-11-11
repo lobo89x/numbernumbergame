@@ -234,6 +234,9 @@ class Game extends Component {
   componentDidMount() {
     console.log("i are");
     this.answerList();
+    const gamePing = document.querySelector(".gameLoaded");
+    gamePing.play();
+    
   }
 
   answerList = () => {
@@ -353,8 +356,27 @@ class Game extends Component {
 
   // }
 
-  render() {
+pause = () => {
+  if (this.state.gameOver === true) {
+    this.setState({
+      
+    })
+  }
+}
+
+
+render() {
+  // for(var i = 1; i <= 3; i++)
+  // {
+  //   const songToPlay=document.querySelector(`#song${i}`);
+  //   console.log(songToPlay);
+  // }
     return (
+
+        // <audio src="numberGameSong.mp3" autoplauy>
+        //   <p>If you are reading this, it is because your browser does not support the audio element.</p>
+        //   </audio> 
+
       <div className="Game">
 
         <div className="Game-intro">
@@ -394,9 +416,17 @@ class Game extends Component {
           </div>
         </div>
 
+        <audio autoPlay className="gameLoaded">
+          <source id="song1" src="song1.mp3"></source>
+          <source id="song2" src="song2.mp3"></source>
+          <source id="song3" src="song3.mp3"></source>
+        </audio>
+                    
+       
       </div>
     );
   }
+  
 }
 
 
