@@ -7,7 +7,7 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import MultiPlayerGame from './components/MultiPlayerGame/Game'
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
@@ -33,9 +33,9 @@ class App extends Component {
     // checks to see if the user is logged in on the back end
 
     
-    //this.getUser();
+    this.getUser();
    
-    this.mockUser(); 
+    //this.mockUser(); 
   }
 
   mockUser = () => {
