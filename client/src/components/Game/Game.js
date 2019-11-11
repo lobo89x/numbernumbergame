@@ -189,9 +189,9 @@ class Game extends Component {
       this.answerList();
     }else {
       this.setState({ redirectTo: '/login'});
-      const gamePing = document.querySelector(".gameLoaded");
-    gamePing.play();
-    
+      
+      // const gamePing = document.querySelector(".gameLoaded");
+      // gamePing.play();
     }
   }
 
@@ -305,6 +305,7 @@ class Game extends Component {
                   </div>
                 </div>
                 <div className="col-lg-3 text-center"></div>
+                <audio src="song1.mp3" className="gameLoaded" loop autoPlay></audio>
               </div>
             </div>
           </React.Fragment>
