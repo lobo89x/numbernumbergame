@@ -7,40 +7,20 @@ import './Game.css';
 
 class MultiPlayerGame extends Component {
   state = {
-    score: 0,
-    lives: 3,
-    correctAns: 0,
     gameOver: false,
     gameStart: true,
-    level: 0,
     show: false,
-    redirectTo: null
+    redirectTo: null,
+    // use however needed below here
+    lives: 3,
+    correctAns: 0,
+    level: 0,
+    score: 0,
   };
-  
-  showModal = () => {
-    console.log("running show modal");
-    if (this.state.correctAns === 15) {
-      this.setState({
-        show: true
-      })
-    }
-    if (this.state.lives < 1) {
-      console.log("im on line 28")
-      this.setState({
-        show: true
-      });
 
-    }
-    // console.log("I am here!");
-    // console.log("dhow modal  "+this.state.show)
-  };
 
   closeModal = e => {
     this.setState({show: false, redirectTo: "/lobby"});
-  }
-
-  gameOverModal = e => {
-    
   }
 
   componentDidMount() {
@@ -60,9 +40,11 @@ class MultiPlayerGame extends Component {
       this.props.socket.on("bothPlayersReady", () => {
         // triggered when both players have loaded this component
         // should trigger the countdown to begin the game?
+        console.log("test")
         setTimeout(()=>{
-          this.setState({gameStart: false})
-        }, 500);
+          console.log("change")
+          this.setState({gameStart: false, show: true});
+        }, 1000);
       });
 
       this.props.socket.on("playerUpdated", data => {
@@ -88,9 +70,12 @@ class MultiPlayerGame extends Component {
       this.props.socket.on("gameDone", data => {
         //data will be the new game data {board: [], crit: {}, players: []}
         // triggers if the board has no numbers left that match the criteria 
+        // this opens the game over modal
+        this.setState({gameOver: true,show: false});
       });
       
       this.props.socket.on("kicked", data =>{
+        // this should pop open a modal?
         this.setState({redirectTo: "/lobby"});
       })
     }
@@ -107,7 +92,6 @@ class MultiPlayerGame extends Component {
             <React.Fragment>
               <div className="Game-intro">
                 <h3>{this.props.criteria.desc}</h3>
-
                 <h6>Your Score is::  {this.state.score}</h6>
                 <h5>Number of lives:: {this.state.lives}</h5>
               </div>
@@ -121,18 +105,16 @@ class MultiPlayerGame extends Component {
                           socket={this.props.socket}
                           show={this.state.show}
                           correctAns={this.state.correctAns}
-                          selectEval={this.selectEval}
                           answerList={this.answerList}
                           cardlist={this.props.board}
                           score={this.state.score}
                           wrong={this.wrong}
                           lives={this.state.lives}
-                          addScore={this.addScore}
-                          cards={[]}
                           nextLevel={this.nextLevel}
                           zeroLevel={this.zeroLevel}
                           closeModal={this.closeModal}
                           gameOverModal={this.gameOverModal} 
+                          gameOver={this.state.gameOver} 
                           gameStart ={this.state.gameStart}/>
                         : ""}
                     </div>

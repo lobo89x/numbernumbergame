@@ -14,7 +14,10 @@ class Grid extends Component {
   }
 
   handleUserInput = e => {
-    handleMovement(this.props.socket, this.props.currentplayer)(e);
+    if(this.props.show){
+      handleMovement(this.props.socket, this.props.currentplayer)(e);
+    }
+    
   };
 
   mapCardList = () => {

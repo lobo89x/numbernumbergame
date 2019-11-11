@@ -1,54 +1,57 @@
-import Grid from '../grid';
+import Grid from "../grid";
 import React, { Component } from "react";
-import Modal from "../Modal"
+import { StartModal, EndModal } from "../Modal";
 
 class Board extends Component {
   state = {
     guesslist: [],
     correctAns: 0
   };
-  
-  componentDidMount() {
- 
-  }
+
+  componentDidMount() {}
 
   render() {
     if (this.props.cardlist.length !== 0) {
       return (
         <div
           style={{
-            position: 'relative',
-            width: '800px',
-            height: '400px',
-            margin: '20px auto'
-          }}>
-          <Grid 
-          currentplayer={this.props.currentplayer}
-          socket={this.props.socket}
-          show={this.props.show} 
-          criteria={this.props.cards.criteria} 
-          score={this.props.score} 
-          cardlist={this.props.cardlist} />
-          {/* <Player /> */}
-          <Modal 
-          show={this.props.show} 
-          lives={this.props.lives} 
-          score={this.props.score} 
-          correctAns={this.props.correctAns} 
-          closeModal={this.props.closeModal} 
-          gameOverModal={this.props.gameOverModal} />
+            position: "relative",
+            width: "800px",
+            height: "400px",
+            margin: "20px auto"
+          }}
+        >
+          {this.props.show ? (
+            <Grid
+              currentplayer={this.props.currentplayer}
+              socket={this.props.socket}
+              show={this.props.show}
+              score={this.props.score}
+              cardlist={this.props.cardlist}
+            />
+          ) : (
+            <React.Fragment>
+              <EndModal
+                show={this.props.gameOver}
+                lives={this.props.lives}
+                score={this.props.score}
+                correctAns={this.props.correctAns}
+                closeModal={this.props.closeModal}
+                gameOverModal={this.props.gameOverModal}
+              />
+              <StartModal show={this.props.gameStart} />
+            </React.Fragment>
+          )}
         </div>
-      )
-    }
-    else {
+      );
+    } else {
       return (
-        <div className='card-group'>
-          <h2> LOADING.........
-            </h2>
+        <div className="card-group">
+          <h2> LOADING.........</h2>
         </div>
       );
     }
   }
 }
 
-export default Board
+export default Board;

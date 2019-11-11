@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Board from "./board";
-import "./Game.css";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 

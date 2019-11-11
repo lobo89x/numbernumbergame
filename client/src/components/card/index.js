@@ -49,7 +49,7 @@ state = {
 
 // function Card(props) {
     render() {
-      console.log(this.state.cardlist);
+
       if(this.state.cardlist.length!==0) {
 
         return (

@@ -8,9 +8,6 @@
     height: 80%;
   }
 
-  .container{
-    overflow-y: scroll;
-  }
 
 .custom-scroll-bar::-webkit-scrollbar {
     width: 12px;
