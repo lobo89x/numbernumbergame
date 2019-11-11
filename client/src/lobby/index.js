@@ -77,7 +77,7 @@ class LobbyComponent extends Component {
 
       this.props.socket.on("kicked", data => {
         // signal sent from server tell client to update number of users
-        this.props.socket.emit("userThatGotKicked", this.state.currentRoom);
+        this.props.socket.emit("userThatGotKicked", this.state.currentRoom); 
       });
     }
   }
