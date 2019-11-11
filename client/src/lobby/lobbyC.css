@@ -7,7 +7,7 @@
 .lobby-wrapper{
   display: flex;
   flex-direction: row;
-  height: 80%;
+  height: 75%;
   margin: 1.5em 0;
 }
 
