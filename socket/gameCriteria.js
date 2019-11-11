@@ -101,7 +101,7 @@ const criteria = [
 ];
 
 exports.getCriteria = () => {
-  return criteria[Math.floor(Math.random()*criteria.length-1)];
+  return criteria[Math.floor(Math.random()*(criteria.length-1))];
 }
 
 exports.generateBoard = ({criteria}) => {

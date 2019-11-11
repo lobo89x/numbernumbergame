@@ -7,15 +7,15 @@ import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
 import MultiPlayerGame from './components/MultiPlayerGame/Game'
-import LandingPage from "./components/LandingPage/LandingPage";
+import LandingPage from "./LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
-// import logout from "./logout";
+import Leaderboard from "../src/scores/leaderboard"
+
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
-console.log(process.env.NODE_ENV);
 const socketUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : "/";
 class App extends Component {
@@ -25,7 +25,8 @@ class App extends Component {
       // holds the socket connection
       socket: null,
       // should be set when the user logs in ?
-      user: null
+      user: null,
+      userData: null
     };
   }
   componentDidMount() {
@@ -33,14 +34,17 @@ class App extends Component {
 
     
     this.getUser();
-  
-    //this.mockUser();
+   
+    //this.mockUser(); 
   }
 
   mockUser = () => {
     if(this.state.user === null){
       this.setState({
         user: "Anon" + Math.floor(Math.random()*99999),
+        userData: {
+          username: "Anon" + Math.floor(Math.random()*99999),
+        },
         socket: socketIOClient.connect(socketUrl)
       })
     }
@@ -48,27 +52,26 @@ class App extends Component {
 
   getUser = () => {
     axios.get("/loggedin").then(response => {
-      console.log(response)
       if (response.data.username) {
         this.setState({
           user: response.data.username,
+          userData:  response.data,
           socket: socketIOClient.connect(socketUrl)
         });
       } else {
         // backend did not find a user
-        if (this.state.loggedIn) {
           this.setState({
-            socket: null
+            socket: null,
+            user: null,
+            userData: null
           });
-        }
       }
     });
   };
 
-
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
+    this.setState({ userData: user, user: user.username, socket: socketIOClient.connect(socketUrl) });
   }
 
   render() {
@@ -110,7 +113,27 @@ class App extends Component {
               />
             )}
           />
-          <Route exact path="/game" component={Game} />
+            <Route
+            exact
+            path="/leaderboard"
+            render={props => (
+              <Leaderboard
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/game"
+            render={props => (
+              <Game
+                {...props}
+                userData={this.state.userData}
+              />
+            )}
+          />
           <Route
             exact
             path="/2pgame"

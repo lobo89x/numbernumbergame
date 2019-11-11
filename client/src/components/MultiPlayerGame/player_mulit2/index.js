@@ -1,33 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from 'react-redux'
 import walkSprite from './player_2.png'
-import {loadCardList} from './movement'
 
 
 
 function Player2(props) {
-    // const [correctAns, setCorrectAns] = useState(0);
-    // class Player extends Component {
-    // componentDidMount() {
-    //     loadCardList();
-    //   };
-// render () {
 
-    let x = (props.pos[0])*125; 
-    let y = (props.pos[0])*110;
-
-    useEffect(() => {
-        // console.log(props)
-        loadCardList(props);
-        // console.log(props);
-    });
+    let x = (props.players[1].pos[0])*125; 
+    let y = (props.players[1].pos[1])*110;
 
     return (
         <div className='player2'
             style={{
                 position: 'absolute',
                 top: y,
-                left: props.pos[0],
+                left: x,
                 backgroundImage: `url('${walkSprite}')`,
                 width: '52px',
                 height: '65px'
@@ -39,7 +26,7 @@ function Player2(props) {
 
 function mapStateToProps(state) {
     return {
-        ...state.GameState.players[1]
+        ...state.GameState
     }
 }
 

@@ -2,12 +2,12 @@ const gameTracker = require('./gameObject');
 
 function gameEvents(socket, io){
   // Todo implement 2 player logic
-  socket.on("playerMove", function(playerName, location){
+  socket.on("playerMove", function({playerName, location}){
     let {name, game} = gameTracker.updatePlayer(playerName, location);
     socket.to(name).emit("playerUpdated", game);
   });
 
-  socket.on("boardUpdate", function(playerName, boardData, score){
+  socket.on("boardUpdate", function({playerName, boardData, score}){
     let {name, game} = gameTracker.updateRoomBoard(playerName, boardData, score);
     if(gameTracker.checkBoardForFinish(name)){
       io.in(name).emit('gameDone', game);
