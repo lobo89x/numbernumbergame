@@ -158,9 +158,10 @@ const gameTracker = {
     return currentRoom;
   },
   // take in new board info
-  updateRoomBoard: function (playerName, newBoardInfo, score) {
+  updateRoomBoard: function (playerName, newBoardInfo, score, count) {
     let currentRoom = this.getRoomByUserName(playerName);
     if (currentRoom) {
+      currentRoom.game.count = count;
       currentRoom.game.board = newBoardInfo;
       currentRoom.game.players.forEach(player => {
         if (player.name === playerName) {

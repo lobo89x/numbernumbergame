@@ -132,6 +132,7 @@ export function handleMovement(socket, currentplayer) {
         // const func = () = store.getState().player1.fxn1()
         if (storedArray[currenttSel]!=="!") {
             let addedscore = 0;
+            let addcount = store.getState().GameState.count;
             const correctAns = storedArray.filter(d => {
                 return d === "!";
             });
@@ -140,6 +141,7 @@ export function handleMovement(socket, currentplayer) {
             // console.log(this.props.cards.criteria(tf))
             if (currentCriteria.criteria(storedArray[currenttSel])) {
               addedscore = (((correctAns.length)+1) * 25);
+              addcount = addcount + 1;
               console.log("you got it right");
             }
               
@@ -152,11 +154,13 @@ export function handleMovement(socket, currentplayer) {
                           item = '!';
                         }
                         return item;
-                  })
+                      }),
+                      count: addcount
               }
             })
-            socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score})
+            socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score, count: store.getState().GameState.count})
         }
+    // this.props.showModal();
     }    
 
     // function boundaries(old, newpos) {

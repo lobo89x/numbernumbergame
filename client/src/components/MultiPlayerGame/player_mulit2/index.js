@@ -13,7 +13,7 @@ function Player2(props) {
     //   };
 // render () {
 
-    let x = (props.players[1].pos[0])*125; 
+    let x = 68 + ((props.players[1].pos[0])*125); 
     let y = (props.players[1].pos[1])*110;
 
     // useEffect(() => {
@@ -23,7 +23,7 @@ function Player2(props) {
     // });
 
     return (
-        <div className='player2'
+        <div className='player'
             style={{
                 position: 'absolute',
                 top: y,

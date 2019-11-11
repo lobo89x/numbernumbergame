@@ -74,6 +74,7 @@ class Board extends Component {
             margin: '20px auto'
           }}>
           <Grid 
+          showModal={this.props.showModal}
           currentplayer={this.props.currentplayer}
           socket={this.props.socket}
           show={this.props.show} 
