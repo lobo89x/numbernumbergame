@@ -12,6 +12,7 @@ import Lobby from "./lobby";
 // import Leaderboard from "./leaderboard";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
+import Leaderboard from "../src/scores/leaderboard"
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 console.log(process.env.NODE_ENV);
@@ -103,6 +104,17 @@ class App extends Component {
             path="/lobby"
             render={props => (
               <Lobby
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
+            <Route
+            exact
+            path="/leaderboard"
+            render={props => (
+              <Leaderboard
                 {...props}
                 user={this.state.user}
                 socket={this.state.socket}

@@ -1,0 +1,70 @@
+*{
+    box-sizing: border-box;
+  }
+
+  .wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 80%;
+  }
+
+  .container{
+    overflow-y: scroll;
+  }
+
+.custom-scroll-bar::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  /* Track */
+  .custom-scroll-bar::-webkit-scrollbar-track {
+    border: 1px solid rgba(255, 60, 0, 0.609);
+    border-radius: 10px;
+    background: transparent;
+  }
+  
+  /* Handle */
+  .custom-scroll-bar::-webkit-scrollbar-thumb {
+    background: rgba(230, 106, 5, 0.548);
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  .custom-scroll-bar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 102, 0, 0.794);
+  }
+
+  .tableHead{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 25px;
+    max-width: 960px;
+    margin: auto;
+  }
+
+  .dataRows{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 75%;
+    padding: 10px; 
+    padding-bottom: 0px;
+    font-size: 20px; 
+    margin-bottom: 0px;
+  }
+
+  .this3{
+    max-width: 960px;
+    margin: auto;
+    display: inline;
+    white-space: nowrap;
+    overflow: auto;
+  }
+
+  .this4{
+    max-width: 960px;
+    margin: auto;
+
+  }
+  
