@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
-import walkSprite from './player_1.png'
+import walkSprite from './player_2.png'
+import {loadCardList} from './movement'
 
 
 
-function Player1(props) {
+function Player2(props) {
     // const [correctAns, setCorrectAns] = useState(0);
     // class Player extends Component {
     // componentDidMount() {
@@ -12,15 +13,20 @@ function Player1(props) {
     //   };
 // render () {
 
-    let x = (props.players[0].pos[0])*125; 
-    let y = (props.players[0].pos[1])*110;
+    
+
+    useEffect(() => {
+        // console.log(props)
+        loadCardList(props);
+        // console.log(props);
+    });
 
     return (
-        <div className='player1'
+        <div className='player2'
             style={{
                 position: 'absolute',
-                top: y,
-                left: x,
+                top: props.position2[1],
+                left: props.position2[0],
                 backgroundImage: `url('${walkSprite}')`,
                 width: '52px',
                 height: '65px'
@@ -32,9 +38,9 @@ function Player1(props) {
 
 function mapStateToProps(state) {
     return {
-        ...state.GameState
+        ...state.player2
     }
 }
 
 
-export default connect(mapStateToProps)(Player1)
+export default connect(mapStateToProps)(Player2)

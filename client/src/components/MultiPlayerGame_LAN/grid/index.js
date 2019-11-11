@@ -18,19 +18,19 @@ class Grid extends Component {
 
     handleUserInput = (e) => {
         // console.log(e);
-        handleMovement(this.props.socket, this.props.currentplayer)(e);
+        handleMovement()(e);
     }
-    // handleUserInput2 = (e) => {
-    //     // console.log(e);
-    //     handleMovement()(e);
-    //     handleMovementp2()(e);
-    // }
+    handleUserInput2 = (e) => {
+        // console.log(e);
+        handleMovement()(e);
+        handleMovementp2()(e);
+    }
 
     render() {
         if(this.props.cardlist.length!==0) {
-            console.log()
+  
           return (
-            <div  onKeyDown={(e)=>this.handleUserInput(e)} tabIndex="0" ref={this.grid} className="active-fix">
+            <div  onKeyDown={(e)=>this.handleUserInput2(e)} tabIndex="0" ref={this.grid} className="active-fix">
                   <div className='card-group' >
                     <div className="card card-asteroid text-white bg-dark mb-3">
                       <div className="card-body" >

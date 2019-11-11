@@ -13,20 +13,21 @@ function Player2(props) {
     //   };
 // render () {
 
-    
+    let x = (props.players[1].pos[0])*125; 
+    let y = (props.players[1].pos[1])*110;
 
-    useEffect(() => {
-        // console.log(props)
-        loadCardList(props);
-        // console.log(props);
-    });
+    // useEffect(() => {
+    //     // console.log(props)
+    //     loadCardList(props);
+    //     // console.log(props);
+    // });
 
     return (
-        <div className='player'
+        <div className='player2'
             style={{
                 position: 'absolute',
-                top: props.position[1],
-                left: props.position[0],
+                top: y,
+                left: x,
                 backgroundImage: `url('${walkSprite}')`,
                 width: '52px',
                 height: '65px'
@@ -38,7 +39,7 @@ function Player2(props) {
 
 function mapStateToProps(state) {
     return {
-        ...state.player2
+        ...state.GameState
     }
 }
 

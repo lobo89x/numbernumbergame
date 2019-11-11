@@ -5,20 +5,21 @@ import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
 
 
 export function loadCardList(props) {
-    console.log(store.getState())
     store.dispatch({
-        type: 'LOAD_GAME',
+        type: 'Load_cards1',
         payload: {
-            pos2: store.getState().GameState.players[1].pos,
-            array2: props.cardlist,
-            fxn2: props.selectEval
+            position1: store.getState().player1.position1,
+            selection1: store.getState().player1.selection1,
+            selected1: store.getState().player1.selected1,
+            array1: props.cardlist,
+            fxn1: props.selectEval
         }
     })
-    // console.log("this is the array2  :"+store.getState().player2.array2);
-    // console.log("this is your player2 state 100%  "+store.getState().player2);
+    // console.log("this is the array1  :"+store.getState().player1.array1);
+    // console.log("this is your player1 state 100%  "+store.getState().player1);
 }
 
-export function handleMovementp2(player2, props) {
+export function handleMovement(player1, props) {
     // const [evaluate] = useStage.evaluate();
     function select([x, y]) {
         var z = x +(y*6) ;
@@ -26,13 +27,13 @@ export function handleMovementp2(player2, props) {
     }
     
     function munch() {
-        const currenttSel =  store.getState().player2.selected2;
-        const storedArray = store.getState().player2.array2;
+        const currenttSel =  store.getState().player1.selected1;
+        const storedArray = store.getState().player1.array1;
         // console.log(storedArray[currenttSel]);
-        // console.log(store.getState().player2.fxn);
-        // const func = () = store.getState().player2.fxn()
+        // console.log(store.getState().player1.fxn1);
+        // const func = () = store.getState().player1.fxn1()
         if (storedArray[currenttSel]!=="") {
-            store.getState().player2.fxn(currenttSel, (storedArray[currenttSel]), storedArray);
+            store.getState().player1.fxn1(currenttSel, (storedArray[currenttSel]), storedArray);
             // if (evaluate(storedArray[currenttSel])===true) {
             //     console.log("correct!!")
             // }
@@ -52,43 +53,40 @@ export function handleMovementp2(player2, props) {
 
     function moveX(deltasel) {
         let delta = deltasel * 125;
-        console.log("move X");
-        const storedArray = store.getState().player2.array2;
-        const startPos = store.getState().player2.position2;
-        const startSel =  store.getState().player2.selection2;
+        const storedArray = store.getState().player1.array1;
+        const startPos = store.getState().player1.position1;
+        const startSel =  store.getState().player1.selection1;
         
-        // store.getState().player2.position2
+        // store.getState().player1.position1
         // console.log(name_con+'  startedd here  '+startPos);
         // console.log("selcted   "+startSel);
-        console.log(store.getState())
         store.dispatch({
-            type: 'Move_Player2',
+            type: 'Move_Player1',
             payload: {
-                position2: boundaries(startPos, [ (startPos[0] + delta), startPos[1] ]),
-                selection2: selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ]),
-                selected2: select(selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])),
-                array2: storedArray,
-                fxn: store.getState().player2.fxn
+                position1: boundaries(startPos, [ (startPos[0] + delta), startPos[1] ]),
+                selection1: selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ]),
+                selected1: select(selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])),
+                array1: storedArray,
+                fxn1: store.getState().player1.fxn1
             }
         })
         };
       
     function moveY(deltasel) {
         let delta = deltasel * 110;
-        console.log("move Y");
-        const storedArray = store.getState().player2.array2;
-        const startPos = store.getState().player2.position2;
-        const startSel =  store.getState().player2.selection2;
-        console.log('  startedd here  '+startPos);
-        console.log("selcted   "+startSel);
+        const storedArray = store.getState().player1.array1;
+        const startPos = store.getState().player1.position1;
+        const startSel =  store.getState().player1.selection1;
+        // console.log(name_con+'  startedd here  '+startPos);
+        // console.log("selcted   "+startSel);
         store.dispatch({
-            type: 'Move_Player2',
+            type: 'Move_Player1',
             payload: {
-                position2: boundaries(startPos, [ startPos[0] ,  (startPos[1] + delta) ]),
-                selection2: selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ]),
-                selected2: select(selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])),
-                array2: storedArray,
-                fxn: store.getState().player2.fxn
+                position1: boundaries(startPos, [ startPos[0] ,  (startPos[1] + delta) ]),
+                selection1: selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ]),
+                selected1: select(selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])),
+                array1: storedArray,
+                fxn1: store.getState().player1.fxn1
             }
         })
         };
@@ -98,23 +96,23 @@ export function handleMovementp2(player2, props) {
     function handleKeyDown(e) {
         e.preventDefault()
         switch(e.keyCode) {
-            case 65:
+            case 37:
                     console.log("Left");
                     return moveX(-1);
                     // break
-            case 87:
+            case 38:
                     console.log("Up");
                  return moveY(-1)
                 //break
-            case 68:
+            case 39:
                     console.log("Right");
                  return moveX(1)
                 //break
-            case 83:
+            case 40:
                     console.log("Down");
                  return moveY(1)
                 //break
-            case 82:
+            case 32:
                     console.log("Munch");
                     munch();
                 // return moveY(-1)

@@ -1,5 +1,4 @@
 import React from "react";
-
 function Footer(){
     return (
       <footer style={{color:"#00ff58"}} className="fixed-bottom"> 

@@ -101,10 +101,10 @@ const criteria = [
 ];
 
 exports.getCriteria = () => {
-  return criteria[Math.floor(Math.random()*criteria.length-1)];
+  return criteria[Math.floor(Math.random()*(criteria.length-1))];
 }
 
-exports.generateBoard = (criteria) => {
+exports.generateBoard = ({criteria}) => {
   let ansArray = [];
   for (let j = 0; ansArray.length < 30; j++) {
     if (ansArray.length < 16) {

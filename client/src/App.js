@@ -6,6 +6,7 @@ import Header from "./components/header/header";
 import Page404 from "./components/error/Page404";
 import Footer from "./components/footer/Footer";
 import Game from "./components/Game/Game";
+import MultiPlayerGame from './components/MultiPlayerGame/Game'
 import LandingPage from "./components/LandingPage/LandingPage";
 import Login from "./login";
 import Lobby from "./lobby";
@@ -13,12 +14,13 @@ import Lobby from "./lobby";
 import socketIOClient from "socket.io-client";
 import SignUp from "./signup";
 import Leaderboard from "../src/scores/leaderboard"
+// import logout from "./logout";
+
 
 // the url used for the connection to the server in development we use localhost on heroku we need to use /
 console.log(process.env.NODE_ENV);
 const socketUrl =
   process.env.NODE_ENV === "development" ? "http://localhost:3001" : "/";
-
 class App extends Component {
   constructor() {
     super();
@@ -31,7 +33,20 @@ class App extends Component {
   }
   componentDidMount() {
     // checks to see if the user is logged in on the back end
+
+    
     this.getUser();
+  
+    // this.mockUser();
+  }
+
+  mockUser = () => {
+    if(this.state.user === null){
+      this.setState({
+        user: "Anon" + Math.floor(Math.random()*99999),
+        socket: socketIOClient.connect(socketUrl)
+      })
+    }
   }
 
   getUser = () => {
@@ -46,7 +61,6 @@ class App extends Component {
         // backend did not find a user
         if (this.state.loggedIn) {
           this.setState({
-            user: null,
             socket: null
           });
         }
@@ -54,22 +68,11 @@ class App extends Component {
     });
   };
 
-  // call to log user out of backend
-  logOut = () => {
-    axios.post("/logout").then(response => {
-      //console.log(response);
-      this.setState({
-        user: null,
-        socket: null
-      });
-    });
-  };
 
   // updates the users login info call from sign in and 
   updateUserLogin = user => {
-    console.log(user)
     this.setState({ user: user.username, socket: socketIOClient.connect(socketUrl) });
-  };
+  }
 
   render() {
     return (
@@ -123,6 +126,17 @@ class App extends Component {
           />
           <Route exact path="/game" component={Game} />
           {/* <Route exact path="/leaderboard" component={Leaderboard} /> */}
+          <Route
+            exact
+            path="/2pgame"
+            render={props => (
+              <MultiPlayerGame
+                {...props}
+                user={this.state.user}
+                socket={this.state.socket}
+              />
+            )}
+          />
           <Route path="*" component={Page404} />
         </Switch>
         <Footer />
