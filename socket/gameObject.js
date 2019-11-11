@@ -6,7 +6,7 @@ const gameTracker = {
   users: [],
   // list of all games default is a waitingRoom
   games: [
-    { name: "waitingRoom", messages: [], users: [], game: { board: [], criteria: {}, players: [] } }
+    { name: "waitingRoom", messages: [], users: [], game: {} }
   ],
   joinWaitingRoom: function (user) {
     // keep track if adding a user was a success
@@ -39,15 +39,21 @@ const gameTracker = {
   removeUser: function (username) {
     // game to remove holder
     let gameToRemove = null;
-
+  
     this.games.forEach(game => {
       if (game.creator === username) {
         gameToRemove = game.name;
       }
+      // check to see if users are in a game
+      
       // only needs to run if the user was not a creator
       if (game.users.includes(username) && gameToRemove === null) {
         game.users = game.users.filter(user => user != username);
         game.messages.push(username + " has left the room");
+        if(Object.keys(game.game).length > 0){
+          // check to see if users are in a game
+          gameToRemove = game.name;
+        }
       }
     });
     // remove users from user list
@@ -195,7 +201,8 @@ const gameTracker = {
   checkBoardForFinish: function (roomName) {
     let currentRoom = this.getRoom(roomName);
     if (currentRoom) {
-      if (currentRoom.game.board.filter(item => item === "!").length >= 15) {
+      // check to see if there are no items that match the criteria left
+      if (!currentRoom.game.board.some(item => currentRoom.game.criteria.criteria(item))) {
         return true;
       } else {
         return false;
