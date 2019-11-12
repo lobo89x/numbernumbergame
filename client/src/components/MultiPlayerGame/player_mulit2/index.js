@@ -6,11 +6,11 @@ import walkSprite from './player_2.png'
 
 function Player2(props) {
 
-    let x = (props.players[1].pos[0])*125; 
+    let x = 68 + ((props.players[1].pos[0])*125); 
     let y = (props.players[1].pos[1])*110;
 
     return (
-        <div className='player2'
+        <div className='player'
             style={{
                 position: 'absolute',
                 top: y,

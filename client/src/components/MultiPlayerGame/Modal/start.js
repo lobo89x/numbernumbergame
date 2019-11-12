@@ -6,14 +6,15 @@ function startComponent(props) {
     <React.Fragment >
     {props.show ? 
     <div
-      style={{
-        display: "block"
-      }}
+      
       className="modal"
       id="modal"
     >
       
-      <div className="content">GET READY</div>
+      <div className="modal-content">
+        <h2 className="slow-blink">WARNING</h2>
+        <h2 className="slow-blink">A CHALLENGER APPROACHES</h2>
+      </div>
     </div>
     :
     ""

@@ -36,7 +36,7 @@ module.exports = {
 
     findTopFifteenHighscores: function(req, res) {
         return db.Highscore
-           .find({}, null, {limit : 15}).populate("userID", "username").sort({highscore: -1})
+           .find({}, null, {limit : 5}).populate("userID", "username").sort({highscore: -1})
            .then(dbModel => res.json(dbModel))
            .catch(err => res.status(422).json(err));
      }

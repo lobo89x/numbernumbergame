@@ -6,19 +6,21 @@ import './Game.css';
 
 
 class MultiPlayerGame extends Component {
-  state = {
-    gameOver: false,
-    gameStart: true,
-    show: false,
-    redirectTo: null,
-    // use however needed below here
-    lives: 3,
-    correctAns: 0,
-    level: 0,
-    score: 0,
-  };
-
-
+  constructor(){
+    super();
+    this.state = {
+      gameOver: false,
+      gameStart: true,
+      show: false,
+      redirectTo: null,
+      // use however needed below here
+      lives: 3,
+      correctAns: 0,
+      level: 0,
+      score: 0,
+    };
+  }
+  
   closeModal = e => {
     this.setState({show: false, redirectTo: "/lobby"});
   }
@@ -44,7 +46,7 @@ class MultiPlayerGame extends Component {
         setTimeout(()=>{
           console.log("change")
           this.setState({gameStart: false, show: true});
-        }, 1000);
+        }, 5000);
       });
 
       this.props.socket.on("playerUpdated", data => {
@@ -84,6 +86,12 @@ class MultiPlayerGame extends Component {
   }
 
   render() {
+    let playerIndex = 0;
+    console.log(this.props)
+    if (this.props.user === this.props.players[1].name){
+        playerIndex = 1;
+    }
+
     return (
       <div className="Game">
         {this.state.redirectTo !== null ? (
@@ -92,8 +100,9 @@ class MultiPlayerGame extends Component {
             <React.Fragment>
               <div className="Game-intro">
                 <h3>{this.props.criteria.desc}</h3>
-                <h6>Your Score is::  {this.state.score}</h6>
-                <h5>Number of lives:: {this.state.lives}</h5>
+
+                <h6>Your Score is::  {this.props.players[playerIndex].score}</h6>
+                {/* <h5>Number of lives:: {this.state.lives}</h5> */}
               </div>
               <div className="container">
                 <div className="row">
@@ -101,6 +110,7 @@ class MultiPlayerGame extends Component {
                     <div className="card-deck">
                       {this.props.board ?
                         <Board
+                          showModal={this.showModal}
                           currentplayer={this.props.user}
                           socket={this.props.socket}
                           show={this.state.show}
