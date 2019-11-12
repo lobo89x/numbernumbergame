@@ -98,7 +98,7 @@ class MultiPlayerGame extends Component {
               <div className="Game-intro">
                 <h3>{this.props.criteria.desc}</h3>
 
-                <h6>Your Score is::  {store.getState().GameState.players[playerIndex].score}</h6>
+                <h6>Your Score is::  {this.props.players[playerIndex].score}</h6>
                 {/* <h5>Number of lives:: {this.state.lives}</h5> */}
               </div>
               <div className="container">
