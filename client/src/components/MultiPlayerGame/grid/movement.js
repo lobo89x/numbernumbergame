@@ -106,8 +106,10 @@ const criteria = [
 export function handleMovement(socket, currentplayer) {
     // const [evaluate] = useStage.evaluate();
     let playerIndex = 0;
+    let otherIndex = 1;
     if (currentplayer === store.getState().GameState.players[1].name){
         playerIndex = 1;
+        otherIndex = 0;
     }
     function select([x, y]) {
         var z = x +(y*6) ;
@@ -130,6 +132,7 @@ export function handleMovement(socket, currentplayer) {
         // const func = () = store.getState().player1.fxn1()
         if (storedArray[currenttSel]!=="!") {
             let addedscore = 0;
+            let addcount = store.getState().GameState.count;
             const correctAns = storedArray.filter(d => {
                 return d === "!";
             });
@@ -138,6 +141,7 @@ export function handleMovement(socket, currentplayer) {
             // console.log(this.props.cards.criteria(tf))
             if (currentCriteria.criteria(storedArray[currenttSel])) {
               addedscore = (((correctAns.length)+1) * 25);
+              addcount = addcount + 1;
               console.log("you got it right");
             }
               
@@ -150,18 +154,20 @@ export function handleMovement(socket, currentplayer) {
                           item = '!';
                         }
                         return item;
-                  })
+                      }),
+                      count: addcount
               }
             })
-            socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score})
+            socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score, count: store.getState().GameState.count})
         }
+    // this.props.showModal();
     }    
 
     // function boundaries(old, newpos) {
     //     return (newpos[0] >= 0 && newpos[0] <= GRID_X) && (newpos[1] >= 0 && newpos[1] <= GRID_y) ? newpos : old
     // }
-    function selboundaries(oldsel, newsel) {
-        return (newsel[0] >= 0 && newsel[0] <= MAX_col) && (newsel[1] >= 0 && newsel[1] <= MAX_rows) ? newsel : oldsel
+    function selboundaries(oldsel, newsel, oppsel) {
+        return (newsel[0] >= 0 && newsel[0] <= MAX_col) && (newsel[1] >= 0 && newsel[1] <= MAX_rows) && ( newsel[1] != oppsel[1] || newsel[0] != oppsel[0]) ? newsel : oldsel
     }
 
     function moveX(deltasel) {
@@ -169,6 +175,7 @@ export function handleMovement(socket, currentplayer) {
         // const storedArray = store.getState().player1.array1;
         // const startPos = store.getState().player1.position1;
         const startSel = store.getState().GameState.players[playerIndex].pos;
+        const opponent = store.getState().GameState.players[otherIndex].pos;
         console.log(startSel);
 
         // store.getState().player1.position1
@@ -177,7 +184,7 @@ export function handleMovement(socket, currentplayer) {
         store.dispatch({
             type: 'UPDATE_PLAYER'+playerIndex,
             payload: 
-                    selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ])
+                    selboundaries(startSel, [ (startSel[0] + deltasel), startSel[1] ], opponent)
         })
         socket.emit("playerMove", {playerName: currentplayer, location: store.getState().GameState.players[playerIndex].pos})
         };
@@ -190,13 +197,15 @@ export function handleMovement(socket, currentplayer) {
         // // console.log(name_con+'  startedd here  '+startPos);
         // // console.log("selcted   "+startSel);
         const startSel = store.getState().GameState.players[playerIndex].pos;
+        const opponent = store.getState().GameState.players[otherIndex].pos;
+
         console.log(startSel);
         
 
         store.dispatch({
             type: 'UPDATE_PLAYER'+playerIndex,
             payload: 
-                selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ])
+                selboundaries(startSel, [ startSel[0] ,  (startSel[1] + deltasel) ], opponent)
         })
         socket.emit("playerMove", {playerName: currentplayer, location: store.getState().GameState.players[playerIndex].pos})
         };
