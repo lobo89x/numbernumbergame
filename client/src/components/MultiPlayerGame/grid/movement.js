@@ -132,7 +132,6 @@ export function handleMovement(socket, currentplayer) {
         // const func = () = store.getState().player1.fxn1()
         if (storedArray[currenttSel]!=="!") {
             let addedscore = 0;
-            let addcount = store.getState().GameState.count;
             const correctAns = storedArray.filter(d => {
                 return d === "!";
             });
@@ -141,7 +140,6 @@ export function handleMovement(socket, currentplayer) {
             // console.log(this.props.cards.criteria(tf))
             if (currentCriteria.criteria(storedArray[currenttSel])) {
               addedscore = (((correctAns.length)+1) * 25);
-              addcount = addcount + 1;
               console.log("you got it right");
             }
               
@@ -154,8 +152,7 @@ export function handleMovement(socket, currentplayer) {
                           item = '!';
                         }
                         return item;
-                      }),
-                      count: addcount
+                      })
               }
             })
             socket.emit("boardUpdate", {playerName: currentplayer, boardData: store.getState().GameState.board, score: store.getState().GameState.players[playerIndex].score, count: store.getState().GameState.count})
@@ -167,7 +164,7 @@ export function handleMovement(socket, currentplayer) {
     //     return (newpos[0] >= 0 && newpos[0] <= GRID_X) && (newpos[1] >= 0 && newpos[1] <= GRID_y) ? newpos : old
     // }
     function selboundaries(oldsel, newsel, oppsel) {
-        return (newsel[0] >= 0 && newsel[0] <= MAX_col) && (newsel[1] >= 0 && newsel[1] <= MAX_rows) && ( newsel[1] != oppsel[1] || newsel[0] != oppsel[0]) ? newsel : oldsel
+        return (newsel[0] >= 0 && newsel[0] <= MAX_col) && (newsel[1] >= 0 && newsel[1] <= MAX_rows) && ( newsel[1] !== oppsel[1] || newsel[0] !== oppsel[0]) ? newsel : oldsel
     }
 
     function moveX(deltasel) {

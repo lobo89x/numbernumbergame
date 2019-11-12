@@ -56,7 +56,6 @@ class Grid extends Component {
                     >
                       {card}
                     </h5>
-                    <p className="card-text"></p>
                   </div>
                 </div>
               ))}
