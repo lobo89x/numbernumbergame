@@ -273,9 +273,9 @@ class Game extends Component {
           <React.Fragment>
             <div className="Game-intro">
               <div className="game-container bg-dark text-success border border-success bg-transparent">
-                <h3> Question: Find {cards[this.state.level].desc}</h3>
-                <h4>Your Score is: {this.state.score}</h4>
-                <h4>Number of lives: {this.state.lives}</h4>
+                <h2> Question: Find {cards[this.state.level].desc}</h2>
+                <h2>Your Score is: {this.state.score}</h2>
+                <h2>Number of lives: {this.state.lives}</h2>
               </div>
             </div>
             <div className="container">
