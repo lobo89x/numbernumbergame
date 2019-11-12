@@ -3,108 +3,32 @@ import Board from './board';
 import { connect } from 'react-redux'
 import { Redirect } from "react-router-dom";
 import './Game.css';
-import store from "../config/store";
+
 
 class MultiPlayerGame extends Component {
   state = {
-    score: 0,
+    gameOver: false,
+    gameStart: true,
+    show: false,
+    redirectTo: null,
+    // use however needed below here
     lives: 3,
     correctAns: 0,
-    gameOver: false,
     level: 0,
-    show: false
-  };
-  
-  showModal = () => {
-    console.log("running show modal");
-    if (store.getState().GameState.count === 15) {
-      this.setState({
-        show: true
-      })
-    }
-    // console.log("I am here!");
-    // console.log("dhow modal  "+this.state.show)
+    score: 0,
   };
 
   closeModal = e => {
-    this.forceUpdate();
-    if (this.state.level === 8) {
-      this.zeroLevel();
-    }
-    else {
-      this.nextLevel();
-    }
-    this.answerList();
-    // this.setState({ cardlist: this.cardlist }, () => {
-    //   // console.log(this.props.cardlist);
-    // });
+    this.setState({show: false, redirectTo: "/lobby"});
   }
-
-  gameOverModal = e => {
-    this.zeroLevel();
-    this.setState({
-      show: false,
-      correctAns: 0,
-
-    });
-    this.forceUpdate();
-    this.answerList();
-    // this.setState({ cardlist: this.cardlist }, () => {
-    //   // console.log(this.props.cardlist);
-    // });
-  }
-  // addScore = (correctAns) => {
-  //   // console.log("here i am");
-  //   this.state.score = this.state.score + (correctAns*25);
-  //   console.log(this.state.score);
-  // };
-
-
-  // clearSpace(y){
-  //   this.props.cardlist[y] = '';
-  // }
-
-  addScore = (correctAns) => {
-    // console.log("here i am");
-    this.setState({
-      score: this.state.score + (correctAns * 25)
-    })
-    console.log(this.state.score);
-  };
-
-  wrong = () => {
-    this.setState({
-      lives: this.state.lives - 1
-    })
-    // console.log("im here");
-  }
-
-  nextLevel = () => {
-    // console.log("here i am");
-    // this.setState({
-    //   show: false,
-    //   correctAns: 0,
-    //   cardlist: []
-    // });
-    this.setState({
-      show: false,
-      correctAns: 0,
-      cardlist: [],
-      level: this.state.level + 1
-    }, () => {
-      console.log("this is the level::  " + this.state.level);
-      this.answerList();
-    })
-
-    // return ""
-  };
 
   componentDidMount() {
-    //this.answerList();
-
-    if (this.props.socket) {
+    if (!this.props.user || !this.props.socket){
+        this.setState({redirectTo: "/login"});
+    }
+    else {
       let socket = this.props.socket;
-      console.log(this.props.user)
+
       if (this.props.user) {
         socket.emit("gameReady", this.props.user);
       }
@@ -115,6 +39,11 @@ class MultiPlayerGame extends Component {
       this.props.socket.on("bothPlayersReady", () => {
         // triggered when both players have loaded this component
         // should trigger the countdown to begin the game?
+        console.log("test")
+        setTimeout(()=>{
+          console.log("change")
+          this.setState({gameStart: false, show: true});
+        }, 1000);
       });
 
       this.props.socket.on("playerUpdated", data => {
@@ -140,93 +69,18 @@ class MultiPlayerGame extends Component {
       this.props.socket.on("gameDone", data => {
         //data will be the new game data {board: [], crit: {}, players: []}
         // triggers if the board has no numbers left that match the criteria 
+        // this opens the game over modal
+        this.setState({gameOver: true,show: false});
       });
+      
+      this.props.socket.on("kicked", data =>{
+        // this should pop open a modal?
+        this.setState({redirectTo: "/lobby"});
+      })
     }
 
 
   }
-
-  selectEval = (x, tf, list) => {
-    // console.log(this.props.cards.criteria)
-    // console.log(x);
-    // console.log(this.props.cards.criteria(tf))
-    if (this.props.criteria.crit(tf)) {
-      this.state.correctAns++;
-      console.log("you got it right");
-      // console.log('#of right  '+this.state.correctAns)
-      // scoreUpdate();
-      this.addScore(this.state.correctAns);
-    }
-    else {
-      // this.props.lives--;
-      console.log("youre wrong");
-      this.wrong();
-      // console.log('#of lives left  '+this.props.lives);
-      // lifeLoss();
-    }
-    if (this.state.correctAns === 15) {
-      this.showModal();
-    }
-    if (this.state.lives < 1) {
-      this.showModal();
-    }
-    this.setState(
-      {
-        cardlist: this.state.cardlist.map((item, index) => {
-          if (index === x) {
-            item = '';
-          }
-          return item;
-        })
-      }
-    );
-  }
-
-  scramblenumbers = (answers) => {
-    console.log(answers);
-
-    console.log("I am ,here, in scrmble numbers");
-    answers.sort(() => Math.random() - 0.5);
-    // for (var i = answers.length-1; i > 0; i--) {
-    // var x = Math.floor(Math.random() * i);
-    // const temp2 = answers[i];
-    // answers[i] =answers[x];
-    // answers[x] = temp2
-    // }
-    console.log(answers)
-
-    return answers;
-    // else {
-    // this.setState({ cardlist: temp }, () => {
-    //     // console.log(this.state.cardlist);
-    // });
-    // }
-  }
-
-
-  zeroLevel = () => {
-    // console.log("here i am");
-    this.setState({
-      level: 0,
-      lives: 3,
-      score: 0,
-      cardlist: []
-    })
-    // console.log(this.state.level);
-  };
-
-  // const [gameOver, setGameOver] = useState(false);
-  // const [score, setScore] = useState(0);
-
-  // //hooks
-  // const [score] = useGameStatus(
-  //     correctAns
-  // );
-  // const [correctAns, setCorrectAns, evaluate] = useStage() ;
-
-  // const startGame = () => {
-
-  // }
 
   render() {
     let playerIndex = 0;
@@ -237,8 +91,8 @@ class MultiPlayerGame extends Component {
 
     return (
       <div className="Game">
-        {this.props.socket === null ? (
-          <Redirect to="/login" />
+        {this.state.redirectTo !== null ? (
+          <Redirect to={this.state.redirectTo} />
         ) : (
             <React.Fragment>
               <div className="Game-intro">
@@ -249,7 +103,6 @@ class MultiPlayerGame extends Component {
               </div>
               <div className="container">
                 <div className="row">
-
                   <div className="col-lg-12 text-center game-row-center">
                     <div className="card-deck">
                       {this.props.board ?
@@ -259,22 +112,20 @@ class MultiPlayerGame extends Component {
                           socket={this.props.socket}
                           show={this.state.show}
                           correctAns={this.state.correctAns}
-                          selectEval={this.selectEval}
                           answerList={this.answerList}
                           cardlist={this.props.board}
                           score={this.state.score}
                           wrong={this.wrong}
                           lives={this.state.lives}
-                          addScore={this.addScore}
-                          cards={[]}
                           nextLevel={this.nextLevel}
                           zeroLevel={this.zeroLevel}
                           closeModal={this.closeModal}
-                          gameOverModal={this.gameOverModal} />
+                          gameOverModal={this.gameOverModal} 
+                          gameOver={this.state.gameOver} 
+                          gameStart ={this.state.gameStart}/>
                         : ""}
                     </div>
                   </div>
-                  <div className="col-lg-3 text-center"></div>
                 </div>
               </div>
             </React.Fragment>

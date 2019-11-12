@@ -1,14 +1,15 @@
-
-
 .Game {
   text-align: center;
   color: rgb(0, 255, 88);
   font-size: 20pt;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+ 
+  align-items: center;
   width: 100%;
+  height: 100%;
 }
+
 
 .Game-intro {
   font-size: large;
@@ -21,23 +22,15 @@
 .card-group {
   display: flex;
   flex-wrap: wrap;
-  /* color: rgb(0, 255, 88); */
-  /* flex-direction: row; */
   justify-content: space-between;
   width: 750px;
-  /* height: 325px; */
-  /* margin: 150px; */
 }
+
 .card-deck {
   display: flex;
   flex-wrap: wrap;
-  /* color: red; */
-  /* flex-direction: row; */
   justify-content: center;
   justify-self: center;
-  width: 750px;
-  height: 325px;
-  /* margin: 150px; */
 }
 
 .card {
@@ -67,9 +60,14 @@
 
 .active-fix:focus {outline:0;}
 
+
 .player {
+  background-image: url('/player_1.png');
+  width: 52px;
+  height: 65px;
   animation:3s float infinite linear;
   transition: .5s;
+  position: absolute;
 }
 
 .player:after {
@@ -118,31 +116,17 @@
   100%{
     background-position: 0px 1px;
   }
- }
-body {
- position:fixed;
- background:url(https://i.stack.imgur.com/cGIFX.jpg);
- animation:100s scroll infinite linear;
- background-size: 100%;
- top:0;
- left:0;
- width:100%;
- height:100%;
-}
-@keyframes scroll{
- 100%{
-   background-position: 3000px 0px;
- }
 }
 
 .modal{
   display: none;
   position: absolute;
   z-index: 1;
-  height: 340px;
-  width: 728px;
-  background-color: black;
+  height: 50%;
+  width: 50%;
+  background-color: rgba(12, 12, 12, 0.596);
   color: aliceblue;
+  border: 1px solid green;
 }
 
 .card-asteroid {
@@ -152,11 +136,11 @@ body {
 }
 
 .card-asteroid-munched {
-  /* background: url("/216-2168011_asteroids-pixel-art.png"); */
   background-size: 100% 100%;
   background-color: transparent !important;
   animation-name: explosion;
   animation-duration: 1s;
+  color: transparent;
 }
 @keyframes explosion {
   0%   {background: url("/Asteroid0.png");
@@ -171,13 +155,21 @@ body {
         background-size: 100% 100%;}
 }
 
-.game-container{
-  background: crimson;
-  text-align: center;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
+@media screen and (min-height: 700px){
+.Game {
+  flex-direction: row;
   justify-content: center;
-  margin-left: 460px;
-  margin-top: 30px;
+  align-items: start;
+}
+
+.Game-intro {
+  flex: 1;
+  align-items: center;
+  height: 80%;
+}
+
+.Game:nth-child(1){
+  flex: 2;
+}
+
 }

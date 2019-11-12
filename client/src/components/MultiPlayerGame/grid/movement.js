@@ -1,13 +1,11 @@
 import store from '../../config/store';
-import { GRID_X, GRID_y, MAX_col, MAX_rows } from '../../../hooks/constants';
-//import store from '../../hooks/store';
-//import { useState } from 'react';
+import {MAX_col, MAX_rows } from '../../../hooks/constants';
 
 const criteria = [
     {
       desc: "Mutiples of 2",
       criteria: (x) => {
-        if ((x % 2) == 0) {
+        if ((x % 2) === 0) {
           return true;
         }
         else {
@@ -18,7 +16,7 @@ const criteria = [
     {
       desc: "Mutiples of 3",
       criteria: (x) => {
-        if ((x % 3) == 0) {
+        if ((x % 3) === 0) {
           return true;
         }
         else {

@@ -27,31 +27,6 @@
   to { transform: rotate(360deg); }
 }
 
-.card-group {
-  display: flex;
-  flex-wrap: wrap;
-  /* color: red; */
-  /* flex-direction: row; */
-  justify-content: space-between;
-  width: 750px;
-  /* height: 325px; */
-  /* margin: 150px; */
-}
-.card-deck {
-  display: flex;
-  flex-wrap: wrap;
-  /* color: red; */
-  /* flex-direction: row; */
-  justify-content: space-between;
-  width: 750px;
-  height: 325px;
-  /* margin: 150px; */
-}
-
-.card {
-  /* width: 140px; */
-  /* height: 70px; */
-}
 
 body {
  position:fixed;
@@ -67,14 +42,4 @@ body {
  100%{
    background-position: 3000px 0px;
  }
-}
-
-.modal{
-  display: none;
-  position: absolute;
-  z-index: 1;
-  height: 340px;
-  width: 728px;
-  background-color: black;
-  color: aliceblue;
 }

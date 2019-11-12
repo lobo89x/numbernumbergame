@@ -42,7 +42,7 @@ class Header extends React.Component {
   render(){
     return (
       <Navbar bg="dark" variant="dark">
-        <img src= "/astro2.png" style={{height:"45px", width:"45px", background:"hidden"}}></img>
+        <img src= "/astro2.png" style={{height:"45px", width:"45px", background:"hidden"}} alt="logo"></img>
         <h2 style={{color:"#00ff58"}} className="ml-3 mt-2">NumberNauts</h2>
           <Navbar.Brand href="#landingPage"></Navbar.Brand>
           <Nav className="ml-auto font-weight-bold">
@@ -54,10 +54,10 @@ class Header extends React.Component {
             <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Login">{this.props.user === null ? "Login": "Logged in as "}{this.props.user}</Nav.Link>
             <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
+            <Nav.Link style={{color:"#00ff58"}} href="leaderboard">Leaderboard</Nav.Link>
             {this.props.user !== null? 
             <Nav.Link onClick={this.logOut} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> : ''            
           }
-
           </Nav>
           </Navbar>
           )
