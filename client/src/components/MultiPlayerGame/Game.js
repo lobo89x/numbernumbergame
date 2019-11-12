@@ -6,18 +6,21 @@ import './Game.css';
 
 
 class MultiPlayerGame extends Component {
-  state = {
-    gameOver: false,
-    gameStart: true,
-    show: false,
-    redirectTo: null,
-    // use however needed below here
-    lives: 3,
-    correctAns: 0,
-    level: 0,
-    score: 0,
-  };
-
+  constructor(){
+    super();
+    this.state = {
+      gameOver: false,
+      gameStart: true,
+      show: false,
+      redirectTo: null,
+      // use however needed below here
+      lives: 3,
+      correctAns: 0,
+      level: 0,
+      score: 0,
+    };
+  }
+  
   closeModal = e => {
     this.setState({show: false, redirectTo: "/lobby"});
   }
@@ -43,7 +46,7 @@ class MultiPlayerGame extends Component {
         setTimeout(()=>{
           console.log("change")
           this.setState({gameStart: false, show: true});
-        }, 1000);
+        }, 5000);
       });
 
       this.props.socket.on("playerUpdated", data => {

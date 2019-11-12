@@ -157,8 +157,8 @@ class Game extends Component {
         correctAns: this.state.correctAns + 1
       },
       () => {
-        if(this.state.score > this.props.userData.highscore.highscore){
-          axios.put(`/score/${this.props.userData._id}`, {highscore: this.state.score}).then(res => console.log(res.data))
+        if (this.state.score > this.props.userData.highscore.highscore) {
+          axios.put(`/score/${this.props.userData._id}`, { highscore: this.state.score }).then(res => console.log(res.data))
         }
       }
     );
@@ -185,10 +185,10 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    if(this.props.userData){
+    if (this.props.userData) {
       this.answerList();
-    }else {
-      this.setState({ redirectTo: '/login'});
+    } else {
+      this.setState({ redirectTo: '/login' });
     }
   }
 
@@ -259,48 +259,49 @@ class Game extends Component {
   render() {
     return (
       <div className="Game">
-        {this.state.redirectTo !== null? (
+        {this.state.redirectTo !== null ? (
           <Redirect to={this.state.redirectTo} />
         ) : (
-          <React.Fragment>
-            <div className="Game-intro">
-              <div className="game-container bg-dark text-success border border-success bg-transparent">
-                <h3> Question: Find {cards[this.state.level].desc}</h3>
-                <h4>Your Score is: {this.state.score}</h4>
-                <h4>Number of lives: {this.state.lives}</h4>
-              </div>
-            </div>
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-12 text-center game-row-center">
-                  <div className="card-deck">
-                    {this.state.cardlist ? (
-                      <Board
-                        show={this.state.show}
-                        correctAns={this.state.correctAns}
-                        selectEval={this.selectEval}
-                        answerList={this.answerList}
-                        cardlist={this.state.cardlist}
-                        score={this.state.score}
-                        wrong={this.wrong}
-                        lives={this.state.lives}
-                        addScore={this.addScore}
-                        cards={cards[this.state.level]}
-                        nextLevel={this.nextLevel}
-                        zeroLevel={this.zeroLevel}
-                        closeModal={this.closeModal}
-                        gameOverModal={this.gameOverModal}
-                      />
-                    ) : (
-                      ""
-                    )}
-                  </div>
+            <React.Fragment>
+              <div className="Game-intro">
+                <div className="game-container bg-dark text-success border border-success bg-transparent">
+                  <h3> Question: Find {cards[this.state.level].desc}</h3>
+                  <h4>Your Score is: {this.state.score}</h4>
+                  <h4>Number of lives: {this.state.lives}</h4>
                 </div>
-                <div className="col-lg-3 text-center"></div>
               </div>
-            </div>
-          </React.Fragment>
-        )}
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-12 text-center game-row-center">
+                    <div className="card-deck">
+                      
+                      {this.state.cardlist ? (
+                        <Board
+                          show={this.state.show}
+                          correctAns={this.state.correctAns}
+                          selectEval={this.selectEval}
+                          answerList={this.answerList}
+                          cardlist={this.state.cardlist}
+                          score={this.state.score}
+                          wrong={this.wrong}
+                          lives={this.state.lives}
+                          addScore={this.addScore}
+                          cards={cards[this.state.level]}
+                          nextLevel={this.nextLevel}
+                          zeroLevel={this.zeroLevel}
+                          closeModal={this.closeModal}
+                          gameOverModal={this.gameOverModal}
+                        />
+                      ) : (
+                          ""
+                        )}
+                    </div>
+                  </div>
+                  <div className="col-lg-3 text-center"></div>
+                </div>
+              </div>
+            </React.Fragment>
+          )}
       </div>
     );
   }
