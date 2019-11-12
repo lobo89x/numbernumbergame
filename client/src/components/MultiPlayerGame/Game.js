@@ -110,6 +110,7 @@ class MultiPlayerGame extends Component {
                     <div className="card-deck">
                       {this.props.board ?
                         <Board
+                          user={this.props.user}
                           showModal={this.showModal}
                           currentplayer={this.props.user}
                           socket={this.props.socket}

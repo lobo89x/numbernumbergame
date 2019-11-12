@@ -32,6 +32,7 @@ class Board extends Component {
           ) : (
             <React.Fragment>
               <EndModal
+                user={this.props.user}
                 show={this.props.gameOver}
                 lives={this.props.lives}
                 score={this.props.score}
