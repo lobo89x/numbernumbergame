@@ -38,20 +38,20 @@
     font-size: 25px;
     max-width: 960px;
     margin: auto;
-  }
+  } 
 
   .dataRows{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     height: 75%;
-    padding: 10px; 
+    /* padding: 10px;  */
     padding-bottom: 0px;
     font-size: 20px; 
     margin-bottom: 0px;
   }
 
-  .this3{
+   .this3{
     max-width: 960px;
     margin: auto;
     display: inline;
@@ -65,3 +65,6 @@
 
   }
   
+   .table td, .table th {
+     border: none;
+   }
