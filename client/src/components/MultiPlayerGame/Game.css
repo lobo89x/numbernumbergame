@@ -45,6 +45,13 @@
   text-shadow: 2px 2px #2b9e20;
 }
 
+.card-title-munch {
+  color: transparent;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 32px;
+  /* text-shadow: 2px 2px #2b9e20; */
+}
+
 .game-row-center{
   display: flex;
   justify-content: center;

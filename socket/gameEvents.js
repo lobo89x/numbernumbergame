@@ -7,8 +7,8 @@ function gameEvents(socket, io){
     socket.to(name).emit("playerUpdated", game);
   });
 
-  socket.on("boardUpdate", function({playerName, boardData, score}){
-    let {name, game} = gameTracker.updateRoomBoard(playerName, boardData, score);
+  socket.on("boardUpdate", function({playerName, boardData, score, count}){
+    let {name, game} = gameTracker.updateRoomBoard(playerName, boardData, score, count);
     if(gameTracker.checkBoardForFinish(name)){
       io.in(name).emit('gameDone', game);
     }else{

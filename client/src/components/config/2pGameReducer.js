@@ -1,7 +1,8 @@
 const initialState = {
      board: [],
      criteria: {},
-     players: [] 
+     players: [],
+     count: 0
 }
 const GameReducer = (state=initialState, action) => {
   switch(action.type) {
@@ -46,7 +47,8 @@ const GameReducer = (state=initialState, action) => {
                         score: action.payload.score
                     },
                     state.players[1],
-                ]
+                ],
+                count: action.payload.count
             }
             case 'UPDATE_GAME_AND_PLAYER1':
             return {
@@ -59,7 +61,8 @@ const GameReducer = (state=initialState, action) => {
                         pos: state.players[1].pos,
                         score: action.payload.score
                     },
-                ]
+                ],
+                count: action.payload.count
             }
       default:
           return state
