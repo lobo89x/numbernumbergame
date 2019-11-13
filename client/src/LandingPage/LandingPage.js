@@ -12,7 +12,6 @@ function LandingPage(){
     <Card.Text className="text-white">
         <p> FIRST THINGS FIRST! Create a Username and Password so we can remember you and save your Hi-Scores!</p>
         <hr></hr>
-        <br></br>
       <ul>
         <h2>How NumberNauts Works</h2>
        <li>You will be given one math question for each level.</li> 
@@ -22,8 +21,6 @@ function LandingPage(){
         <li>You will have five minutes and three lives to complete each level</li>
         <li>Each level will increase in difficulty, DONT GIVE UP!</li>
       </ul>
-      <br>
-      </br>
     </Card.Text>
     <Button className="ml-4" href="/Login" variant="success">Login Here</Button>
     <Button className="float-right mr-4" href="/signup" variant="success">Create Account</Button>

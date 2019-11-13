@@ -12,7 +12,14 @@ class Grid extends Component {
     this.grid.current.focus();
   }
 
+  componentDidUpdate() {
+    if(!this.props.show){
+      this.grid.current.focus();
+    }
+  }
+
   handleUserInput = e => {
+    e.preventDefault()
     if (this.props.show === false) {
       handleMovement()(e);
     }
@@ -56,7 +63,6 @@ class Grid extends Component {
                     >
                       {card}
                     </h5>
-                    <p className="card-text"></p>
                   </div>
                 </div>
               ))}

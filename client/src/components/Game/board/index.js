@@ -18,14 +18,7 @@ class Board extends Component {
   render() {
     if (this.props.cardlist.length !== 0) {
       return (
-        <div
-          style={{
-            position: "relative",
-            width: "800px",
-            height: "400px",
-            margin: "20px auto"
-          }}
-        >
+        <div className="board">
           <Grid
             show={this.props.show}
             criteria={this.props.cards.criteria}

@@ -87,9 +87,12 @@ class MultiPlayerGame extends Component {
 
   render() {
     let playerIndex = 0;
-    console.log(this.props)
-    if (this.props.user === this.props.players[1].name){
-        playerIndex = 1;
+    if(!this.props.user){
+      return <Redirect to="login" />
+    }else{
+      if (this.props.user === this.props.players[1].name){
+          playerIndex = 1;
+      }
     }
 
     return (

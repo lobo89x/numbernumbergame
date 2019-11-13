@@ -13,15 +13,7 @@ class Board extends Component {
   render() {
     if (this.props.cardlist.length !== 0) {
       return (
-        <div
-          style={{
-            position: "relative",
-            width: "800px",
-            height: "400px",
-            margin: "20px auto"
-          }}
-        >
-          {this.props.show ? (
+        <div className="board">
             <Grid
               currentplayer={this.props.currentplayer}
               socket={this.props.socket}
@@ -29,8 +21,6 @@ class Board extends Component {
               score={this.props.score}
               cardlist={this.props.cardlist}
             />
-          ) : (
-            <React.Fragment>
               <EndModal
                 user={this.props.user}
                 show={this.props.gameOver}
@@ -41,8 +31,6 @@ class Board extends Component {
                 gameOverModal={this.props.gameOverModal}
               />
               <StartModal show={this.props.gameStart} />
-            </React.Fragment>
-          )}
         </div>
       );
     } else {

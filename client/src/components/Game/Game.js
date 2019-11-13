@@ -258,23 +258,29 @@ class Game extends Component {
 
   render() {
     return (
+
+      // <audio src="numberGameSong.mp3" autoplauy>
+      //   <p>If you are reading this, it is because your browser does not support the audio element.</p>
+      //   </audio> 
+
       <div className="Game">
         {this.state.redirectTo !== null ? (
           <Redirect to={this.state.redirectTo} />
         ) : (
+
             <React.Fragment>
               <div className="Game-intro">
                 <div className="game-container bg-dark text-success border border-success bg-transparent">
-                  <h3> Question: Find {cards[this.state.level].desc}</h3>
-                  <h4>Your Score is: {this.state.score}</h4>
-                  <h4>Number of lives: {this.state.lives}</h4>
+                  <h2> Question: Find {cards[this.state.level].desc}</h2>
+                  <h2>Your Score is: {this.state.score}</h2>
+                  <h2>Number of lives: {this.state.lives}</h2>
                 </div>
               </div>
               <div className="container">
                 <div className="row">
                   <div className="col-lg-12 text-center game-row-center">
                     <div className="card-deck">
-                      
+
                       {this.state.cardlist ? (
                         <Board
                           show={this.state.show}
@@ -298,6 +304,7 @@ class Game extends Component {
                     </div>
                   </div>
                   <div className="col-lg-3 text-center"></div>
+                  <audio src="song1.mp3" className="gameLoaded" loop autoPlay></audio>
                 </div>
               </div>
             </React.Fragment>
@@ -305,6 +312,7 @@ class Game extends Component {
       </div>
     );
   }
+
 }
 
 export default Game;
