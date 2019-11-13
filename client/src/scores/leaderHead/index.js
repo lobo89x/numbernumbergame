@@ -10,7 +10,7 @@ return(
     
   <tr className = "tableHead"> 
       <td className = "Username">Username</td>
-      <td className = "Highscore">Highscore</td>
+      <td className = "Highscore">High Score</td>
   </tr>
   </tbody>
   </Table>)

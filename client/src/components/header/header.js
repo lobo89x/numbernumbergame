@@ -48,11 +48,11 @@ class Header extends React.Component {
           <Nav className="ml-auto font-weight-bold">
         
          
-      
-            <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link>
-            <Nav.Link style={{color:"#00ff58"}} href="Login">{this.props.user === null ? "Login": "Logged in as "}{this.props.user}</Nav.Link>
-            <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link>
-            <Nav.Link style={{color:"#00ff58"}} href="leaderboard">Leaderboard</Nav.Link>
+            {this.props.user === null? <Nav.Link style={{color:"#00ff58"}} href="signup">Sign Up</Nav.Link> : '' }
+            
+    {this.props.user === null ? <Nav.Link style={{color:"#00ff58"}} href="Login">Login</Nav.Link> :<span className="mt-2" style={{color:"#00ff58"}}>Logged in as {this.props.user}</span>} 
+            {/* <Nav.Link style={{color:"#00ff58"}} href="Game">Play Now</Nav.Link> */}
+            <Nav.Link style={{color:"#00ff58"}} href="leader">Leaderboard</Nav.Link>
             {this.props.user !== null? 
             <Nav.Link onClick={this.logOut} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> : ''            
           }

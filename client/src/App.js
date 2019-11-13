@@ -115,7 +115,7 @@ class App extends Component {
           />
             <Route
             exact
-            path="/leaderboard"
+            path="/leader"
             render={props => (
               <Leaderboard
                 {...props}
