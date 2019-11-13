@@ -70,7 +70,7 @@ function SignUp(props) {
     // </div>
 
     <Card style={{width:"40rem"}} className="mx-auto mt-4 border border-success">
- { props.user !== null ? <Redirect to="/lobby" />: ""  }
+ { props.user !== null ? <Redirect to="/lobby"/>: ""  }
 <Card.Header className="text-center bg-success"><h1> Register</h1></Card.Header>
 <Card.Body className="bg-dark">
   <Card.Text className="text-white">
