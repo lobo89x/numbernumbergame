@@ -12,11 +12,18 @@ class Grid extends Component {
 
   componentDidMount() {
     this.grid.current.focus();
-    listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
+    //listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
+  }
+
+  componentDidUpdate(){
+    stopListenforGamePad(); 
+    if(this.props.show){
+      listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
+    }
   }
 
   componentWillUnmount(){
-   stopListenforGamePad(); 
+   
   }
 
   handleUserInput = e => {
