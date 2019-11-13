@@ -210,7 +210,7 @@ export function handleMovement(socket, currentplayer) {
         
 
     function handleKeyDown(e) {
-        e.preventDefault()
+        console.log(e.keyCode)
         switch(e.keyCode) {
             case 37:
                     console.log("Left");
