@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Player1 from "../player_multi1";
 import Player2 from "../player_mulit2";
 import { handleMovement } from "./movement";
+import {listenForGamePad, stopListenforGamePad} from "../controller";
 
 class Grid extends Component {
   constructor() {
@@ -11,6 +12,11 @@ class Grid extends Component {
 
   componentDidMount() {
     this.grid.current.focus();
+    listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
+  }
+
+  componentWillUnmount(){
+   stopListenforGamePad(); 
   }
 
   handleUserInput = e => {

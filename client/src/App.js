@@ -33,9 +33,9 @@ class App extends Component {
     // checks to see if the user is logged in on the back end
 
     
-    this.getUser();
+    // this.getUser();
   
-    // this.mockUser();
+    this.mockUser();
   }
 
   mockUser = () => {
