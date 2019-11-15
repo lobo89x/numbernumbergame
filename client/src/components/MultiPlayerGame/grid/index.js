@@ -12,25 +12,21 @@ class Grid extends Component {
 
   componentDidMount() {
     this.grid.current.focus();
-    //listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
   }
 
   componentDidUpdate(){
+    // stop listening for game pad 
     stopListenforGamePad(); 
+    // start listening if modal are not showing
     if(this.props.show){
       listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
     }
-  }
-
-  componentWillUnmount(){
-   
   }
 
   handleUserInput = e => {
     if (this.props.show) {
       handleMovement(this.props.socket, this.props.currentplayer)(e);
     }
-
   };
 
   mapCardList = () => {
