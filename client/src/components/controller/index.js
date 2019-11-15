@@ -1,5 +1,6 @@
-let interval;
 import Mapping from "./mapping";
+
+let interval;
 
 export function listenForGamePad(fx){
   if (!('ongamepadconnected' in window)) {
