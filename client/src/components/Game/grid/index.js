@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Player from "../player";
 import { handleMovement } from "../player/movement";
+import {listenForGamePad, stopListenforGamePad} from "../../controller"; 
 
 class Grid extends Component {
   constructor() {
@@ -12,14 +13,18 @@ class Grid extends Component {
     this.grid.current.focus();
   }
 
+  
+
   componentDidUpdate() {
+    stopListenforGamePad(); 
     if(!this.props.show){
+      listenForGamePad(handleMovement());
       this.grid.current.focus();
     }
   }
 
   handleUserInput = e => {
-    e.preventDefault()
+    e.preventDefault();
     if (this.props.show === false) {
       handleMovement()(e);
     }

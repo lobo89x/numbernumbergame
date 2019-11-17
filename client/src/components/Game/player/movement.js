@@ -90,19 +90,15 @@ export function handleMovement(player, props) {
   }
 
   function handleKeyDown(e) {
-    e.preventDefault();
     switch (e.keyCode) {
       case 37:
         return moveX(-125, -1);
-
       case 38:
         return moveY(-110, -1);
-
       case 39:
         return moveX(125, 1);
       case 40:
         return moveY(110, 1);
-
       case 32:
         munch();
         break;
