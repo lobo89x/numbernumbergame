@@ -124,29 +124,16 @@ class Game extends Component {
   };
 
   closeModal = e => {
-    this.forceUpdate();
+    //this.forceUpdate();
     if (this.state.level === 8) {
-      this.setState({
-        show: false,
-        correctAns: 0,
-        cardlist: []
-      });
       this.zeroLevel();
     } else {
       this.nextLevel();
     }
-    this.answerList();
   };
 
   gameOverModal = e => {
     this.zeroLevel();
-    this.setState({
-      show: false,
-      correctAns: 0,
-      cardlist: []
-    });
-    this.forceUpdate();
-    this.answerList();
   };
 
   addScore = correctAns => {
@@ -208,9 +195,7 @@ class Game extends Component {
       }
     }
     let t = this.scramblenumbers(ansArray);
-    this.setState({ cardlist: t }, () => {
-      // console.log(this.state.cardlist);
-    });
+    this.setState({ cardlist: t });
   };
 
   selectEval = (x, tf, list) => {
@@ -252,7 +237,11 @@ class Game extends Component {
       level: 0,
       lives: 3,
       score: 0,
-      cardlist: []
+      cardlist: [],
+      show: false,
+      correctAns: 0
+    }, () =>{
+      this.answerList();
     });
   };
 

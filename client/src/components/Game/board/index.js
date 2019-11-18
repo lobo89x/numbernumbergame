@@ -10,9 +10,6 @@ class Board extends Component {
   };
 
   componentDidMount() {
-    this.setState({ cardlist: this.props.cardlist }, () => {
-      // console.log(this.props.cardlist);
-    });
   }
 
   render() {
@@ -24,8 +21,11 @@ class Board extends Component {
             criteria={this.props.cards.criteria}
             lives={this.props.lives}
             score={this.props.score}
+            correctAns={this.props.correctAns}
             selectEval={this.props.selectEval}
             cardlist={this.props.cardlist}
+            closeModal={this.props.closeModal}
+            gameOverModal={this.props.gameOverModal}
           />
           <Modal
             show={this.props.show}
