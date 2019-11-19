@@ -56,6 +56,9 @@ class Header extends React.Component {
             {this.props.user !== null? 
             <Nav.Link onClick={this.logOut} style={{color:"#00ff58"}} href="Login">Logout</Nav.Link> : ''            
           }
+            {this.props.user !== null? 
+            <Nav.Link href="Lobby" style={{color:"#00ff58"}}>Game Lobby</Nav.Link> : ''            
+          }
           </Nav>
           </Navbar>
           )
