@@ -84,6 +84,37 @@
   animation: 5s bubble infinite alternate linear;
 }
 
+.player-loc-on{
+  border: 1px solid red !important;
+  border-radius: 50% !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  animation: 1s blinks infinite alternate;
+}
+
+.player-loc-on::after{
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  height: 1px;
+  width: 110%;
+  background-color: red;
+}
+
+.player-loc-on::before{
+  content: '';
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  height: 110%;
+  width: 1px;
+  background-color: red;
+}
+
 @keyframes bubble{
   0%{
     top: 0%;
@@ -132,7 +163,6 @@
   width: 50%;
   padding: 1em;
   background-color: rgba(12, 12, 12, 0.596);
-  color: aliceblue;
   border: 2px solid rgb(0, 255, 88);
 }
 
@@ -148,10 +178,10 @@
 
 @keyframes blinks{
   0%{
-    opacity: 0
+    opacity: 1
   }
   100%{
-    opacity: 1
+    opacity: 0
   }
 }
 
@@ -171,14 +201,18 @@
   background: url("/Asteroid.png");
   background-size: 100% 100%;
   background-color: transparent !important;
+  border: 1px solid transparent;
+  position: relative;
 }
 
 .card-asteroid-munched {
+  border: 1px solid transparent;
   background-size: 100% 100%;
   background-color: transparent !important;
   animation-name: explosion;
-  animation-duration: 1s;
+  animation-duration: .5s;
   color: transparent;
+  position: relative;
 }
 @keyframes explosion {
   0%   {background: url("/Asteroid0.png");

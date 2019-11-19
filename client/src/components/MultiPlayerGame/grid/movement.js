@@ -218,19 +218,19 @@ export function handleMovement(socket, currentplayer) {
                     // break
             case 38:
                     console.log("Up");
-                 return moveY(-1)
+                 return moveY(-1);
                 //break
             case 39:
                     console.log("Right");
-                 return moveX(1)
+                 return moveX(1);
                 //break
             case 40:
                     console.log("Down");
-                 return moveY(1)
+                 return moveY(1);
                 //break
             case 32:
                     console.log("Munch");
-                    munch();
+                    return munch();
                 // return moveY(-1)
                 break
             default:

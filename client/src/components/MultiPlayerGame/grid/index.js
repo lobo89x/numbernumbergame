@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Player1 from "../player_multi1";
 import Player2 from "../player_mulit2";
 import { handleMovement } from "./movement";
-import {listenForGamePad, stopListenforGamePad} from "../controller";
+import {listenForGamePad, stopListenforGamePad} from "../../controller";
 
 class Grid extends Component {
   constructor() {
@@ -12,25 +12,21 @@ class Grid extends Component {
 
   componentDidMount() {
     this.grid.current.focus();
-    //listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
   }
 
   componentDidUpdate(){
+    // stop listening for game pad 
     stopListenforGamePad(); 
+    // start listening if modal are not showing
     if(this.props.show){
       listenForGamePad(handleMovement(this.props.socket, this.props.currentplayer));
     }
-  }
-
-  componentWillUnmount(){
-   
   }
 
   handleUserInput = e => {
     if (this.props.show) {
       handleMovement(this.props.socket, this.props.currentplayer)(e);
     }
-
   };
 
   mapCardList = () => {
