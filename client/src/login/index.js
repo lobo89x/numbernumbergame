@@ -47,9 +47,9 @@ function Login(props) {
 <Card.Body className="bg-dark">
   <div className="text-white">
 
-          <label className="mr-2 ml-4" htmlFor="userName">Username:</label>
+          <label className="mr-2" htmlFor="userName">Username:</label>
           <input id="userName" value={userName} onChange={updateUserName} ></input>
-          <label className="mr-2 ml-4" htmlFor="password">Password: </label>
+          <label className="mr-2" htmlFor="password">Password: </label>
           <input id="password" type="password" value={passWord} onChange={updatePassWord} ></input>
              {error ? <p className="login-error">{error}</p> : ""}
           <Button className="btn btn-success mt-4 flat btn-block" onClick={submitLogin}> Login </Button>
