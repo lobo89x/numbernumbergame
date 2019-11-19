@@ -75,8 +75,8 @@ function SignUp(props) {
 <Card.Body className="bg-dark">
   <Card.Text className="text-white">
 
-  <label className="mr-2 ml-4" htmlFor="userName">Username:</label> <input id="userName" value={userName} onChange={updateUserName} ></input>
-  <label className="mr-2 ml-4" htmlFor="password">Password:</label> <input id="password" type="password" value={passWord} onChange={updatePassWord} ></input>
+  <label className="mr-2" htmlFor="userName">Username:</label> <input id="userName" value={userName} onChange={updateUserName} ></input>
+  <label className="mr-2" htmlFor="password">Password:</label> <input id="password" type="password" value={passWord} onChange={updatePassWord} ></input>
 
   {error ? <p className="signUp-error">{error}</p> : ""} 
   <Button className="btn btn-success mt-4 flat btn-block"
