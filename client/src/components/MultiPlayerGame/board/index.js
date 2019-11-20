@@ -3,10 +3,6 @@ import React, { Component } from "react";
 import { StartModal, EndModal } from "../Modal";
 
 class Board extends Component {
-  state = {
-    guesslist: [],
-    correctAns: 0
-  };
 
   componentDidMount() {}
 

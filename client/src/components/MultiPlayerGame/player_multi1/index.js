@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux'
-import walkSprite from './player_1.png'
+import { connect } from 'react-redux';
+import walkSprite from './player_1.png';
 
 
 
@@ -10,7 +10,7 @@ function Player1(props) {
     let y = (props.players[0].pos[1])*110;
 
     return (
-        <div className='player'
+        <div className='player-1'
             style={{
                 position: 'absolute',
                 top: y,

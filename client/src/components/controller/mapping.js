@@ -56,6 +56,4 @@ map['Wireless Gamepad (STANDARD GAMEPAD Vendor: 057e Product: 2007)'] = {
   }
 }
 
-map['Joy-Con (L)'] = map['Joy-Con (R)'];
-
 export default map;
