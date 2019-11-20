@@ -2,20 +2,20 @@ const db = require("../models/index");
 
 module.exports = {
     createHighscore: function(id) {
-        console.log(db, "dbscore")
-       return db.Highscore
-          .create({userID : id })
-          .catch(err => res.status(422).json(err));
+       if(!id){
+           throw new Error("");
+       }else{
+        return db.Highscore
+        .create({userID : id })
+        .catch(err => res.status(422).json(err));
+       }
     },
 
     updateHighscore: function(req, res) {
-        //console.log(db, "dbscore")
-        console.log(req.body)
       return db.Highscore
         .findOneAndUpdate({  userID: req.params.userID }, { $set: {highscore: req.body.highscore} }, {new : true}).populate("username")
         .then(dbModel => {
             res.json(dbModel);
-            console.log(`new highscore!`);
         })
         .catch(err => res.status(422).json(err));
     }, 
