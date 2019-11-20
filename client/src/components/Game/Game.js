@@ -140,8 +140,7 @@ class Game extends Component {
     // console.log("here i am");
     this.setState(
       {
-        score: this.state.score + correctAns * 25,
-        correctAns: this.state.correctAns + 1
+        score: this.state.score + this.state.correctAns * 25
       },
       () => {
         if (this.state.score > this.props.userData.highscore.highscore) {
@@ -201,13 +200,20 @@ class Game extends Component {
   selectEval = (x, tf, list) => {
     let correct = true;
     if (cards[this.state.level].criteria(tf)) {
-      this.addScore(this.state.correctAns);
+      this.setState(
+        {
+          correctAns: this.state.correctAns + 1
+        },
+        () => {
+          this.addScore(this.state.correctAns);
+        }
+        );
     } else {
       correct = false;
     }
-    if (this.state.correctAns === 15) {
-      this.showModal();
-    }
+    // if (this.state.correctAns === 15) {
+    //   this.showModal();
+    // }
 
     this.setState(
       {
@@ -220,9 +226,9 @@ class Game extends Component {
         lives: correct ? this.state.lives : this.state.lives - 1
       },
       () => {
-        if (this.state.lives < 1) {
+        // if (this.state.lives < 1) {
           this.showModal();
-        }
+        // }
       }
     );
   };
