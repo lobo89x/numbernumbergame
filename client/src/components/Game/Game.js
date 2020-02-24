@@ -35,9 +35,69 @@ const cards = [
     }
   },
   {
+    desc: "Multiples of 6",
+    criteria: x => {
+      if (x % 6 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
     desc: "Multiples of 7",
     criteria: x => {
       if (x % 7 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
+    desc: "Multiples of 8",
+    criteria: x => {
+      if (x % 8 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
+    desc: "Multiples of 9",
+    criteria: x => {
+      if (x % 9 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
+    desc: "Multiples of 10",
+    criteria: x => {
+      if (x % 10 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
+    desc: "Multiples of 11",
+    criteria: x => {
+      if (x % 11 === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  },
+  {
+    desc: "Multiples of 12",
+    criteria: x => {
+      if (x % 12 === 0) {
         return true;
       } else {
         return false;
@@ -125,7 +185,7 @@ class Game extends Component {
 
   closeModal = e => {
     //this.forceUpdate();
-    if (this.state.level === 8) {
+    if (this.state.level === (cards.length - 1)) {
       this.zeroLevel();
     } else {
       this.nextLevel();
