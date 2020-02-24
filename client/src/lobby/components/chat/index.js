@@ -20,10 +20,12 @@ class ChatComponent extends Component {
   }
 
   sendMessage = () => {
+    if(this.state.messageBoxValue){
     // handles sending the data to the back end via socket io, this will be sent back in the lobby component and passed down
     this.props.socket.emit("sendMessage", { room: this.props.gameData.name, message: this.state.messageBoxValue, user: this.props.user});
     // empty the message input
     this.setState({messageBoxValue: ""});
+    }
   }
 
   updateMessageBox = (e) => {

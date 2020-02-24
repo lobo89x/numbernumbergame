@@ -1,5 +1,7 @@
 const { generateBoard, getCriteria } = require("./gameCriteria");
+const Filter = require('bad-words');
 
+const filter = new Filter();
 // games tracking object handles all aspects of users joining games or leaving games
 const gameTracker = {
   // list of all users
@@ -18,7 +20,7 @@ const gameTracker = {
       // add the user by push
       currentRoom.users.push(user);
       // update messages so that other users are aware
-      currentRoom.messages.push(user + " joined room.")
+      currentRoom.messages.push(user + " joined waiting room.")
       success = true;
     }
 
@@ -28,7 +30,7 @@ const gameTracker = {
     // loop through games to find correct game
     let currentRoom = this.getRoom(room);
     if (currentRoom) {
-      currentRoom.messages.push(message);
+      currentRoom.messages.push(filter.clean(message));
     }
   },
   addUsers: function (username) {

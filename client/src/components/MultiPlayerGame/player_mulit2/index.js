@@ -10,7 +10,7 @@ function Player2(props) {
     let y = (props.players[1].pos[1])*110;
 
     return (
-        <div className='player'
+        <div className='player-2'
             style={{
                 position: 'absolute',
                 top: y,

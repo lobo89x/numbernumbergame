@@ -1,45 +1,28 @@
-#root{
+#root {
   height: 100%;
 }
 
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
-
 
 body {
- position:fixed;
- background:url(https://i.stack.imgur.com/cGIFX.jpg);
- animation:100s scroll infinite linear;
- background-size: 100%;
- top:0;
- left:0;
- width:100%;
- height:100%;
+  position: fixed;
+  background: url(https://i.stack.imgur.com/cGIFX.jpg);
+  animation: 100s scroll infinite alternate;
+  background-size: 100% auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
-@keyframes scroll{
- 100%{
-   background-position: 3000px 0px;
- }
+@keyframes scroll {
+  100% {
+    background-position: 3000px 0px;
+  }
 }
