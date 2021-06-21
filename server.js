@@ -27,12 +27,27 @@ if (process.env.NODE_ENV === "production") {
 
 //Connect to mongoDB
 // const url = "mongodb://localhost:27017/numbernumbergame";
+//mongodb+srv://proof:<password>@numbernauts01.vrczc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
 const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumbergame";
 
 mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
   if (err) throw err;
   console.log("Database created!");
 });
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://proof:iskander1026@numbernauts01.vrczc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+//mongodb://heroku_jrn1m0h0:3rq5745equsl3rv98tnk46qdh1@ds033439.mlab.com:33439/heroku_jrn1m0h0
+
+//heroku config:set MONGODB_URI="mongodb+srv://proof:<password>@numbernauts01.vrczc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 app.use(userRoutes);
 app.use(scoreRoutes);
