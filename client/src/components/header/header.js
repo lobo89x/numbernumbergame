@@ -38,11 +38,11 @@ class Header extends React.Component {
   logOut = () => {
     axios.post('/logout')
   }
-
+//client\src\images\astro2.png
   render(){
     return (
       <Navbar bg="dark" variant="dark">
-        <img src= "/astro2.png" style={{height:"45px", width:"45px", background:"hidden"}} alt="logo"></img>
+        <img src= "/src/images/astro2.png" style={{height:"45px", width:"45px", background:"hidden"}} alt="logo"></img>
         <h2 style={{color:"#00ff58"}} className="ml-3 mt-2">NumberNauts</h2>
           <Navbar.Brand href="#landingPage"></Navbar.Brand>
           <Nav className="ml-auto font-weight-bold">

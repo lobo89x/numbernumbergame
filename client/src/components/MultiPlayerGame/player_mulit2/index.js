@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux'
-import walkSprite from './player_2.png'
+import walkSprite from '../../../../src/images/player_2.png'
 
 
 

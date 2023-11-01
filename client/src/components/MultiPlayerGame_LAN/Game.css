@@ -139,7 +139,7 @@ body {
 }
 
 .card-asteroid {
-  background: url("/Asteroid.png");
+  background: url("../../../src/images/Asteroid.png");
   background-size: 100% 100%;
   background-color: transparent !important;
 }

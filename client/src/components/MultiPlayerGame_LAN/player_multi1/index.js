@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from 'react-redux'
-import walkSprite from './player_1.png'
+import walkSprite from '../../../../src/images/player_1.png'
 import {loadCardList} from './movement'
 
 

@@ -108,7 +108,7 @@
 
 
 .player {
-  background-image: url('/player_1.png');
+  background-image: url('../../../src/images/player_1.png');
   width: 52px;
   height: 65px;
   animation:3s float infinite linear;
@@ -244,7 +244,7 @@
 }
 
 .card-asteroid {
-  background: url("/Asteroid.png");
+  background: url("../../../src/images/Asteroid.png");
   background-size: 100% 100%;
   background-color: transparent !important;
   position: relative;
@@ -259,15 +259,15 @@
   position: relative;
 }
 @keyframes explosion {
-  0%   {background: url("/Asteroid0.png");
+  0%   {background: url("../../../src/images/Asteroid0.png");
         background-size: 100% 100%;}
-  15%  {background: url("/Ast0ex1.png");
+  15%  {background: url("../../../src/images/Ast0ex1.png");
         background-size: 100% 100%;}
-  20%  {background: url("/Ast1ex2.png");
+  20%  {background: url("../../../src/images/Ast1ex2.png");
         background-size: 100% 100%;}
-  55%  {background: url("/Ast1ex3.png");
+  55%  {background: url("../../../src/images/Ast1ex3.png");
         background-size: 100% 100%;}
-  100% {background: url("/Asteroid2.png");
+  100% {background: url("../../../src/images/Asteroid2.png");
         background-size: 100% 100%;}
 }
 
