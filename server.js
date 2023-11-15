@@ -28,7 +28,8 @@ if (process.env.NODE_ENV === "production") {
 //Connect to mongoDB
 // const url = "mongodb://localhost:27017/numbernumbergame";
 //mongodb+srv://proof:<password>@numbernauts01.vrczc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
-const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumbergame";
+//const url = process.env.MONGODB_URI || "mongodb://localhost:27017/numbernumbergame";
+const url = process.env.MONGODB_URI || "mongodb+srv://proof:8i0nZEhHpn77MdOg@numbernauts01.vrczc.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(url, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true }, function(err, db) {
   if (err) throw err;
